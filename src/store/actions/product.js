@@ -1,0 +1,57 @@
+import axios from 'axios';
+
+import { initialProductReducerState } from '../reducers/ProductReducer';
+import { APPEND_PRODUCTS, SET_PRODUCTS, SET_PRODUCTS_ARE_LOADING } from './types';
+import { BASE_CLIENT_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
+
+export function appendProducts(products) {
+    return { type: APPEND_PRODUCTS, payload: products };
+}
+
+export function setProducts(products) {
+    return { type: SET_PRODUCTS, payload: products };
+}
+
+export function setProductsAreLoading(status) {
+    return { type: SET_PRODUCTS_ARE_LOADING, payload: status };
+}
+
+function fetchProductsAction(payload, fetchType) {
+    switch (fetchType) {
+        case FETCH_TYPE_APPEND:
+            return appendProducts(payload);
+        case FETCH_TYPE_OVERRIDE:
+            return setProducts(payload);
+        default:
+            throw new Error('Unknow argument value fetchType')
+    }
+}
+
+export function fetchProducts({ categoryId = null, shopId = null, productIds = null, page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc', fetchType = FETCH_TYPE_OVERRIDE }) {
+    if (!!categoryId === !!shopId) {
+        throw new Error('Must either categoryId or shopId');
+    }
+
+    if (Array.isArray(productIds) && productIds.length === 0) {
+        return setProducts(initialProductReducerState.products);
+    }
+
+    return function(dispatch) {
+        dispatch(setProductsAreLoading(true));
+        if (fetchType === FETCH_TYPE_OVERRIDE) {
+            dispatch(setProducts(initialProductReducerState.products));
+        }
+        const url = BASE_CLIENT_API_URL +
+            (categoryId ? '/category/' + categoryId : '/shop/' + shopId) +
+            '/product';
+        const params = { page, perPage, orderBy, orderDirection, product_ids: productIds };
+        axios.get(url, { params })
+            .then(response => {
+                dispatch(fetchProductsAction(response.data, fetchType));
+                dispatch(setProductsAreLoading(false));
+            })
+            .catch(error => {
+                dispatch(setProductsAreLoading(false));
+            })
+    }
+}

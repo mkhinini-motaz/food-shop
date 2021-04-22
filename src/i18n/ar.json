@@ -1,0 +1,40 @@
+{
+    "common:cancel": "إلغاء",
+    "common:confirm": "تأكيد",
+    "common:save": "حفظ",
+    "common:login": "تسجيل الدخول",
+    "common:logout": "تسجيل خروج",
+    "common:forgot-password?": "نسيت كلمة المرور ؟",
+    "common:profile": "الحساب الشخصي",
+    "common:copyright":"حقوق النشر © 2021 GhostChef",
+
+    "product:choose:items": "إنشاء وجبة",
+    "product:delete:confirm:title": "تأكيد حذف المنتج",
+    "product:delete:confirm:content": "ستتم إزالة هذا المنتج من سلة التسوق الخاصة بك ، هل تريد المتابعة ؟",
+
+    "form:address:label": "العنوان",
+    "form:email:label": "البريد الإلكتروني",
+    "form:first_name:label": "الاسم",
+    "form:last_name:label": "اسم العائلة",
+    "form:phone:label": "رقم الهاتف",
+    "form:password:label": "كلمة السر",
+    "form:password_confirmation:label": "تأكيد كلمة السر",
+    "form:total:label": "المجموع",
+
+    "ingredient:quantity:1": "قليل",
+    "ingredient:quantity:2": "عادي",
+    "ingredient:quantity:3": "إكسترا",
+
+    "cart:promo_code:label": "برومو كود",
+    "cart:promo_code:free_delivery": "توصيل مجاني مع البرومو كود",
+    "cart:additional_note:label": "مذكرة إضافية",
+    "cart:delivery:label": "توصيل",
+    "cart:order:submit": "تأكيد الطلب",
+
+    "lang:fr": "فرنسية",
+    "lang:en": "إنجليزية",
+    "lang:tn": "تونسي",
+    "lang:ar": "عربية",
+
+    "TND": "د ت"
+}

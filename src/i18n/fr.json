@@ -1,0 +1,38 @@
+{
+    "common:cancel": "Annuler",
+    "common:confirm": "Confirmer",
+    "common:save": "Enregistrer",
+    "common:login": "S'authentifier",
+    "common:logout": "Se déconnecter",
+    "common:forgot-password?": "Mot de passe oublié ?",
+    "common:profile": "Profil",
+    "common:copyright":"Copyright © 2021 GhostChef",
+
+    "product:choose:items": "Création plat",
+    "product:delete:confirm:title": "Confirmation suppression produit",
+    "product:delete:confirm:content": "Ce produit sera supprimé de votre panier, continuer ?",
+
+    "form:address:label": "Adresse",
+    "form:email:label": "Email",
+    "form:first_name:label": "Prénom",
+    "form:last_name:label": "Nom",
+    "form:phone:label": "Numéro de téléphone",
+    "form:password:label": "Mot de passe",
+    "form:password_confirmation:label": "Confirmation mot de passe",
+    "form:total:label": "Total",
+
+    "ingredient:quantity:1": "Un peu",
+    "ingredient:quantity:2":  "Moyen",
+    "ingredient:quantity:3": "Extra",
+
+    "cart:promo_code:label": "Code promo",
+    "cart:promo_code:free_delivery": "Livraison gratuite avec le code promo",
+    "cart:delivery:label": "Livraison",
+    "cart:additional_note:label": "Note supplémentaire",
+    "cart:order:submit": "Valider commande",
+
+    "lang:fr": "Français",
+    "lang:en": "Anglais",
+    "lang:tn": "Tunisien",
+    "lang:ar": "Arabe"
+}
