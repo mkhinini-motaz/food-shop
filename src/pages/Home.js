@@ -16,10 +16,10 @@ export default function Home(props) {
     return (
         <Collapse in={isShown}>
             <div className="row">
-                <div className={'bg-white my-2 p-2 col-8'} style={{ boxShadow: BOX_SHADOW_CSS_RULE, height: 'fit-content' }}>
-                    <GoogleMap height="70vh" orders={currentOrders} />
+                <div className={'bg-white my-2 p-2 col-12 col-sm-8'} style={{ boxShadow: BOX_SHADOW_CSS_RULE, height: 'fit-content' }}>
+                    <GoogleMap height="80vh" orders={currentOrders} />
                 </div>
-                <div className="col-4 mt-0 pt-0 pb-3" >
+                <div className="col-12 col-sm-4 mt-0 pt-0 pb-3" style={{ maxHeight: '84vh', overflow: 'auto' }}>
                     {currentOrders.map((order, index) =>
                         <div className="bg-white my-2" style={{ boxShadow: BOX_SHADOW_CSS_RULE }} key={'order_list_' + order.id} >
                             <ProductList order={order} showPromoCode={false} showTotal={false} showProductPhotos={false} />

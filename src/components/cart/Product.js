@@ -23,9 +23,17 @@ export default function Product(props) {
     return (
         <Collapse in={isShown}>
             <ListItem className={flexRowClassName + ' ' + props.className}>
-                {!product.photo || props.showPhoto === false ? '' : <ListItemAvatar><Avatar alt="product" src={product.photo} /></ListItemAvatar>}
+                {!product.photo || props.minifiedDisplay === false ? '' : <ListItemAvatar><Avatar alt="product" src={product.photo} /></ListItemAvatar>}
                 <ListItemText
-                primary={<TranslateField value={product} field="name" />}
+                primary={<span>
+                    {!!props.minifiedDisplay ? '' :
+                        <span>
+                            {! product.product_count ? '' : <span>{product.product_count}</span>}
+                            {! product.product_count ? '' : <span className="mx-1">-</span>}
+                        </span>
+                    }
+                    <TranslateField value={product} field="name" />
+                </span>}
                 className={'d-inline text-' + selectedLangWriteFrom + ' ' + flexRowClassName}
                 secondary={
                     <span>
@@ -45,21 +53,23 @@ export default function Product(props) {
                                 ).join(', ')
                             }</span>
                         </Typography>
-                        <Typography
-                            component="span"
-                            variant="body2"
-                            color="textPrimary"
-                            className={'d-flex ' + flexRowClassName}
-                        >
-                            {! product.product_count ? '' : <span>{product.product_count}</span>}
-                            {! product.product_count ? '' : <span className="mx-1">-</span>}
-                            <span>{product.total}</span>
-                        </Typography>
+                        {!props.minifiedDisplay ? '' :
+                            <Typography
+                                component="span"
+                                variant="body2"
+                                color="textPrimary"
+                                className={'d-flex ' + flexRowClassName}
+                            >
+                                {! product.product_count ? '' : <span>{product.product_count}</span>}
+                                {! product.product_count ? '' : <span className="mx-1">-</span>}
+                                <span>{product.total}</span>
+                            </Typography>
+                        }
                     </span>
                 }
                 />
             </ListItem>
-            {hideDivider ? '' : <Divider variant="inset" component="li" />}
+            {hideDivider ? '' : <Divider className={props.minifiedDisplay === false ? 'mx-0' : ''} variant="inset" component="li" />}
       </Collapse>
     );
 }

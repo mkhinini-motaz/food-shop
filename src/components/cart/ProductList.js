@@ -33,7 +33,7 @@ export default function ProductList(props) {
         productCartItemComponents.push(<Product
             key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '')}
             showDelay={showDelay}
-            showPhoto={props.showProductPhotos !== false}
+            minifiedDisplay={props.showProductPhotos !== false}
             product={productInfoForCartItem(product)}
             hideDivider={parseInt(index) === lastProductInCartIndex}
         />);
