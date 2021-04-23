@@ -5,9 +5,9 @@ import { fetchCategories } from "../../store/actions";
 import Loader from "../../components/common/Loader";
 import CategoryCardList from "../../components/category/CategoryCardList";
 
-class Home extends React.Component {
+class CategoryIndex extends React.Component {
 	componentDidMount() {
-		this.props.fetchCategories({});
+		this.props.fetchCategories({ orderBy: 'order', orderDirection: 'asc' });
 	}
 
 	render() {
@@ -35,10 +35,10 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
 	return {
-		fetchCategories: ({ shopId, page, perPage, orderBy, orderDirection }) =>
+		fetchCategories: ({ page, perPage, orderBy, orderDirection }) =>
 			dispatch(
-				fetchCategories({ shopId, page, perPage, orderBy, orderDirection })
+				fetchCategories({ page, perPage, orderBy, orderDirection })
 			),
 	};
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryIndex);

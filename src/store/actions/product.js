@@ -27,11 +27,7 @@ function fetchProductsAction(payload, fetchType) {
     }
 }
 
-export function fetchProducts({ categoryId = null, shopId = null, productIds = null, page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc', fetchType = FETCH_TYPE_OVERRIDE }) {
-    if (!!categoryId === !!shopId) {
-        throw new Error('Must either categoryId or shopId');
-    }
-
+export function fetchProducts({ categoryId = null, productIds = null, page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc', fetchType = FETCH_TYPE_OVERRIDE }) {
     if (Array.isArray(productIds) && productIds.length === 0) {
         return setProducts(initialProductReducerState.products);
     }
@@ -42,7 +38,7 @@ export function fetchProducts({ categoryId = null, shopId = null, productIds = n
             dispatch(setProducts(initialProductReducerState.products));
         }
         const url = BASE_SHOP_API_URL +
-            (categoryId ? '/category/' + categoryId : '/shop/' + shopId) +
+            (categoryId ? '/category/' + categoryId : '') +
             '/product';
         const params = { page, perPage, orderBy, orderDirection, product_ids: productIds };
         axios.get(url, { params })

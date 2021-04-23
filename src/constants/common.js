@@ -25,4 +25,4 @@ export const LOCAL = "tn-TN";
 export const LOCAL_PHONE_MASK = "+ (216) 99 999 999";
 export const LOCAL_CURRENCY = "TND";
 
-export const GOOGLE_ANALYTICS_TRACKING_ID = ""; // TODO: set value
+export const GOOGLE_ANALYTICS_TRACKING_ID = "G-KF04PXZBK4";

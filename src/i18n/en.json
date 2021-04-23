@@ -8,6 +8,8 @@
     "common:profile": "Profile",
     "common:copyright":"Copyright © 2021 GhostChef",
 
+    "common:categories": "Categories",
+
     "product:choose:items": "Meal creation",
     "product:delete:confirm:title": "Product delete confirmation",
     "product:delete:confirm:content": "This product will be deleted from your car, continue ?",

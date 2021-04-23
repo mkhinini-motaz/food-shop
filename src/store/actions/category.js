@@ -27,7 +27,7 @@ function fetchCategoriesAction(payload, fetchType) {
     }
 }
 
-export function fetchCategories({ shopId, page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc', fetchType = FETCH_TYPE_OVERRIDE })  {
+export function fetchCategories({ page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc', fetchType = FETCH_TYPE_OVERRIDE })  {
     return function(dispatch) {
         dispatch(setCategoriesAreLoading(true));
         if (fetchType === FETCH_TYPE_OVERRIDE) {
@@ -36,7 +36,7 @@ export function fetchCategories({ shopId, page = 1, perPage = 20, orderBy = 'cre
 
         const params = { page, perPage, orderBy, orderDirection };
 
-        axios.get(BASE_SHOP_API_URL + '/shop/1/category', { params }) // TODO: dynamic shops
+        axios.get(BASE_SHOP_API_URL + '/category', { params })
             .then(response => {
                 dispatch(fetchCategoriesAction(response.data, fetchType));
                 dispatch(setCategoriesAreLoading(false));

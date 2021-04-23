@@ -8,6 +8,8 @@
     "common:profile": "الحساب الشخصي",
     "common:copyright":"حقوق النشر © 2021 GhostChef",
 
+    "common:categories": "الفئات",
+
     "product:choose:items": "إنشاء وجبة",
     "product:delete:confirm:title": "تأكيد حذف المنتج",
     "product:delete:confirm:content": "ستتم إزالة هذا المنتج من سلة التسوق الخاصة بك ، هل تريد المتابعة ؟",

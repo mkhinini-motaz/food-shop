@@ -10,7 +10,7 @@ class CategoryShow extends React.Component {
     componentDidMount() {
         const { categoryId } = this.props;
 
-        this.props.fetchProducts({ categoryId });
+        this.props.fetchProducts({ categoryId, orderBy: 'order', orderDirection: 'asc' });
     }
 
     renderContent() {

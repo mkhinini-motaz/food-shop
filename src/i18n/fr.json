@@ -8,6 +8,8 @@
     "common:profile": "Profil",
     "common:copyright":"Copyright © 2021 GhostChef",
 
+    "common:categories": "Catégories",
+
     "product:choose:items": "Création plat",
     "product:delete:confirm:title": "Confirmation suppression produit",
     "product:delete:confirm:content": "Ce produit sera supprimé de votre panier, continuer ?",

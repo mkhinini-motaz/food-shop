@@ -4,6 +4,7 @@ import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 
 import Layout from "./layout/Layout";
 import Home from "./pages/Home";
+import CategoryIndex from "./pages/category/CategoryIndex";
 import CategoryShow from "./pages/category/CategoryShow";
 import Login from "./pages/auth/Login";
 import Profile from "./pages/auth/Profile";
@@ -30,6 +31,13 @@ function shopUserRoutes(authShopUser) {
         <Route key="client-route-home" exact path="/" >
             {shopUserIsAuthenticated ?
                 <Layout><Home /></Layout> :
+                <Redirect to="/login" />
+            }
+        </Route>,
+
+        <Route key="client-route-home" exact path="/category" >
+            {shopUserIsAuthenticated ?
+                <Layout><CategoryIndex /></Layout> :
                 <Redirect to="/login" />
             }
         </Route>,

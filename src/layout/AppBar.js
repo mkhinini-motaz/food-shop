@@ -65,14 +65,14 @@ export default function AppBar(props) {
 				</Link>
 			</MenuItem>
 
-			<MenuItem className="ml-auto menu-item">
-				<Tooltip
-					title={
-						<Translate
-							value={clientIsAuthenticated ? "common:profile" : "common:login"}
-						/>
-					}
-				>
+            <MenuItem className="ml-auto menu-item">
+                <Link to="/category" >
+                    <Translate value="common:categories"/>
+                </Link>
+            </MenuItem>
+
+            <MenuItem className="ml-auto menu-item">
+				<Tooltip title={<Translate value={clientIsAuthenticated ? "common:profile" : "common:login"} />} >
 					<IconButton
 						to={clientIsAuthenticated ? "/profile" : "/login"}
 						component={Link}
