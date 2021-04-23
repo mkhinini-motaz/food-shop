@@ -11,7 +11,6 @@ export const BOX_SHADOW_CSS_RULE = "0 0 10px 2px #434258";
 export const IMAGE_WITH_TEXT_TINT = "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4))";
 
 export const SELECTED_LANG_NAME_IN_WINDOW = "selected_lang";
-export const MAP_BOX_API_KEY = "REDACTED";
 export const GOOGLE_MAP_API_KEY = "REDACTED";
 
 export const COLOR_PRIMARY = "#355C7D";

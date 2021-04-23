@@ -6,7 +6,6 @@ import PhoneField from './PhoneField';
 import TextField from './TextField';
 import PasswordField from './PasswordField';
 import EmailField from './EmailField';
-import LeafletMapField from './LeafletMapField';
 import SubmitButton from './SubmitButton';
 import Slider from './Slider';
 
@@ -21,9 +20,6 @@ export default function FormField(props) {
 
         case FORM_FIELD_TYPE_EMAIL:
             return <EmailField className={commonClassName} {...props} />;
-
-        case FORM_FIELD_GOOGLE_MAP:
-            return <LeafletMapField className={commonClassName} {...props} />;
 
         case FORM_FIELD_TYPE_SLIDER:
             return <Slider className={commonClassName} {...props} />;
