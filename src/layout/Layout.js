@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import AppBar from "./AppBar";
 import Footer from "./Footer";
 import ConfirmDialog from "../components/common/ConfirmDialog";
-import ProductCreateDialog from "../components/product/ProductCreateDialog";
-import ProductDeleteDialog from "../components/product/ProductDeleteDialog";
 import { COLOR_PRIMARY } from "../constants";
 import OrderDialog from "../components/order/OrderDialog";
 

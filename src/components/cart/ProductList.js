@@ -9,7 +9,6 @@ import Total from "./Total";
 import AdditionalNote from "./AdditionalNote";
 
 function productInfoForCartItem(product) {
-console.log('111 : ', product)
     return {
         id: product.id,
         name: product.name,
@@ -34,8 +33,9 @@ export default function ProductList(props) {
         productCartItemComponents.push(<Product
             key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '')}
             showDelay={showDelay}
+            showPhoto={props.showProductPhotos !== false}
             product={productInfoForCartItem(product)}
-            hideDivider={index === lastProductInCartIndex}
+            hideDivider={parseInt(index) === lastProductInCartIndex}
         />);
 
         totalPrice += product.price * product.product_count;
@@ -43,13 +43,13 @@ export default function ProductList(props) {
     }
 
     return (
-        <div>
+        <div className="mt-2 mb-4">
             <List className="bg-white mb-2" style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
                 {productCartItemComponents}
             </List>
-            <PromoCode promoCode={props.order.promo_code} showDelay={showDelay + COMPONENT_SHOW_DELAY * 2} />
-            <Total value={totalPrice} promoCode={props.order.promo_code} showDelay={showDelay + COMPONENT_SHOW_DELAY * 3} />
-            <AdditionalNote additionalNote={props.order.additional_note} showDelay={showDelay + COMPONENT_SHOW_DELAY * 4} />
+            <AdditionalNote additionalNote={props.order.additional_note} withMargins={props.showPromoCode !== false} showDelay={showDelay + COMPONENT_SHOW_DELAY * 2} />
+            {props.showPromoCode === false ? '' : <PromoCode promoCode={props.order.promo_code} showDelay={showDelay + COMPONENT_SHOW_DELAY * 3} />}
+            {props.showTotal === false ? '' : <Total value={totalPrice} promoCode={props.order.promo_code} showDelay={showDelay + COMPONENT_SHOW_DELAY * 4} />}
         </div>
     );
 }

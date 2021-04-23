@@ -23,9 +23,7 @@ export default function Product(props) {
     return (
         <Collapse in={isShown}>
             <ListItem className={flexRowClassName + ' ' + props.className}>
-                <ListItemAvatar>
-                    {!product.photo ? <span></span> : <Avatar alt="product" src={product.photo} />}
-                </ListItemAvatar>
+                {!product.photo || props.showPhoto === false ? '' : <ListItemAvatar><Avatar alt="product" src={product.photo} /></ListItemAvatar>}
                 <ListItemText
                 primary={<TranslateField value={product} field="name" />}
                 className={'d-inline text-' + selectedLangWriteFrom + ' ' + flexRowClassName}
@@ -65,4 +63,3 @@ export default function Product(props) {
       </Collapse>
     );
 }
-// TODO: add confirmation to quantityActionButton on click callback
