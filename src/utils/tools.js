@@ -48,6 +48,6 @@ export function shortPhone(phone) {
 /**
  * @returns {string}
  */
-export function clientAccessToken() {
-    return 'Bearer ' + (localStorage.getItem('client_access_token') || '');
+export function shopUserAccessToken() {
+    return 'Bearer ' + (localStorage.getItem('shop_user_access_token') || '');
 }

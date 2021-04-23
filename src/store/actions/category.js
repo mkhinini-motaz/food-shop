@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { initialCategoryReducerState } from '../reducers/CategoryReducer';
 import { APPEND_CATEGORIES, SET_CATEGORIES, SET_CATEGORIES_ARE_LOADING } from './types';
-import { BASE_CLIENT_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
+import { BASE_SHOP_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
 
 export function appendCategories(categories) {
     return { type: APPEND_CATEGORIES, payload: categories };
@@ -36,7 +36,7 @@ export function fetchCategories({ shopId, page = 1, perPage = 20, orderBy = 'cre
 
         const params = { page, perPage, orderBy, orderDirection };
 
-        axios.get(BASE_CLIENT_API_URL + '/shop/1/category', { params }) // TODO: dynamic shops
+        axios.get(BASE_SHOP_API_URL + '/shop/1/category', { params }) // TODO: dynamic shops
             .then(response => {
                 dispatch(fetchCategoriesAction(response.data, fetchType));
                 dispatch(setCategoriesAreLoading(false));

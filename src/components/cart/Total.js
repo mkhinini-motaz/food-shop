@@ -8,7 +8,7 @@ import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY } from "../../constants";
 
 export default function Total(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
-    const promoCode = useSelector(state => state.CartReducer.promoCode);
+    const promoCode = props.promoCode;
     const [ isShown, setIsShown ] = React.useState(false);
     const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
 

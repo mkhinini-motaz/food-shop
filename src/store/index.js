@@ -13,7 +13,7 @@ export default function Store(props)
     const persistStoreConfig = {
         key: 'root',
         storage,
-        whitelist: [ 'CartReducer', 'I18nReducer', 'AuthReducer' ],
+        whitelist: [ 'I18nReducer', 'AuthReducer' ],
     };
 
     const persistedReducer = persistReducer(persistStoreConfig, reducers);

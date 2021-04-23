@@ -1,5 +1,5 @@
 {
-  "name": "food-client",
+  "name": "food-shop",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,12 +9,10 @@
     "@react-google-maps/api": "^2.1.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.6.0",
-    "leaflet": "^1.7.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.0",
     "react-ga": "^3.3.0",
     "react-input-mask": "^2.0.4",
-    "react-leaflet": "^3.1.0",
     "react-redux": "^7.2.2",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.1.2",

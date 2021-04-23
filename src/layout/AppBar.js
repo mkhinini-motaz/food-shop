@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
-	Badge,
 	Button,
 	IconButton,
 	MenuItem,
@@ -10,7 +9,6 @@ import {
 } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { attemptClientLogout } from "../store/actions";
 import {
 	APPBAR_LOGOUT_BUTTON_BG_COLOR,
@@ -22,9 +20,9 @@ import Translate from "../components/common/Translate";
 
 export default function AppBar(props) {
 	const dispatch = useDispatch();
-	const authClient = useSelector((state) => state.AuthReducer.authClient);
+	const authShopUser = useSelector((state) => state.AuthReducer.authShopUser);
 	const clientIsAuthenticated =
-		!!localStorage.getItem("client_access_token") && !!authClient.id;
+		!!localStorage.getItem("shop_user_access_token") && !!authShopUser.id;
 
 	const styles = {
 		menuItem: { textDecoration: "none", fontWeight: 500, fontSize: "1.25rem" },
@@ -63,7 +61,7 @@ export default function AppBar(props) {
 		<BackToTop appbarBackgroundColor={props.appbarBackgroundColor}>
 			<MenuItem className="mx-1">
 				<Link to="/" style={styles.menuItem}>
-					<img width="50px" height="50px" src="/img/ghost1.svg" alt="logo" />
+					<img width="50px" height="50px" src="/img/ghost2.svg" alt="logo" />
 				</Link>
 			</MenuItem>
 
@@ -89,21 +87,6 @@ export default function AppBar(props) {
 			</MenuItem>
 
 			{logoutButton}
-
-			<MenuItem className="menu-item">
-				<IconButton aria-label="cart" component={Link} to="/cart">
-					<ShoppingCartOutlinedIcon />
-					{!props.cartCount ? (
-						""
-					) : (
-						<Badge
-							badgeContent={props.cartCount}
-							color="secondary"
-							style={{ left: "3px" }}
-						/>
-					)}
-				</IconButton>
-			</MenuItem>
 		</BackToTop>
 	);
 }

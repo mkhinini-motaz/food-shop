@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from  'react-redux'
 import { Typography } from '@material-ui/core';
 
-import { updateClientProfile } from '../../../store/actions'
-import { COLOR_PRIMARY, FORM_FIELD_TYPE_PHONE, FORM_FIELD_TYPE_PASSWORD, FORM_FIELD_TYPE_EMAIL, FORM_FIELD_TYPE_SUBMIT } from '../../../constants';
-import Form from '../../../components/common/form/Form';
-import Translate from '../../../components/common/Translate';
+import { updateClientProfile } from '../../store/actions'
+import { COLOR_PRIMARY, FORM_FIELD_TYPE_PHONE, FORM_FIELD_TYPE_PASSWORD, FORM_FIELD_TYPE_EMAIL, FORM_FIELD_TYPE_SUBMIT } from '../../constants';
+import Form from '../../components/common/form/Form';
+import Translate from '../../components/common/Translate';
 
 class Profile extends React.Component {
     formFieldDescriptions () {
@@ -59,7 +59,7 @@ class Profile extends React.Component {
                     <Translate value="common:profile" textOnly={true} />
                 </Typography>
                 <Form
-                    initialValue={this.props.authClient}
+                    initialValue={this.props.authShopUser}
                     fieldDescriptions={this.formFieldDescriptions()}
                     onSubmit={formData => this.props.updateClientProfile(formData)}
                 />
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
         selectedLang: state.I18nReducer.selectedLang,
         selectedLangWriteFrom: state.I18nReducer.selectedLangWriteFrom,
         clientProfileUpdateIsLoading: state.AuthReducer.clientLoginIsLoading,
-        authClient: state.AuthReducer.authClient,
+        authShopUser: state.AuthReducer.authShopUser,
     };
 };
 

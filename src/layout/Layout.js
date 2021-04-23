@@ -7,14 +7,13 @@ import ConfirmDialog from "../components/common/ConfirmDialog";
 import ProductCreateDialog from "../components/product/ProductCreateDialog";
 import ProductDeleteDialog from "../components/product/ProductDeleteDialog";
 import { COLOR_PRIMARY } from "../constants";
+import OrderDialog from "../components/order/OrderDialog";
 
 class Layout extends React.Component {
 	render() {
 		const {
 			confirmDialogProps,
-			productCreateDialogProps,
-			productDeleteDialogProps,
-			cartProps,
+			orderDialogProps,
 		} = this.props;
 		const styles = {
 			mainDiv: {
@@ -31,7 +30,6 @@ class Layout extends React.Component {
 				<AppBar
 					appbarBackgroundColor={COLOR_PRIMARY}
 					appbarLinkColor="#ffffff"
-					cartCount={cartProps.cartCount}
 				/>
 				<div className="mx-auto w-md-75 w-sm-100" style={styles.mainDiv}>
 					<div className="container-fluid">{this.props.children}</div>
@@ -46,18 +44,11 @@ class Layout extends React.Component {
 					onCancel={confirmDialogProps.onCancel}
 				/>
 
-				<ProductCreateDialog
-					product={productCreateDialogProps.product}
-					isVisible={productCreateDialogProps.isVisible}
-					onConfirm={productCreateDialogProps.onConfirm}
-					onCancel={productCreateDialogProps.onCancel}
-				/>
-
-				<ProductDeleteDialog
-					product={productDeleteDialogProps.product}
-					isVisible={productDeleteDialogProps.isVisible}
-					onConfirm={productDeleteDialogProps.onConfirm}
-					onCancel={productDeleteDialogProps.onCancel}
+				<OrderDialog
+					order={orderDialogProps.order}
+					isVisible={orderDialogProps.isVisible}
+					onConfirm={orderDialogProps.onConfirm}
+					onCancel={orderDialogProps.onCancel}
 				/>
 			</div>
 		);
@@ -65,24 +56,12 @@ class Layout extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	let cartCount = state.CartReducer.products;
-	if (cartCount.length > 0) {
-		cartCount = cartCount
-			.map((productInfo) => productInfo.product_count)
-			.reduce((value1, value2) => value1 + value2, 0);
-	} else {
-		cartCount = 0;
-	}
-
 	const confirmDialogProps = state.ConfirmDialogReducer;
-	const productCreateDialogProps = state.ProductDialogReducer.create;
-	const productDeleteDialogProps = state.ProductDialogReducer.delete;
+	const orderDialogProps = state.OrderDialogReducer;
 
 	return {
 		confirmDialogProps,
-		productCreateDialogProps,
-		productDeleteDialogProps,
-		cartProps: { cartCount },
+		orderDialogProps,
 		selectedLang: state.I18nReducer.selectedLang,
 	};
 };

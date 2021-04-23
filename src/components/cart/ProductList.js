@@ -6,21 +6,19 @@ import Product from './Product';
 import MoneyFormatter from '../common/MoneyFormatter';
 import PromoCode from "./PromoCode";
 import Total from "./Total";
-import SubmitOrder from "./SubmitOrder";
-import Map from "./Map";
 import AdditionalNote from "./AdditionalNote";
 
-function productInfoForCartItem(product, productCartInfo) {
+function productInfoForCartItem(product) {
+console.log('111 : ', product)
     return {
         id: product.id,
-        id_in_cart: productCartInfo.id_in_cart,
         name: product.name,
         type: product.type,
-        product_count: productCartInfo.product_count,
-        ingredients: productCartInfo.ingredients || [],
+        product_count: product.product_count,
+        ingredient_categories: product.ingredient_categories || [],
         photo: BASE_BACKEND_URL + product.photo,
         price: <MoneyFormatter value={product.price} />,
-        total: <MoneyFormatter value={product.price * productCartInfo.product_count} />,
+        total: <MoneyFormatter value={product.price * product.product_count} />,
     };
 }
 
@@ -28,22 +26,19 @@ export default function ProductList(props) {
     let productCartItemComponents = [];
     let showDelay = 0;
     let totalPrice = 0;
+    const products = props.order.products || [];
+    const lastProductInCartIndex = products.length - 1;
     let product;
-    const lastProductInCartIndex = props.productsInfo.length - 1;
-    for (let [index, productCartInfo] of props.productsInfo.entries()) {
-        product = props.products.filter(product => product.id === productCartInfo.product_id).shift();
-        if (!product) {
-            continue;
-        }
-
+    for (let index in products) {
+        product = products[index];
         productCartItemComponents.push(<Product
-            key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + productCartInfo.id_in_cart : '')}
+            key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '')}
             showDelay={showDelay}
-            product={productInfoForCartItem(product, productCartInfo)}
+            product={productInfoForCartItem(product)}
             hideDivider={index === lastProductInCartIndex}
         />);
 
-        totalPrice += product.price * productCartInfo.product_count;
+        totalPrice += product.price * product.product_count;
         showDelay += COMPONENT_SHOW_DELAY;
     }
 
@@ -52,12 +47,9 @@ export default function ProductList(props) {
             <List className="bg-white mb-2" style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
                 {productCartItemComponents}
             </List>
-            <PromoCode showDelay={showDelay + COMPONENT_SHOW_DELAY * 2} />
-            <Total value={totalPrice} showDelay={showDelay + COMPONENT_SHOW_DELAY * 3} />
-            <Map showDelay={showDelay + COMPONENT_SHOW_DELAY * 4} />
-            <AdditionalNote showDelay={showDelay + COMPONENT_SHOW_DELAY * 5} />
-            <SubmitOrder showDelay={showDelay + COMPONENT_SHOW_DELAY * 6} />
-
+            <PromoCode promoCode={props.order.promo_code} showDelay={showDelay + COMPONENT_SHOW_DELAY * 2} />
+            <Total value={totalPrice} promoCode={props.order.promo_code} showDelay={showDelay + COMPONENT_SHOW_DELAY * 3} />
+            <AdditionalNote additionalNote={props.order.additional_note} showDelay={showDelay + COMPONENT_SHOW_DELAY * 4} />
         </div>
     );
 }

@@ -4,9 +4,7 @@ export default function register() {
     axios.interceptors.request.use((config) => {
         config.headers.Accept = 'application/json';
         config.headers['Content-Type'] = 'application/json; charset=utf-8';
-        if (config.url.indexOf('/api/client')) {
-            config.headers.Authorization = 'Bearer ' + localStorage.getItem('client_access_token');
-        }
+        config.headers.Authorization = 'Bearer ' + localStorage.getItem('shop_user_access_token');
 
         return config;
     }, (error) => {

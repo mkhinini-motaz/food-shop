@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { initialProductReducerState } from '../reducers/ProductReducer';
 import { APPEND_PRODUCTS, SET_PRODUCTS, SET_PRODUCTS_ARE_LOADING } from './types';
-import { BASE_CLIENT_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
+import { BASE_SHOP_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
 
 export function appendProducts(products) {
     return { type: APPEND_PRODUCTS, payload: products };
@@ -41,7 +41,7 @@ export function fetchProducts({ categoryId = null, shopId = null, productIds = n
         if (fetchType === FETCH_TYPE_OVERRIDE) {
             dispatch(setProducts(initialProductReducerState.products));
         }
-        const url = BASE_CLIENT_API_URL +
+        const url = BASE_SHOP_API_URL +
             (categoryId ? '/category/' + categoryId : '/shop/' + shopId) +
             '/product';
         const params = { page, perPage, orderBy, orderDirection, product_ids: productIds };

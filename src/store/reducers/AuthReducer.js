@@ -1,10 +1,10 @@
-import { CLIENT_LOGIN_SUCCESS, CLIENT_LOGOUT_SUCCESS, CLIENT_PROFILE_UPDATE_SUCCESS, SET_CLIENT_LOGIN_IS_LOADING, SET_CLIENT_PROFILE_UPDATE_IS_LOADING, PERSIST_REHYDRATE } from '../actions';
+import { SHOP_USER_LOGIN_SUCCESS, SHOP_USER_LOGOUT_SUCCESS, SHOP_USER_PROFILE_UPDATE_SUCCESS, SET_SHOP_USER_LOGIN_IS_LOADING, SET_SHOP_USER_PROFILE_UPDATE_IS_LOADING, PERSIST_REHYDRATE } from '../actions';
 
 export const initialAuthReducerState = {
-    authClient: { },
-    clientLoginIsLoading: false,
-    clientLogoutIsLoading: false,
-    clientProfileUpdateIsLoading: false,
+    authShopUser: { },
+    shopUserLoginIsLoading: false,
+    shopUserLogoutIsLoading: false,
+    shopUserProfileUpdateIsLoading: false,
 };
 
 export default (state = initialAuthReducerState, action) => {
@@ -12,27 +12,27 @@ export default (state = initialAuthReducerState, action) => {
         return action.payload ? action.payload.AuthReducer : state;
     }
 
-    if (action.type === CLIENT_LOGIN_SUCCESS) {
-        localStorage.setItem('client_access_token', action.payload.access_token);
-        return { ...state, authClient: action.payload };
+    if (action.type === SHOP_USER_LOGIN_SUCCESS) {
+        localStorage.setItem('shop_user_access_token', action.payload.access_token);
+        return { ...state, authShopUser: action.payload };
     }
 
-    if (action.type === CLIENT_LOGOUT_SUCCESS) {
-        localStorage.setItem('client_access_token', '');
-        return { ...state, authClient: {} };
+    if (action.type === SHOP_USER_LOGOUT_SUCCESS) {
+        localStorage.setItem('shop_user_access_token', '');
+        return { ...state, authShopUser: {} };
     }
 
-    if (action.type === CLIENT_PROFILE_UPDATE_SUCCESS) {
-        localStorage.setItem('client_access_token', action.payload.access_token);
-        return { ...state, authClient: action.payload }
+    if (action.type === SHOP_USER_PROFILE_UPDATE_SUCCESS) {
+        localStorage.setItem('shop_user_access_token', action.payload.access_token);
+        return { ...state, authShopUser: action.payload }
     }
 
-    if (action.type === SET_CLIENT_LOGIN_IS_LOADING) {
-        return { ...state, clientLoginIsLoading: action.payload };
+    if (action.type === SET_SHOP_USER_LOGIN_IS_LOADING) {
+        return { ...state, shopUserLoginIsLoading: action.payload };
     }
 
-    if (action.type === SET_CLIENT_PROFILE_UPDATE_IS_LOADING) {
-        return { ...state, clientLogoutIsLoading: action.payload };
+    if (action.type === SET_SHOP_USER_PROFILE_UPDATE_IS_LOADING) {
+        return { ...state, shopUserLogoutIsLoading: action.payload };
     }
 
     return state;

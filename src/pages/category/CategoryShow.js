@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { fetchProducts } from '../../../store/actions'
-import ProductCardList from '../../../components/product/ProductCardList';
-import Loader from '../../../components/common/Loader';
-import Pagination from '../../../components/common/Pagination';
+import { fetchProducts } from '../../store/actions'
+import ProductCardList from '../../components/product/ProductCardList';
+import Loader from '../../components/common/Loader';
+import Pagination from '../../components/common/Pagination';
 
 class CategoryShow extends React.Component {
     componentDidMount() {

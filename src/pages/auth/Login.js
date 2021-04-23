@@ -2,37 +2,32 @@ import React from 'react';
 import { connect } from  'react-redux'
 import { Typography } from '@material-ui/core';
 
-import { attemptClientLogin } from '../../../store/actions'
-import { APPBAR_LOGIN_BUTTON_BG_COLOR, APPBAR_LOGIN_BUTTON_COLOR, FORM_FIELD_TYPE_PHONE, FORM_FIELD_TYPE_PASSWORD, FORM_FIELD_TYPE_SUBMIT } from '../../../constants';
-import Form from '../../../components/common/form/Form';
-import { translate } from '../../../i18n';
+import { attemptClientLogin } from '../../store/actions'
+import { APPBAR_LOGIN_BUTTON_BG_COLOR, APPBAR_LOGIN_BUTTON_COLOR, FORM_FIELD_TYPE_PHONE, FORM_FIELD_TYPE_PASSWORD, FORM_FIELD_TYPE_SUBMIT } from '../../constants';
+import Form from '../../components/common/form/Form';
+import Translate from "../../components/common/Translate";
 
 class Login extends React.Component {
-    translate = (translationKey) => {
-        return translate(translationKey, this.props.selectedLang);
-    }
-
-    formFieldDescriptions = () => {
-        const translateMethod = this.translate;
+    formFieldDescriptions() {
         const clientLoginIsLoading = this.props.clientLoginIsLoading;
         return [
             {
                 name: 'phone',
                 type: FORM_FIELD_TYPE_PHONE,
-                label: translateMethod('form:phone:label'),
+                label: <Translate value="form:phone:label" />,
                 variant: 'outlined',
                 shrink: false,
             },
             {
                 name: 'password',
                 type: FORM_FIELD_TYPE_PASSWORD,
-                label: translateMethod('form:password:label'),
+                label: <Translate value="form:password:label" />,
                 variant: 'outlined',
                 shrink: false,
             },
             {
                 type: FORM_FIELD_TYPE_SUBMIT,
-                label: translateMethod('common:login'),
+                label: <Translate value="common:login" />,
                 fullWidth: true,
                 color: APPBAR_LOGIN_BUTTON_COLOR,
                 backgroundColor: APPBAR_LOGIN_BUTTON_BG_COLOR,
@@ -41,7 +36,7 @@ class Login extends React.Component {
         ];
     }
 
-    renderContent = () => {
+    renderContent  ()  {
         return <div>
             <Form
                 fieldDescriptions={this.formFieldDescriptions()}
@@ -50,11 +45,11 @@ class Login extends React.Component {
 
             <div className="pt-2 pb-0">
                 <Typography color="textSecondary" variant="body2" component="span">
-                    {this.translate('common:forgot-password?')}
+                    <Translate value="common:forgot-password?" />
                 </Typography>
             </div>
         </div>;
-    }
+    };
 
     render() {
         return (

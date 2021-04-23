@@ -4,7 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography }
 
 import Translate from '../common/Translate';
 import IngredientCategories from "../cart/IngredientCategories";
-import { setCartProductTypeWithOptions, hideProductCreateDialog } from "../../store/actions";
+import { hideOrderDialog } from "../../store/actions";
 import TranslateField from "../common/TranslateField";
 
 export default function ProductCreateDialog(props) {
@@ -20,7 +20,7 @@ export default function ProductCreateDialog(props) {
         <Dialog
             fullWidth
             open={isVisible}
-            onClose={() => dispatch(hideProductCreateDialog())}
+            onClose={() => dispatch(hideOrderDialog())}
         >
             <DialogTitle className={textAlign}>
                 <Typography variant="h4" component="span" color="primary">
@@ -39,12 +39,12 @@ export default function ProductCreateDialog(props) {
             </DialogContent>
 
             <DialogActions className={flexRowClassName}>
-                <Button onClick={() => dispatch(hideProductCreateDialog())} color="primary">
+                <Button onClick={() => dispatch(hideOrderDialog())} color="primary">
                     <Translate value="common:cancel" />
                 </Button>
                 <Button variant="contained" onClick={() => {
-                    dispatch(setCartProductTypeWithOptions({ product_id: product.id, product_count: 1, ingredients: ingredientChoices }));
-                    dispatch(hideProductCreateDialog());
+                    // TODO: implement
+                    dispatch(hideOrderDialog());
                 }} color="primary">
                     <Translate value="common:confirm" />
                 </Button>
