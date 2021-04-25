@@ -15,7 +15,6 @@ export default function PromoCode(props) {
     return (
         <Collapse in={isShown}>
             <div className={props.className + ' ' + flexRowClassName + ' row mx-0 bg-white my-2 p-2 text-left'}
-                 style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
             >
                 <Typography variant="body1" color="textPrimary" component="span">
                     <Translate value="cart:promo_code:label" />

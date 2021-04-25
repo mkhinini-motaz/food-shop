@@ -27,7 +27,7 @@ export default function OrderDialog(props) {
             onClose={onCancel}
         >
             <DialogContent className={textAlign + ' word_break_break_word'}>
-                <ProductList order={order} />
+                <ProductList order={order} withBorders={true} />
             </DialogContent>
 
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { GoogleMap as BaseGoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import { GoogleMap as BaseGoogleMap, LoadScript } from '@react-google-maps/api';
 
 import { GOOGLE_MAP_API_KEY } from "../../constants";
 import OrderMarker from "./OrderMarker";
@@ -10,7 +10,7 @@ export default function GoogleMap(props) {
         width: props.width || '100%'
     };
 
-    const [center, setCenter] = useState({ lat: 35.729, lng: 10.579, });
+    const [center, setCenter] = useState({ lat: 35.729, lng: 10.579, }); // TODO: get from authUser.shop
     const [zoom, setZoom] = useState(props.zoom || 13.5);
 
     return (
@@ -25,7 +25,7 @@ export default function GoogleMap(props) {
                     fullscreenControl: false
                 }}
             >
-                {props.orders.map(order => <OrderMarker key={'order_' + order.id} order={order} />)}
+                {props.orders.map((order, index) => <OrderMarker key={'order_' + order.id} order={order} index={index + 1} />)}
             </BaseGoogleMap>
         </LoadScript>
     );

@@ -1,12 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Avatar, Collapse, Divider, ListItem, ListItemText, ListItemAvatar, Typography } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
 
-import QuantityActionButton from '../common/QuantityActionButton';
-import Translate from "../common/Translate";
-import {deleteCartProductTypeWithOptions, setCartProductTypeFixed, showConfirmDialog} from '../../store/actions';
-import { PRODUCT } from "../../constants";
 import TranslateField from "../common/TranslateField";
 import { translate, translateField } from "../../i18n";
 

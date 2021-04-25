@@ -213,9 +213,27 @@
     color: #666;
 }
 
+.border_radius_15 {
+    border-radius: 15px;
+}
+.border_radius_30 {
+    border-radius: 30px;
+}
+
 @media (max-width: 767.98px) {
     .MuiAppBar-root .MuiListItem-gutters {
         padding-left: 0;
         padding-right: 0;
+    }
+}
+
+
+@media (min-width: 767.98px) {
+    .overflow_sm_auto {
+        overflow: auto;
+    }
+
+    .mh_sm_84vh {
+        max-height: 84vh;
     }
 }

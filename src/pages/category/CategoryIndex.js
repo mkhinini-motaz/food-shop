@@ -11,7 +11,7 @@ class CategoryIndex extends React.Component {
 	}
 
 	render() {
-		let render = [];
+		let render;
 
 		if (this.props.categoriesAreLoading) {
 			render = <Loader />;

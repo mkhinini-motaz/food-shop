@@ -4,7 +4,7 @@ import { Collapse, Typography } from '@material-ui/core';
 
 import Translate from "../common/Translate";
 import MoneyFormatter from "../common/MoneyFormatter";
-import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY } from "../../constants";
+import { COLOR_PRIMARY } from "../../constants";
 
 export default function Total(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
@@ -20,7 +20,7 @@ export default function Total(props) {
 
     return (
         <Collapse in={isShown}>
-            <div className={props.className + ' bg-white my-2 p-3'} style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
+            <div className={props.className + ' bg-white my-2 p-3'} >
                 <Typography
                     component="span"
                     variant="body1"
