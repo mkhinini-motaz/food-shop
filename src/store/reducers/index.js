@@ -7,6 +7,7 @@ import OrderReducer from './OrderReducer';
 import ConfirmDialogReducer from './ConfirmDialogReducer';
 import AuthReducer from './AuthReducer';
 import I18nReducer from './I18nReducer';
+import SnackbarReducer from './SnackbarReducer';
 
 export default combineReducers({
     CategoryReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
     ConfirmDialogReducer,
     AuthReducer,
     I18nReducer,
+    SnackbarReducer,
 })

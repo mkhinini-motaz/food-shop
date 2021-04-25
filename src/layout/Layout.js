@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import AppBar from "./AppBar";
 import Footer from "./Footer";
 import ConfirmDialog from "../components/common/ConfirmDialog";
+import Snackbar from "../components/common/Snackbar";
 import { COLOR_PRIMARY } from "../constants";
 import OrderDialog from "../components/order/OrderDialog";
 
@@ -48,6 +49,8 @@ class Layout extends React.Component {
 					onConfirm={orderDialogProps.onConfirm}
 					onCancel={orderDialogProps.onCancel}
 				/>
+
+				<Snackbar />
 			</div>
 		);
 	}

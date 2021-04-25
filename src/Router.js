@@ -28,35 +28,35 @@ function shopUserRoutes(authShopUser) {
     const shopUserIsAuthenticated = !!localStorage.getItem('shop_user_access_token') && !!authShopUser.id;
 
     const routes = [
-        <Route key="client-route-home" exact path="/" >
+        <Route key="shop-route-home" exact path="/" >
             {shopUserIsAuthenticated ?
                 <Layout><Home /></Layout> :
                 <Redirect to="/login" />
             }
         </Route>,
 
-        <Route key="client-route-home" exact path="/category" >
+        <Route key="shop-route-category" exact path="/category" >
             {shopUserIsAuthenticated ?
                 <Layout><CategoryIndex /></Layout> :
                 <Redirect to="/login" />
             }
         </Route>,
 
-        <Route key="client-route-category-show" exact
+        <Route key="shop-route-category-show" exact
                path="/category/:categoryId/product"
                component={(props) => <Layout><CategoryShow categoryId={props.match.params.categoryId} /></Layout>}
         />,
 
        // TODO: Categories listing
 
-        <Route key="client-route-profile" exact path="/profile" >
+        <Route key="shop-route-profile" exact path="/profile" >
             {shopUserIsAuthenticated ?
                 <Layout><Profile /></Layout> :
                 <Redirect to="/login" />
             }
         </Route>,
 
-        <Route key="client-route-login" exact path="/login" >
+        <Route key="shop-route-login" exact path="/login" >
             {shopUserIsAuthenticated ?
                 <Redirect to="/" /> :
                 <Layout><Login /></Layout>
