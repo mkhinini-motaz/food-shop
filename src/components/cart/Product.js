@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { Avatar, Collapse, Divider, ListItem, ListItemText, ListItemAvatar, Typography } from '@material-ui/core';
+import { Avatar, Chip, Collapse, Divider, ListItem, ListItemText, ListItemAvatar, Typography } from '@material-ui/core';
 
 import TranslateField from "../common/TranslateField";
 import { translate, translateField } from "../../i18n";
@@ -12,28 +12,28 @@ export default function Product(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
     const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
+    const sideMargin = (selectedLangWriteFrom === 'right' ? 'ml-2' : 'mr-2');
 
     setTimeout(() => { setIsShown((previousIsShown) => true); }, 500 + props.showDelay);
 
     return (
         <Collapse in={isShown}>
             <ListItem className={flexRowClassName + ' ' + props.className}>
-                {!product.photo || props.minifiedDisplay === false ? '' : <ListItemAvatar><Avatar alt="product" src={product.photo} /></ListItemAvatar>}
+                {!product.photo || props.minifiedDisplay === false ? '' :
+                    <ListItemAvatar><Avatar alt="product" src={product.photo} /></ListItemAvatar>
+                }
                 <ListItemText
-                primary={<span>
-                    {!!props.minifiedDisplay ? '' :
-                        <span>
-                            {! product.product_count ? '' : <span>{product.product_count}</span>}
-                            {! product.product_count ? '' : <span className="mx-1">-</span>}
-                        </span>
-                    }
-                    <TranslateField value={product} field="name" />
-                </span>}
+                primary={<span className={'d-flex ' + flexRowClassName}>
+                        {!! props.minifiedDisplay || ! product.product_count ? '' :
+                            <Chip label={product.product_count} color="secondary" className={sideMargin + ' font-weight-bold font_size_17px'} />
+                        }
+                        <TranslateField value={product} field="name" />
+                    </span>
+                }
                 className={'d-inline text-' + selectedLangWriteFrom + ' ' + flexRowClassName}
                 secondary={
                     <span>
                         <Typography
-                            component="div"
                             variant="body2"
                             color="textPrimary"
                             className={'d-flex ' + flexRowClassName}
@@ -48,7 +48,7 @@ export default function Product(props) {
                                 ).join(', ')
                             }</span>
                         </Typography>
-                        {!props.minifiedDisplay ? '' :
+                        {! props.minifiedDisplay ? '' :
                             <Typography
                                 component="span"
                                 variant="body2"

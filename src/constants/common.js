@@ -16,7 +16,7 @@ export const SELECTED_LANG_NAME_IN_WINDOW = "selected_lang";
 export const GOOGLE_MAP_API_KEY = "REDACTED";
 
 export const COLOR_PRIMARY = "#355C7D";
-export const COLOR_SECONDARY = "#F67280";
+export const COLOR_SECONDARY = "#BC2C3D";
 
 export const APPBAR_LOGIN_BUTTON_BG_COLOR = "#169e1f";
 export const APPBAR_LOGIN_BUTTON_COLOR = "white";
