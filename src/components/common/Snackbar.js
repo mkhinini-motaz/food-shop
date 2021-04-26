@@ -6,6 +6,7 @@ import { AlertTitle } from '@material-ui/lab';
 
 import { SNACKBAR_AUTO_HIDE_DURATION, SNACKBAR_POSITION } from "../../constants";
 import { hideSnackbar } from "../../store/actions";
+import Translate from "./Translate";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -26,8 +27,8 @@ export default function Snackbar(props) {
                       onClose={hideSnackbarAction}
         >
             <Alert onClose={hideSnackbarAction} severity={severity}>
-                <AlertTitle>{title}</AlertTitle>
-                {message}
+                <AlertTitle><Translate value={title}/></AlertTitle>
+                <Translate value={message}/>
             </Alert>
         </BaseSnackbar>
 	);
