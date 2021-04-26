@@ -11,6 +11,15 @@ export default function register() {
         return Promise.reject(error);
     });
 
+    axios.interceptors.response.use((response) => {
+        return response;
+    }, (error) => {
+        if (error.response.status === 403) {
+            localStorage.setItem('shop_user_access_token', '');
+        }
+        return Promise.reject(error);
+    });
+
     // TODO: response interceptor to show error message
     // TODO: response interceptor to logout user on 403 response
 }
