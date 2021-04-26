@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { GoogleMap as BaseGoogleMap, LoadScript } from '@react-google-maps/api';
 
 import { GOOGLE_MAP_API_KEY } from "../../constants";
@@ -10,8 +10,8 @@ export default function GoogleMap(props) {
         width: props.width || '100%'
     };
 
-    const [center, setCenter] = useState({ lat: 35.729, lng: 10.579, }); // TODO: get from authUser.shop
-    const [zoom, setZoom] = useState(props.zoom || 13.5);
+    const center = { lat: 35.729, lng: 10.579, }; // TODO: get from authUser.shop
+    const zoom = props.zoom || 13.5;
 
     return (
         <LoadScript googleMapsApiKey={GOOGLE_MAP_API_KEY} >

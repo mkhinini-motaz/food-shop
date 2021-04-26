@@ -1,8 +1,14 @@
 import axios from 'axios';
 
 import { initialCategoryReducerState } from '../reducers/CategoryReducer';
-import { APPEND_CATEGORIES, SET_CATEGORIES, SET_CATEGORIES_ARE_LOADING } from './types';
+import {
+    APPEND_CATEGORIES,
+    SET_CATEGORIES,
+    SET_CATEGORIES_ARE_LOADING, UPDATE_CATEGORY_IN_LIST,
+    SET_CATEGORY_IS_VISIBLE_IS_LOADING
+} from './types';
 import { BASE_SHOP_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
+import {showSnackbar} from "./snackbar";
 
 export function appendCategories(categories) {
     return { type: APPEND_CATEGORIES, payload: categories };
@@ -14,6 +20,13 @@ export function setCategories(categories) {
 
 export function setCategoriesAreLoading(status) {
     return { type: SET_CATEGORIES_ARE_LOADING, payload: status };
+}
+
+export function setCategoryIsVisibleIsLoading(categoryId, isVisible) {
+    return { type: SET_CATEGORY_IS_VISIBLE_IS_LOADING, payload: { categoryId, isVisible } };
+}
+export function setCategoryIsVisible(category) {
+    return { type: UPDATE_CATEGORY_IN_LIST, payload: category };
 }
 
 function fetchCategoriesAction(payload, fetchType) {
@@ -43,6 +56,22 @@ export function fetchCategories({ page = 1, perPage = 20, orderBy = 'created_at'
             })
             .catch(error => {
                 dispatch(setCategoriesAreLoading(false));
+            })
+    }
+}
+
+export function trySettingCategoryIsVisible({ categoryId, isVisible })  {
+    return function(dispatch) {
+        dispatch(setCategoryIsVisibleIsLoading(categoryId, true));
+        const params = { isVisible };
+
+        axios.post(BASE_SHOP_API_URL + '/category/' + categoryId + (isVisible ? '/show' : '/hide'), { params })
+            .then(response => {
+                dispatch(showSnackbar({ title: 'category:edit:title', message: 'category:is_visible:success:message:' + !! isVisible }));
+                dispatch(setCategoryIsVisible(response.data.data));
+            })
+            .catch(error => {
+                dispatch(setCategoryIsVisibleIsLoading(categoryId, false));
             })
     }
 }

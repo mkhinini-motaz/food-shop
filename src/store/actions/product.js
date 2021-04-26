@@ -1,8 +1,16 @@
 import axios from 'axios';
 
 import { initialProductReducerState } from '../reducers/ProductReducer';
-import { APPEND_PRODUCTS, SET_PRODUCTS, SET_PRODUCTS_ARE_LOADING } from './types';
+import {
+    APPEND_PRODUCTS,
+    SET_CATEGORY_IS_VISIBLE_IS_LOADING, SET_PRODUCT_IS_VISIBLE_IS_LOADING,
+    SET_PRODUCTS,
+    SET_PRODUCTS_ARE_LOADING,
+    UPDATE_CATEGORY_IN_LIST, UPDATE_PRODUCT_IN_LIST
+} from './types';
 import { BASE_SHOP_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
+import {showSnackbar} from "./snackbar";
+import {setCategoryIsVisible, setCategoryIsVisibleIsLoading} from "./category";
 
 export function appendProducts(products) {
     return { type: APPEND_PRODUCTS, payload: products };
@@ -14,6 +22,13 @@ export function setProducts(products) {
 
 export function setProductsAreLoading(status) {
     return { type: SET_PRODUCTS_ARE_LOADING, payload: status };
+}
+
+export function setProductIsVisibleIsLoading(categoryId, isVisible) {
+    return { type: SET_PRODUCT_IS_VISIBLE_IS_LOADING, payload: { categoryId, isVisible } };
+}
+export function setProductIsVisible(product) {
+    return { type: UPDATE_PRODUCT_IN_LIST, payload: product };
 }
 
 function fetchProductsAction(payload, fetchType) {
@@ -48,6 +63,22 @@ export function fetchProducts({ categoryId = null, productIds = null, page = 1, 
             })
             .catch(error => {
                 dispatch(setProductsAreLoading(false));
+            })
+    }
+}
+
+export function trySettingProductIsVisible({ productId, isVisible })  {
+    return function(dispatch) {
+        dispatch(setProductIsVisibleIsLoading(productId, true));
+        const params = { isVisible };
+
+        axios.post(BASE_SHOP_API_URL + '/product/' + productId + (isVisible ? '/show' : '/hide'), { params })
+            .then(response => {
+                dispatch(showSnackbar({ title: 'product:edit:title', message: 'product:is_visible:success:message:' + !! isVisible }));
+                dispatch(setProductIsVisible(response.data.data));
+            })
+            .catch(error => {
+                dispatch(setProductIsVisibleIsLoading(productId, false));
             })
     }
 }

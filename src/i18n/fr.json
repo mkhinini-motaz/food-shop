@@ -9,6 +9,13 @@
     "common:copyright":"Copyright © 2021 GhostChef",
 
     "common:categories": "Catégories",
+    "category:edit:title": "Modification catégorie",
+    "category:is_visible:success:message:true": "Catégorie affiché pour les clients avec succés",
+    "category:is_visible:success:message:false": "Catégorie caché pour les clients avec succés",
+
+    "product:edit:title": "Modification produit",
+    "product:is_visible:success:message:true": "Produit affiché pour les clients avec succés",
+    "product:is_visible:success:message:false": "Produit caché pour les clients avec succés",
 
     "product:choose:items": "Création plat",
     "product:delete:confirm:title": "Confirmation suppression produit",

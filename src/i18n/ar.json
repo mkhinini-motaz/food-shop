@@ -9,6 +9,13 @@
     "common:copyright":"حقوق النشر © 2021 GhostChef",
 
     "common:categories": "الفئات",
+    "category:edit:title": "تعديل الفئة",
+    "category:is_visible:success:message:true": "تم عرض الفئة للعملاء بنجاح",
+    "category:is_visible:success:message:false": "تم إخفاء الفئة للعملاء بنجاح",
+
+    "product:edit:title": "تعديل المنتج",
+    "product:is_visible:success:message:true": "تم عرض المنتج للعملاء بنجاح",
+    "product:is_visible:success:message:false": "تم إخفاء المنتج للعملاء بنجاح",
 
     "product:choose:items": "إنشاء وجبة",
     "product:delete:confirm:title": "تأكيد حذف المنتج",

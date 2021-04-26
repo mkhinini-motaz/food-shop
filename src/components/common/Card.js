@@ -1,11 +1,13 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
-import { Card as MuiCard, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Card as MuiCard, CardActionArea, CardActions, CardContent, Typography } from '@material-ui/core';
 import Grow from '@material-ui/core/Grow';
 
-import { BOX_SHADOW_CSS_RULE, IMAGE_WITH_TEXT_TINT } from "../../constants";
+import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, IMAGE_WITH_TEXT_TINT } from "../../constants";
 
 export default function Card(props) {
+    const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
     const classes = makeStyles({
         root: {
             position: 'relative',
@@ -37,6 +39,14 @@ export default function Card(props) {
         content: {
             height: '37%',
         },
+        headerActions: {
+            backgroundColor: COLOR_PRIMARY + '90',
+            position: 'absolute',
+            top: 0,
+            zIndex: 2,
+            [selectedLangWriteFrom === 'right' ? 'left' : 'right']: 0,
+            borderRadius: selectedLangWriteFrom === 'left' ? '0 15px 0 15px' : '15px 0 15px 0',
+        }
     })();
     const [ isShown, setIsShown ] = React.useState(false);
 
@@ -45,6 +55,9 @@ export default function Card(props) {
     return (
         <Grow in={isShown}>
             <MuiCard className={classes.root} >
+                {! props.headerActions ? '' :
+                    <div className={classes.headerActions}>{props.headerActions}</div>
+                }
                 <CardActionArea className={classes.cardActionArea}
                     onClick={props.onClick}
                     disabled={props.disabled}

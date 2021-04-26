@@ -1,5 +1,6 @@
 import React from 'react';
-import {List} from '@material-ui/core';
+import { Button, List } from '@material-ui/core';
+import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 
 import { BASE_BACKEND_URL, COMPONENT_SHOW_DELAY, PRODUCT } from '../../constants';
 import Product from './Product';
@@ -42,8 +43,18 @@ export default function ProductList(props) {
         showDelay += COMPONENT_SHOW_DELAY;
     }
 
+
+    const transporterIconOnClick = () => console.log('transporter');
+    const headerActions = [
+        (<Button onClick={transporterIconOnClick} key={'delivery_icon_' + props.order.id}>
+            <DirectionsBikeIcon />
+        </Button>),
+    ];
     return (
         <div>
+            <div className="p2">
+                {headerActions}
+            </div>
             <List className="bg-white" >
                 {productCartItemComponents}
             </List>

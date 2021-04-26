@@ -9,6 +9,13 @@
     "common:copyright":"Copyright © 2021 GhostChef",
 
     "common:categories": "Categories",
+    "category:edit:title": "Category edit",
+    "category:is_visible:success:message:true": "Category shown for clients successfully",
+    "category:is_visible:success:message:false": "Category hidden for clients successfully",
+
+    "product:edit:title": "Product edit",
+    "product:is_visible:success:message:true": "Product shown for clients successfully",
+    "product:is_visible:success:message:false": "Product hidden for clients successfully",
 
     "product:choose:items": "Meal creation",
     "product:delete:confirm:title": "Product delete confirmation",

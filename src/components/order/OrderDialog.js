@@ -5,8 +5,6 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogTitle,
-    Typography
 } from '@material-ui/core';
 
 import Translate from '../common/Translate';
