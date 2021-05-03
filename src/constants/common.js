@@ -1,5 +1,5 @@
-export const BASE_SHOP_API_URL = "https://api.ghostchef.shop/api/shop";
-export const BASE_BACKEND_URL = "https://api.ghostchef.shop/";
+export const BASE_SHOP_API_URL = process.env.REACT_APP_BASE_SHOP_API_URL;
+export const BASE_BACKEND_URL = process.env.REACT_APP_BASE_BACKEND_URL;
 
 export const FETCH_TYPE_OVERRIDE = "FETCH_TYPE_OVERRIDE";
 export const FETCH_TYPE_APPEND = "FETCH_TYPE_APPEND";
