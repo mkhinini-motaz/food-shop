@@ -46,7 +46,7 @@ export default function ProductList(props) {
 
     const transporterIconOnClick = () => console.log('transporter');
     const headerActions = [
-        (<Button onClick={transporterIconOnClick} key={'delivery_icon_' + props.order.id}>
+        (<Button onClick={transporterIconOnClick} key={'delivery_icon_' + props.order.id} style={{ borderRadius: '100% 50% 100% 50%' }}>
             <DirectionsBikeIcon />
         </Button>),
     ];
