@@ -1,4 +1,5 @@
 {
+    "common:copyright":"Copyright © 2021 GhostChef",
     "common:cancel": "Cancel",
     "common:confirm": "Confirm",
     "common:save": "Save",
@@ -6,7 +7,7 @@
     "common:logout": "Logout",
     "common:forgot-password?": "Forgot password ?",
     "common:profile": "Profile",
-    "common:copyright":"Copyright © 2021 GhostChef",
+    "common:language": "Language",
 
     "common:categories": "Categories",
     "category:edit:title": "Category edit",

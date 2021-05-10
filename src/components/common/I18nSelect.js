@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, MenuItem, Select, IconButton } from "@material-ui/core";
+import { MenuItem, Select, IconButton, Tooltip } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import LanguageIcon from "@material-ui/icons/Language";
 
@@ -23,16 +23,18 @@ export default function I18nSelect(props) {
 
 	return (
 		<div className="">
-			<IconButton
-				variant="contained"
-				color="secondary"
-				onClick={() => setIsSelectOpen(true)}
-			>
-				<LanguageIcon />
-				<span className="d-none d-sm-inline language-abv">
-					<Translate value={selectedLang} />
-				</span>
-			</IconButton>
+			<Tooltip title={<Translate value="common:language" />} >
+				<IconButton
+					variant="contained"
+					color="secondary"
+					onClick={() => setIsSelectOpen(true)}
+				>
+					<LanguageIcon />
+					<span className="d-none d-sm-inline language-abv">
+						<Translate value={selectedLang} />
+					</span>
+				</IconButton>
+			</Tooltip>
 			<Select
 				id="i18n-select-field"
 				labelId="i18n-select-label"

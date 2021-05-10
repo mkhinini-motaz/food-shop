@@ -1,4 +1,5 @@
 {
+    "common:copyright":"حقوق النشر © 2021 GhostChef",
     "common:cancel": "إلغاء",
     "common:confirm": "تأكيد",
     "common:save": "حفظ",
@@ -6,7 +7,7 @@
     "common:logout": "تسجيل خروج",
     "common:forgot-password?": "نسيت كلمة المرور ؟",
     "common:profile": "الحساب الشخصي",
-    "common:copyright":"حقوق النشر © 2021 GhostChef",
+    "common:language": "لغة",
 
     "common:categories": "الفئات",
     "category:edit:title": "تعديل الفئة",

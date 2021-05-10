@@ -15,7 +15,8 @@ export default function OrderMarker(props) {
     return (
         <Marker position={position}
                 onClick={(event) => dispatch(showOrderDialog(props.order))}
-                label={index.toString()}
+                label={{ text: index.toString(), color: 'white' }}
+                color="white"
         />
     );
 }
