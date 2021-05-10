@@ -10,58 +10,58 @@ import {
     SET_SHOP_USER_PROFILE_UPDATE_IS_LOADING
 } from '../types';
 
-export function clientLoginSuccess(client) {
+export function shopUserLoginSuccess(client) {
     return { type: SHOP_USER_LOGIN_SUCCESS, payload: client };
 }
 
-export function clientProfileUpdateSuccess(updatedClient) {
+export function shopUserProfileUpdateSuccess(updatedClient) {
     return { type: SHOP_USER_PROFILE_UPDATE_SUCCESS, payload: updatedClient };
 }
 
-export function setClientLoginIsLoading(status) {
+export function setShopUserLoginIsLoading(status) {
     return { type: SET_SHOP_USER_LOGIN_IS_LOADING, payload: status };
 }
 
-export function setClientLogoutIsLoading(status) {
+export function setShopUserLogoutIsLoading(status) {
     return { type: SET_SHOP_USER_LOGOUT_IS_LOADING, payload: status };
 }
 
-export function setClientProfileUpdateIsLoading(status) {
+export function setShopUserProfileUpdateIsLoading(status) {
     return { type: SET_SHOP_USER_PROFILE_UPDATE_IS_LOADING, payload: status };
 }
 
-export function clientLogoutSuccess() {
+export function shopUserLogoutSuccess() {
     return { type: SHOP_USER_LOGOUT_SUCCESS };
 }
 
-export function attemptClientLogout() {
+export function attemptShopUserLogout() {
     return function(dispatch) {
-        dispatch(setClientLogoutIsLoading(true));
-        dispatch(clientLogoutSuccess());
-        dispatch(setClientLogoutIsLoading(false));
+        dispatch(setShopUserLogoutIsLoading(true));
+        dispatch(shopUserLogoutSuccess());
+        dispatch(setShopUserLogoutIsLoading(false));
     };
 }
 
-export function attemptClientLogin({ phone, password })  {
+export function attemptShopUserLogin({ phone, password })  {
     return function(dispatch) {
-        dispatch(setClientLoginIsLoading(true));
+        dispatch(setShopUserLoginIsLoading(true));
         axios.post(BASE_SHOP_API_URL + '/login', { phone, password })
             .then(response => {
-                dispatch(clientLoginSuccess(response.data.data));
-                dispatch(setClientLoginIsLoading(false));
+                dispatch(shopUserLoginSuccess(response.data.data));
+                dispatch(setShopUserLoginIsLoading(false));
             })
             .catch(error => {
 // TODO: snackbar message
-                dispatch(setClientLoginIsLoading(false));
+                dispatch(setShopUserLoginIsLoading(false));
             })
     }
 }
 
-export function fetchClientProfile()  {
+export function fetchShopUserProfile()  {
     return function(dispatch) {
         axios.get(BASE_SHOP_API_URL + '/profile', { headers: { Authorization: shopUserAccessToken() } })
             .then(response => {
-                dispatch(clientLoginSuccess(response.data.data));
+                dispatch(shopUserLoginSuccess(response.data.data));
             })
             .catch(error => {
 // TODO: snackbar message
@@ -69,7 +69,7 @@ export function fetchClientProfile()  {
     }
 }
 
-export function updateClientProfile({ first_name, last_name, email, phone, phone_confirmation, password = null })  {
+export function updateShopUserProfile({ first_name, last_name, email, phone, phone_confirmation, password = null })  {
     return function(dispatch) {
         let data = { first_name, last_name, email, phone, phone_confirmation };
         if (password) {
@@ -78,12 +78,12 @@ export function updateClientProfile({ first_name, last_name, email, phone, phone
 
         axios.post(BASE_SHOP_API_URL + '/profile', data)
             .then(response => {
-                dispatch(clientProfileUpdateSuccess(response.data.data));
-                dispatch(setClientProfileUpdateIsLoading(false));
+                dispatch(shopUserProfileUpdateSuccess(response.data.data));
+                dispatch(setShopUserProfileUpdateIsLoading(false));
             })
             .catch(error => {
 // TODO: snackbar message in middleware interceptor
-                dispatch(setClientProfileUpdateIsLoading(false));
+                dispatch(setShopUserProfileUpdateIsLoading(false));
             })
     }
 }

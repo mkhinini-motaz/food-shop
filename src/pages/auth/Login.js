@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from  'react-redux'
 import { Typography } from '@material-ui/core';
 
-import { attemptClientLogin } from '../../store/actions'
+import { attemptShopUserLogin } from '../../store/actions'
 import { APPBAR_LOGIN_BUTTON_BG_COLOR, APPBAR_LOGIN_BUTTON_COLOR, FORM_FIELD_TYPE_PHONE, FORM_FIELD_TYPE_PASSWORD, FORM_FIELD_TYPE_SUBMIT } from '../../constants';
 import Form from '../../components/common/form/Form';
 import Translate from "../../components/common/Translate";
@@ -70,7 +70,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        attemptClientLogin: ({ phone, password }) => dispatch(attemptClientLogin({ phone, password }))
+        attemptClientLogin: ({ phone, password }) => dispatch(attemptShopUserLogin({ phone, password }))
     };
 };
 
