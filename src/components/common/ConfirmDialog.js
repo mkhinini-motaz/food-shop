@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Collapse } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, } from '@material-ui/core';
 
 import Translate from './Translate';
 

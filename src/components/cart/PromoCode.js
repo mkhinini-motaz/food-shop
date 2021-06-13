@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Collapse, Typography } from '@material-ui/core';
 
 import Translate from "../common/Translate";
-import { BOX_SHADOW_CSS_RULE } from "../../constants";
 
 export default function PromoCode(props) {
     const [ isShown, setIsShown ] = React.useState(false);

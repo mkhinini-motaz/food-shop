@@ -1,19 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-	Button,
-	IconButton,
-	MenuItem,
-	Tooltip,
-} from "@material-ui/core";
+import { IconButton, MenuItem, Tooltip, } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+
 import { attemptShopUserLogout } from "../store/actions";
-import {
-	APPBAR_LOGOUT_BUTTON_BG_COLOR,
-	APPBAR_LOGOUT_BUTTON_COLOR,
-} from "../constants";
 import BackToTop from "../components/common/BackToTop";
 import I18nSelect from "../components/common/I18nSelect";
 import Translate from "../components/common/Translate";

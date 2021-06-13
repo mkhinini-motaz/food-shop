@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import {Button, Switch, Typography} from '@material-ui/core';
+import { Switch, Typography } from '@material-ui/core';
 
 import Card from '../common/Card';
 import MoneyFormatter from "../common/MoneyFormatter";
 import { BASE_BACKEND_URL } from '../../constants'
 import TranslateField from "../common/TranslateField";
-import {trySettingCategoryIsVisible, trySettingProductIsVisible} from "../../store/actions";
-import VisibilityIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import { trySettingProductIsVisible } from "../../store/actions";
 
 export default function ProductCard(props) {
     const dispatch = useDispatch();

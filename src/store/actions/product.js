@@ -1,16 +1,9 @@
 import axios from 'axios';
 
 import { initialProductReducerState } from '../reducers/ProductReducer';
-import {
-    APPEND_PRODUCTS,
-    SET_CATEGORY_IS_VISIBLE_IS_LOADING, SET_PRODUCT_IS_VISIBLE_IS_LOADING,
-    SET_PRODUCTS,
-    SET_PRODUCTS_ARE_LOADING,
-    UPDATE_CATEGORY_IN_LIST, UPDATE_PRODUCT_IN_LIST
-} from './types';
+import { APPEND_PRODUCTS, SET_PRODUCT_IS_VISIBLE_IS_LOADING, SET_PRODUCTS, SET_PRODUCTS_ARE_LOADING, UPDATE_PRODUCT_IN_LIST } from './types';
 import { BASE_SHOP_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
-import {showSnackbar} from "./snackbar";
-import {setCategoryIsVisible, setCategoryIsVisibleIsLoading} from "./category";
+import { showSnackbar } from "./snackbar";
 
 export function appendProducts(products) {
     return { type: APPEND_PRODUCTS, payload: products };
