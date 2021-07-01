@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import ReactGA from 'react-ga';
+import { getToken, onMessageListener } from './firebase';
 
 import Store from './store';
 import { COLOR_PRIMARY, COLOR_SECONDARY, GOOGLE_ANALYTICS_TRACKING_ID } from './constants';
@@ -41,6 +42,11 @@ ReactGA.initialize(GOOGLE_ANALYTICS_TRACKING_ID, {
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App(props) {
+    console.log('token : ', getToken());
+    onMessageListener().then(message => {
+        console.log('message', message)
+    }).catch(err => console.log('failed: ', err));
+
     return (
         <MuiThemeProvider theme={theme}>
             <Store>
