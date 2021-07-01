@@ -7,3 +7,4 @@ export * from './productDialog';
 export * from './auth/client';
 export * from './i18n';
 export * from './snackbar';
+export * from './sideDrawer';

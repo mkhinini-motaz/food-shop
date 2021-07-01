@@ -224,6 +224,11 @@
     font-size: 17px;;
 }
 
+
+.color_white {
+    color: white !important;
+}
+
 @media (max-width: 767.98px) {
     .MuiAppBar-root .MuiListItem-gutters {
         padding-left: 0;

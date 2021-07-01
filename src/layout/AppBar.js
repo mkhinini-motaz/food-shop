@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { IconButton, MenuItem, Tooltip, } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import MenuIcon from '@material-ui/icons/Menu';
 
-import { attemptShopUserLogout } from "../store/actions";
+import { attemptShopUserLogout, openSideDrawer } from "../store/actions";
 import BackToTop from "../components/common/BackToTop";
 import I18nSelect from "../components/common/I18nSelect";
 import Translate from "../components/common/Translate";
@@ -39,11 +40,15 @@ export default function AppBar(props) {
 
 	return (
 		<BackToTop appbarBackgroundColor={props.appbarBackgroundColor}>
-			<MenuItem className="mx-1">
-				<Link to="/" style={styles.logoLink}>
-					<img width="50px" height="50px" src="/img/ghost2.svg" alt="logo" />
-				</Link>
-			</MenuItem>
+			<IconButton
+				aria-label="open drawer"
+				onClick={() => dispatch(openSideDrawer())}
+				variant="contained"
+				edge="start"
+				className="color_white"
+			>
+				<MenuIcon />
+			</IconButton>
 
             <MenuItem className="ml-auto menu-item">
                 <Link to="/category" >

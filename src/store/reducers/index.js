@@ -8,6 +8,7 @@ import ConfirmDialogReducer from './ConfirmDialogReducer';
 import AuthReducer from './AuthReducer';
 import I18nReducer from './I18nReducer';
 import SnackbarReducer from './SnackbarReducer';
+import SideDrawerReducer from './SideDrawerReducer';
 
 export default combineReducers({
     CategoryReducer,
@@ -18,4 +19,5 @@ export default combineReducers({
     AuthReducer,
     I18nReducer,
     SnackbarReducer,
+    SideDrawerReducer,
 })

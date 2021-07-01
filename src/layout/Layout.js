@@ -7,6 +7,7 @@ import ConfirmDialog from "../components/common/ConfirmDialog";
 import Snackbar from "../components/common/Snackbar";
 import { COLOR_PRIMARY } from "../constants";
 import OrderDialog from "../components/order/OrderDialog";
+import SideDrawer from "./SideDrawer";
 
 class Layout extends React.Component {
 	render() {
@@ -31,6 +32,7 @@ class Layout extends React.Component {
 					appbarLinkColor="#ffffff"
 				/>
 				<div className="mx-auto w-md-75 w-sm-100" style={styles.mainDiv}>
+					<SideDrawer />
 					<div className="container-fluid">{this.props.children}</div>
 				</div>
 				<Footer />
