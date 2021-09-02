@@ -37,12 +37,14 @@
     "cart:delivery:label": "Livraison",
     "cart:order:submit": "3addi commande",
 
-    "ingredient:quantity:1": "Chwaya",
-    "ingredient:quantity:2":  "3adi",
-    "ingredient:quantity:3": "Bzayed",
+    "shop_user:active_orders": "${count} cmanda temchi",
+    "order:affect": "Affecter",
+    "order:transporter:attach:success": "Cmanda affecté lil livreur",
+    "order:transporter:attach:error": "Erreur fi l'affectation mta3 cmanda lil livreur",
 
     "lang:fr": "Français",
     "lang:en": "Anglais",
-    "lang:tn": "Tounsi",
+    "lang:tnar": "Tounsi bil 3arbi",
+    "lang:tnfr": "Tounsi bil français",
     "lang:ar": "3arbi"
 }

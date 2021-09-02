@@ -31,18 +31,20 @@
     "form:password_confirmation:label": "Confirmation mot de passe",
     "form:total:label": "Total",
 
-    "ingredient:quantity:1": "Un peu",
-    "ingredient:quantity:2":  "Moyen",
-    "ingredient:quantity:3": "Extra",
-
     "cart:promo_code:label": "Code promo",
     "cart:promo_code:free_delivery": "Livraison gratuite avec le code promo",
     "cart:delivery:label": "Livraison",
     "cart:additional_note:label": "Note supplémentaire",
     "cart:order:submit": "Valider commande",
 
+    "shop_user:active_orders": "${count} ordres actifs",
+    "order:affect": "Affecter",
+    "order:transporter:attach:success": "Commande attribué au livreur avec succés",
+    "order:transporter:attach:error": "Erreur lors de l'attribution du commande au livreur",
+
     "lang:fr": "Français",
     "lang:en": "Anglais",
-    "lang:tn": "Tunisien",
+    "lang:tnar": "Tunisien en arabe",
+    "lang:tnfr": "Tunisien en français",
     "lang:ar": "Arabe"
 }

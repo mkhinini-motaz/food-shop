@@ -31,18 +31,20 @@
     "form:password_confirmation:label": "Password confirmation",
     "form:total:label": "Total",
 
-    "ingredient:quantity:1": "A little",
-    "ingredient:quantity:2":  "Medium",
-    "ingredient:quantity:3": "Extra",
-
     "cart:promo_code:label": "Promo Code",
     "cart:promo_code:free_delivery": "Free delivery with the promo code",
     "cart:delivery:label": "Delivery",
     "cart:additional_note:label": "Additional note",
     "cart:order:submit": "Submit order",
 
+    "shop_user:active_orders": "${count} active orders",
+    "order:affect": "Affect",
+    "order:transporter:attach:success": "Order assigned successfully to transporter",
+    "order:transporter:attach:error": "Error while attributing order to transporter",
+
     "lang:fr": "French",
     "lang:en": "English",
-    "lang:tn": "Tunisian",
+    "lang:tnar": "Tunisian in arabic",
+    "lang:tnfr": "Tunisian in french",
     "lang:ar": "Arabic"
 }

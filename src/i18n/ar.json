@@ -31,20 +31,21 @@
     "form:password_confirmation:label": "تأكيد كلمة السر",
     "form:total:label": "المجموع",
 
-    "ingredient:quantity:1": "قليل",
-    "ingredient:quantity:2": "عادي",
-    "ingredient:quantity:3": "إكسترا",
-
     "cart:promo_code:label": "برومو كود",
     "cart:promo_code:free_delivery": "توصيل مجاني مع البرومو كود",
     "cart:additional_note:label": "مذكرة إضافية",
     "cart:delivery:label": "توصيل",
     "cart:order:submit": "تأكيد الطلب",
 
+    "shop_user:active_orders": "${count} طلبات نشطة",
+    "order:affect": "تعيين",
+    "order:transporter:attach:success": "تم تعيين الطلب إلى الناقل بنجاح",
+    "order:transporter:attach:error": "خطأ عند إسناد الطلب إلى الناقل",
+
     "lang:fr": "فرنسية",
     "lang:en": "إنجليزية",
-    "lang:tn": "تونسي",
+    "lang:tnar": "تونسي بالعربي",
+    "lang:tnfr": "تونسي بالفرنسي",
     "lang:ar": "عربية",
-
     "TND": "د ت"
 }

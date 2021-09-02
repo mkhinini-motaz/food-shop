@@ -2,38 +2,51 @@ import React from 'react';
 
 import fr from './fr.json'
 import en from './en.json'
-import tn from './tn.json'
+import tnar from './tnar.json'
+import tnfr from './tnfr.json'
 import ar from './ar.json'
 
-export const i18n = { fr, en, tn, ar, };
-
-export const defaultLang = { name: 'Français', code: 'fr', writeFrom: 'left' };
+export const i18n = { fr, en, tnar, tnfr, ar, };
 
 export const availableLangs = {
-    fr: defaultLang,
-    en: { name: 'English',  code: 'en', writeFrom: 'left' },
-    tn: { name: 'Tounsi',   code: 'tn', writeFrom: 'left' },
-    ar: { name: 'عربى',     code: 'ar', writeFrom: 'right' },
+    fr: { code: 'fr', writeFrom: 'left' },
+    en: { code: 'en', writeFrom: 'left' },
+    tnfr: { code: 'tn-fr', writeFrom: 'left' },
+    tnar: { code: 'tn-ar', writeFrom: 'right' },
+    ar: { code: 'ar', writeFrom: 'right' },
 };
+
+const navigatorLang = window.navigator.language.substr(0, 2);
+export const defaultLang = availableLangs[navigatorLang] || availableLangs.fr;
 
 /**
  * @see {i18n folder} function requires a translations object,
  *
- * @param {string} translationKey
- * @param {string} languageCode
- * @param {boolean} textOnly
+ * @param {string}  translationKey
+ * @param {string}  languageCode
+ * @param {bool}    textOnly
+ * @param {object}  params
  *
  * @returns {string}
  */
-export function translate(translationKey, languageCode, textOnly = false) {
+export function translate(translationKey, languageCode, textOnly = false, params = {}) {
     const translations = i18n[languageCode];
     if (! translations || typeof translations !== 'object') {
         return translationKey;
     }
 
-    const translatedValue = translations[translationKey];
+    let translatedValue = translations[translationKey];
     if (! translatedValue || typeof translatedValue !== 'string') {
         return translationKey;
+    }
+
+    for (let [paramName, paramI18n] of Object.entries(params)) {
+        if (typeof paramI18n === 'object') {
+            translatedValue = translatedValue.replace('${' + paramName + '}', translateFromObject(paramI18n, languageCode, true));
+            continue;
+        }
+
+        translatedValue = translatedValue.replace('${' + paramName + '}', paramI18n);
     }
 
     if (textOnly) {
@@ -45,24 +58,21 @@ export function translate(translationKey, languageCode, textOnly = false) {
 /**
  * @see {i18n folder} function requires a translations object,
  *
- * @param {object} object
- * @param {string} field
+ * @param {object} translationsObject
  * @param {string} languageCode
  * @param {bool}   textOnly
  *
  * @returns {string}
  */
-export function translateField(object, field, languageCode, textOnly = false) {
-    if (! object || Object.keys(object).length === 0 || ! field) {
+export function translateFromObject(translationsObject, languageCode, textOnly = false) {
+    if (! translationsObject || Object.keys(translationsObject).length === 0) {
         return '';
     }
 
-    const fieldTranslations = object[field];
+    const result = translationsObject[languageCode] || translationsObject[Object.keys(translationsObject)[0]];
     if (textOnly) {
-        return fieldTranslations[languageCode] || fieldTranslations[Object.keys(fieldTranslations)[0]];
+        return result;
     }
 
-    return (<span className={'translated_' + languageCode}>
-        {fieldTranslations[languageCode] || fieldTranslations[Object.keys(fieldTranslations)[0]]}
-    </span>);
+    return <span className={'translated_' + languageCode}>{result}</span>;
 }

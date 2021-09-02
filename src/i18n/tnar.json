@@ -1,0 +1,51 @@
+{
+    "common:copyright":"حقوق النشر © 2021 GhostChef",
+    "common:cancel": "إلغاء",
+    "common:confirm": "تأكيد",
+    "common:save": "حفظ",
+    "common:login": "تسجيل الدخول",
+    "common:logout": "تسجيل خروج",
+    "common:forgot-password?": "نسيت كلمة المرور ؟",
+    "common:profile": "الحساب الشخصي",
+    "common:language": "لغة",
+
+    "common:categories": "الفئات",
+    "category:edit:title": "تبديل الفئة",
+    "category:is_visible:success:message:true": "فئة ولات ظاهرة للكلينات",
+    "category:is_visible:success:message:false": "فئة ولات مخبية علكلينات",
+
+    "product:edit:title": "تبديل المنتج",
+    "product:is_visible:success:message:true": "منتج ولا ظاهر للكلينات",
+    "product:is_visible:success:message:false": "منتج ولا مخبي علكلينات",
+
+    "product:choose:items": "صنع منتج",
+    "product:delete:confirm:title": "تأكيد حذف المنتج",
+    "product:delete:confirm:content": "المنتج هاذا بش يتنحى من سلة التسوق ، تكمل ؟",
+
+    "form:address:label": "العنوان",
+    "form:email:label": "البريد الإلكتروني",
+    "form:first_name:label": "الاسم",
+    "form:last_name:label": "اللقب",
+    "form:phone:label": "نومرو تليفون",
+    "form:password:label": "كلمة السر",
+    "form:password_confirmation:label": "تأكيد كلمة السر",
+    "form:total:label": "المجموع",
+
+    "cart:promo_code:label": "كود برومو",
+    "cart:additional_note:label": "تزيدش توصي حاجة",
+    "cart:promo_code:free_delivery": "توصيل بلاش بالكود برومو",
+    "cart:delivery:label": "توصيل",
+    "cart:order:submit": "تأكيد الطلب",
+
+    "shop_user:active_orders": "${count} كماندا تمشي",
+    "order:affect": "تعيين",
+    "order:transporter:attach:success": "تم تعيين الكماندا إلى الليفرور بنجاح",
+    "order:transporter:attach:error": "صارت مشكلة في تعيين الكماندا إلى الليفرور",
+
+    "lang:fr": "فرنسية",
+    "lang:en": "إنجليزية",
+    "lang:tnar": "تونسي بالعربي",
+    "lang:tnfr": "تونسي بالفرنسي",
+    "lang:ar": "عربية",
+    "TND": "د ت"
+}
