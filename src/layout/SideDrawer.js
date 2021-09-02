@@ -18,8 +18,8 @@ export default function SideDrawer(props) {
 	const currentPath = window.location.pathname;
 	const dispatch = useDispatch();
 	const isOpen = useSelector(state => state.SideDrawerReducer.isOpen);
-	const authClient = useSelector(state => state.AuthReducer.authClient);
-	const clientIsAuthenticated = !!localStorage.getItem("client_access_token") && !!authClient.id;
+	const authShopUser = useSelector(state => state.AuthReducer.authShopUser);
+	const clientIsAuthenticated = !!localStorage.getItem("shop_user_access_token") && !!authShopUser.id;
 	const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 	const paddingRule = selectedLangWriteFrom === 'left' ? 'pr-4' : 'pl-4 text-right';
 	const flexRowRule = selectedLangWriteFrom === 'left' ? '' : 'd-flex flex-row-reverse align-items-center';
