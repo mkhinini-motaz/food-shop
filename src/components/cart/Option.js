@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import { Checkbox, Typography, Zoom } from '@material-ui/core';
 import Grow from "@material-ui/core/Grow/Grow";
 
-import { BASE_BACKEND_URL, COLOR_PRIMARY, COLOR_SECONDARY, FORM_FIELD_TYPE_SLIDER, IMAGE_WITH_TEXT_TINT, INGREDIENT } from "../../constants";
+import { BASE_BACKEND_URL, COLOR_PRIMARY, COLOR_SECONDARY, FORM_FIELD_TYPE_SLIDER, IMAGE_WITH_TEXT_TINT, OPTION } from "../../constants";
 import TranslateField from "../common/TranslateField";
 import Form from "../common/form/Form";
 
-export default function Ingredient(props) {
+export default function Option(props) {
     const classes = makeStyles({
         root: {
             position: 'relative',
@@ -44,7 +44,7 @@ export default function Ingredient(props) {
         media: {
             height: '100%',
             width: '100%',
-            background: IMAGE_WITH_TEXT_TINT + ', url(' + BASE_BACKEND_URL + props.ingredient.photo + ');',
+            background: IMAGE_WITH_TEXT_TINT + ', url(' + BASE_BACKEND_URL + props.option.photo + ');',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: '15px',
@@ -72,13 +72,13 @@ export default function Ingredient(props) {
             name: 'quantity',
             required: false,
             type: FORM_FIELD_TYPE_SLIDER,
-            min: INGREDIENT.QUANTITIES.QUANTITY_A_LITTLE,
-            max: INGREDIENT.QUANTITIES.QUANTITY_EXTRA,
-            defaultValue: INGREDIENT.DEFAULT_QUANTITY,
+            min: OPTION.QUANTITIES.QUANTITY_A_LITTLE,
+            max: OPTION.QUANTITIES.QUANTITY_EXTRA,
+            defaultValue: OPTION.DEFAULT_QUANTITY,
             marks: [
-                { value: INGREDIENT.QUANTITIES.QUANTITY_A_LITTLE },
-                { value: INGREDIENT.QUANTITIES.QUANTITY_MEDIUM },
-                { value: INGREDIENT.QUANTITIES.QUANTITY_EXTRA },
+                { value: OPTION.QUANTITIES.QUANTITY_A_LITTLE },
+                { value: OPTION.QUANTITIES.QUANTITY_MEDIUM },
+                { value: OPTION.QUANTITIES.QUANTITY_EXTRA },
             ],
         }
     ];
@@ -89,7 +89,7 @@ export default function Ingredient(props) {
                 <div className={classes.media} />
 
                 <Typography className={classes.title} variant="h6" component="h4">
-                    <TranslateField value={props.ingredient} field="name" />
+                    <TranslateField value={props.option.name} />
                 </Typography>
                 <div className={classes.checkboxContainer}>
                     <Checkbox
@@ -107,7 +107,7 @@ export default function Ingredient(props) {
                 <Zoom in={props.isQuantifiable && isSelected}>
                     <div className={classes.sliderFormContainer + ' px-3'}>
                         <Form
-                            initialValue={{ quantity: INGREDIENT.DEFAULT_QUANTITY}}
+                            initialValue={{ quantity: OPTION.DEFAULT_QUANTITY}}
                             fieldDescriptions={formDescription}
                             onChange={({ quantity }) => props.onQuantityChange(quantity)}
                         />

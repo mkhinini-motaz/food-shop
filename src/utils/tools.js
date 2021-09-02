@@ -1,6 +1,6 @@
 import React from 'react';
 import { LOCAL_CURRENCY, LOCAL } from '../constants';
-import { translate, defaultLang } from '../i18n';
+import { defaultLang, translate, translateFromObject} from '../i18n';
 
 /**
  * @param {int} amount
@@ -51,3 +51,21 @@ export function shortPhone(phone) {
 export function shopUserAccessToken() {
     return 'Bearer ' + (localStorage.getItem('shop_user_access_token') || '');
 }
+
+/**
+ * @param option            {object}
+ * @param selectedLang          {string}
+ * @param selectedLangWriteFrom {string}
+ *
+ * @returns {string}
+ */
+export const optionOutput = (option, selectedLang, selectedLangWriteFrom) => {
+    let optionOutput = translateFromObject(option.name, selectedLang, true);
+    if (option.quantity) {
+        optionOutput += ' ' + '+'.repeat(option.quantity);
+    }
+    if (option.price) {
+        optionOutput += ' (+' + formatMoneyDisplay(option.price, selectedLang, selectedLangWriteFrom) + ')';
+    }
+    return optionOutput;
+};
