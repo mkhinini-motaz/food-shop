@@ -1,4 +1,5 @@
 import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import { Button, List } from '@material-ui/core';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 
@@ -8,6 +9,7 @@ import MoneyFormatter from '../common/MoneyFormatter';
 import PromoCode from "./PromoCode";
 import Total from "./Total";
 import AdditionalNote from "./AdditionalNote";
+import {getShopTransporters, showOrderDialog, showTransporterDialog} from "../../store/actions";
 
 function productInfoForOrderDisplay(product) {
     return {
@@ -23,6 +25,9 @@ function productInfoForOrderDisplay(product) {
 }
 
 export default function ProductList(props) {
+    const dispatch = useDispatch();
+    const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
+    const marginXForBikeIcon  = selectedLangWriteFrom === 'right' ? 'ml-auto' : 'mr-auto';
     let productCartItemComponents = [];
     let showDelay = 0;
     let totalPrice = 0;
@@ -44,15 +49,18 @@ export default function ProductList(props) {
     }
 
 
-    const transporterIconOnClick = () => console.log('transporter');
+    const transporterIconOnClick = () => {
+        dispatch(getShopTransporters({ page: 1, perPage: 20, orderBy: 'created_at', orderDirection: 'desc' }));
+        dispatch(showTransporterDialog(props.order));
+    };
     const headerActions = [
-        (<Button onClick={transporterIconOnClick} key={'delivery_icon_' + props.order.id} style={{ borderRadius: '100% 50% 100% 50%' }}>
+        (<Button className={marginXForBikeIcon } onClick={transporterIconOnClick} key={'delivery_icon_' + props.order.id} style={{ borderRadius: '100% 50% 100% 50%' }}>
             <DirectionsBikeIcon />
         </Button>),
     ];
     return (
         <div>
-            <div className="p2">
+            <div className="d-flex">
                 {headerActions}
             </div>
             <List className="bg-white" >
