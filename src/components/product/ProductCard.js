@@ -23,7 +23,7 @@ export default function ProductCard(props) {
     ];
     return (
         <Card
-            title={<TranslateField value={product} field="name" />}
+            title={<TranslateField value={product.name} />}
             image={BASE_BACKEND_URL + product.photo}
             showDelay={props.showDelay}
             bottomText={<MoneyFormatter value={product.price} />}
@@ -33,7 +33,7 @@ export default function ProductCard(props) {
             style={{backgroundColor: "#f5952f"}}
         >
             <Typography variant="body1" color="textSecondary" component="p">
-                <TranslateField value={product} field="description" />
+                <TranslateField value={product.description} />
             </Typography>
         </Card>
     );

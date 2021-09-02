@@ -3,7 +3,7 @@ export const PRODUCT = {
     TYPE_WITH_OPTIONS: 2,
 };
 
-export const INGREDIENT = {
+export const OPTION = {
     QUANTITIES : {
         QUANTITY_A_LITTLE: 1,
         QUANTITY_MEDIUM: 2,

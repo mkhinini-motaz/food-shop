@@ -15,7 +15,7 @@ function productInfoForOrderDisplay(product) {
         name: product.name,
         type: product.type,
         product_count: product.product_count,
-        ingredient_categories: product.ingredient_categories || [],
+        option_groups: product.option_groups || [],
         photo: BASE_BACKEND_URL + product.photo,
         price: <MoneyFormatter value={product.price} />,
         total: <MoneyFormatter value={product.price * product.product_count} />,

@@ -31,14 +31,14 @@ export default function CategoryCard(props) {
 
     return (
         <Card
-            title={<TranslateField value={category} field="name" />}
+            title={<TranslateField value={category.name} />}
             image={BASE_BACKEND_URL + category.photo}
             headerActions={<div className={flexRowClassName + ' ' + textAlign}>{headerActions}</div>}
             showDelay={props.showDelay}
             disabled
         >
             <Typography variant="body1" color="textSecondary" component="p">
-                <TranslateField value={category} field="description" />
+                <TranslateField value={category.description} />
             </Typography>
         </Card>
     );
