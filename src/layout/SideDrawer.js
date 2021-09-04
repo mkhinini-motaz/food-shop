@@ -1,10 +1,8 @@
 import React from 'react';
 import { Divider, Drawer, IconButton, Typography, Badge, } from '@material-ui/core';
 import PersonIcon from "@material-ui/icons/Person";
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import ShoppingCart from "@material-ui/icons/ShoppingCart";
-import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import { Home } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,14 +19,14 @@ export default function SideDrawer(props) {
 	const authShopUser = useSelector(state => state.AuthReducer.authShopUser);
 	const clientIsAuthenticated = !!localStorage.getItem("shop_user_access_token") && !!authShopUser.id;
 	const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
+
 	const paddingRule = selectedLangWriteFrom === 'left' ? 'pr-4' : 'pl-4 text-right';
 	const flexRowRule = selectedLangWriteFrom === 'left' ? '' : 'd-flex flex-row-reverse align-items-center';
 	const logoutFlexRowRule = selectedLangWriteFrom === 'left' ? '' : 'd-flex flex-row-reverse align-items-center';
 	const activeLinkStyle = { backgroundColor: COLOR_PRIMARY + '77' };
 
 	let logoutLink = '';
-	let registerLink = '';
-	let loyaltyProgramLink = '';
+	let categoriesLink = '';
 	if (clientIsAuthenticated) {
 		logoutLink = (
 			<div className={paddingRule + ' ' + logoutFlexRowRule} onClick={() => dispatch(attemptShopUserLogout())}>
@@ -38,27 +36,17 @@ export default function SideDrawer(props) {
 				</Typography>
 			</div>
 		);
-		loyaltyProgramLink = (
-            <div className={paddingRule} style={currentPath === '/loyalty' ? activeLinkStyle : {}} >
-                <Link to="/loyalty" className={flexRowRule}>
-                    <IconButton><LoyaltyIcon /></IconButton>
+
+		categoriesLink = (
+            <div className={'mt-3 ' + paddingRule} style={currentPath === '/category' ? activeLinkStyle : {}}>
+                <Link to="/category" className={flexRowRule}>
+                    <IconButton><FastfoodIcon /></IconButton>
                     <Typography variant="body1" color="textPrimary" component="span">
-                        <Translate value="common:loyalty_program" />
+                        <Translate value="common:categories" />
                     </Typography>
                 </Link>
             </div>
         );
-	} else {
-		registerLink = (
-			<div className={paddingRule} style={currentPath === '/register' ? activeLinkStyle : {}}>
-				<Link to="/register" className={flexRowRule}>
-					<IconButton><PersonAddIcon /></IconButton>
-					<Typography variant="body1" color="textPrimary" component="span">
-						<Translate value="common:register" />
-					</Typography>
-				</Link>
-			</div>
-		);
 	}
 
 	const list = () => (
@@ -70,7 +58,7 @@ export default function SideDrawer(props) {
 		>
 			<div className="p-1 text-center MuiPaper-elevation4 MuiToolbar-regular" style={{ backgroundColor: COLOR_PRIMARY }}>
 				<Link to="/">
-					<img width="50px" height="50px" src="/img/ghost1.svg" alt="logo" />
+					<img width="50px" height="50px" src="/img/ghost2.svg" alt="logo" />
 				</Link>
 			</div>
 			<Divider />
@@ -84,24 +72,6 @@ export default function SideDrawer(props) {
 				</Link>
 			</div>
 
-			<div className={paddingRule} style={currentPath === '/cart' ? activeLinkStyle : {}}>
-				<Link to="/cart" className={flexRowRule}>
-					<IconButton>
-						<ShoppingCart />
-						{! props.cartCount ? "" : (
-							<Badge
-								badgeContent={props.cartCount}
-								color="secondary"
-								style={{ [selectedLangWriteFrom]: "3px" }}
-							/>
-						)}
-					</IconButton>
-					<Typography variant="body1" color="textPrimary" component="span">
-						<Translate value="common:cart" />
-					</Typography>
-				</Link>
-			</div>
-
 			<div className={paddingRule} style={currentPath === (clientIsAuthenticated ? "/profile" : "/login") ? activeLinkStyle : {}}>
 				<Link to={clientIsAuthenticated ? "/profile" : "/login"} className={flexRowRule}>
 					<IconButton><PersonIcon /></IconButton>
@@ -110,8 +80,8 @@ export default function SideDrawer(props) {
 					</Typography>
 				</Link>
 			</div>
-			{registerLink}
-			{loyaltyProgramLink}
+
+			{categoriesLink}
 			{logoutLink}
 		</div>
 	);
