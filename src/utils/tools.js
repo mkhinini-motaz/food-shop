@@ -53,19 +53,15 @@ export function shopUserAccessToken() {
 }
 
 /**
- * @param option            {object}
- * @param selectedLang          {string}
- * @param selectedLangWriteFrom {string}
  *
- * @returns {string}
+ * @param optionGroups {array}
+ * @param selectedLang {string}
  */
-export const optionOutput = (option, selectedLang, selectedLangWriteFrom) => {
-    let optionOutput = translateFromObject(option.name, selectedLang, true);
-    if (option.quantity) {
-        optionOutput += ' ' + '+'.repeat(option.quantity);
-    }
-    if (option.price) {
-        optionOutput += ' (+' + formatMoneyDisplay(option.price, selectedLang, selectedLangWriteFrom) + ')';
-    }
-    return optionOutput;
+export const optionGroupsOutput = (optionGroups, selectedLang) => {
+    return optionGroups.map(optionGroup =>
+        optionGroup.options.map(option => {
+            return translateFromObject(option.name, selectedLang, true) +
+                (! option.quantity ? '' : ' ' + '+'.repeat(option.quantity));
+        }).join(', ')
+    ).join(', ')
 };
