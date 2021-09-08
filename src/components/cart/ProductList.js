@@ -27,7 +27,7 @@ function productInfoForOrderDisplay(product) {
 export default function ProductList(props) {
     const dispatch = useDispatch();
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
-    const marginXForBikeIcon  = selectedLangWriteFrom === 'right' ? 'ml-auto' : 'mr-auto';
+    const flexRowRevereseRule  = selectedLangWriteFrom === 'right' ? 'flex-row-reverse' : '';
     let productCartItemComponents = [];
     let showDelay = 0;
     let totalPrice = 0;
@@ -54,13 +54,13 @@ export default function ProductList(props) {
         dispatch(showTransporterDialog(props.order));
     };
     const headerActions = [
-        (<Button className={marginXForBikeIcon } onClick={transporterIconOnClick} key={'delivery_icon_' + props.order.id} style={{ borderRadius: '100% 50% 100% 50%' }}>
+        (<Button onClick={transporterIconOnClick} key={'delivery_icon_' + props.order.id} style={{ borderRadius: '100% 50% 100% 50%' }}>
             <DirectionsBikeIcon />
         </Button>),
     ];
     return (
         <div>
-            <div className="d-flex">
+            <div className={"d-flex " + flexRowRevereseRule}>
                 {headerActions}
             </div>
             <List className="bg-white" >
