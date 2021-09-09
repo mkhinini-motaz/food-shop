@@ -1,8 +1,9 @@
 import axios from "axios";
 
 import { BASE_SHOP_API_URL } from "../../constants";
-import { SET_CURRENT_ORDERS, SET_CURRENT_ORDERS_ARE_LOADING, } from './types';
-import {showSnackbar} from "./snackbar";
+import { SET_CURRENT_ORDERS, SET_CURRENT_ORDERS_ARE_LOADING, SET_ORDER_STATUS_UPDATE_IS_LOADING, } from './types';
+import { showSnackbar } from "./snackbar";
+import { hideOrderStatusEditDialog } from "./orderStatusEditDialog";
 
 export function setCurrentOrdersAreLoading(status) {
     return { type: SET_CURRENT_ORDERS_ARE_LOADING, payload: status };
@@ -10,6 +11,10 @@ export function setCurrentOrdersAreLoading(status) {
 
 export function setCurrentOrders(orders) {
     return { type: SET_CURRENT_ORDERS, payload: orders };
+}
+
+export function setOrderStatusUpdateIsLoading(status) {
+    return { type: SET_ORDER_STATUS_UPDATE_IS_LOADING, payload: status };
 }
 
 export function getCurrentOrders({ page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc' })  {
@@ -43,17 +48,20 @@ export function attachTransporterToOrder(orderId, transporterId)  {
 }
 
 export function updateOrderStatus(orderId, status)  {
-// TODO: loader
     return function(dispatch) {
-        const data = { status };
+        dispatch(setOrderStatusUpdateIsLoading(true));
 
+        const data = { status };
         axios.post(BASE_SHOP_API_URL + '/order/' + orderId + '/status', data)
             .then(response => {
-                dispatch(getCurrentOrders({}));
                 dispatch(showSnackbar({ message: 'order:status:update:success' }));
+                dispatch(getCurrentOrders({}));
+                dispatch(hideOrderStatusEditDialog());
+                dispatch(setOrderStatusUpdateIsLoading(false));
             })
             .catch(error => {
                 dispatch(showSnackbar({ message: 'order:status:update:error', severity: 'error' }));
+                dispatch(setOrderStatusUpdateIsLoading(false));
             });
     }
 }

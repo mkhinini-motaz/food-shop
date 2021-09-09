@@ -1,18 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-} from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, } from '@material-ui/core';
 
 import Translate from '../common/Translate';
 import ProductList from "../cart/ProductList";
 import {hideOrderDialog} from "../../store/actions";
 
 export default function OrderDialog(props) {
-    const { order, isVisible, onConfirm, onCancel } = props;
+    const { order, isVisible, onCancel } = props;
     const dispatch = useDispatch();
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 

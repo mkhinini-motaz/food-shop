@@ -1,10 +1,11 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
+
 import Translate from "../common/Translate";
-import {useDispatch} from "react-redux";
-import {showOrderStatusEditDialog} from "../../store/actions/orderStatusEditDialog";
+import { showOrderStatusEditDialog } from "../../store/actions";
 import { STATUSES_COLORS } from "../../constants";
 
 export default function OrderStatus(props) {

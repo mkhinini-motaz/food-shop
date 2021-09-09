@@ -9,7 +9,7 @@ import { COLOR_PRIMARY } from "../constants";
 import OrderDialog from "../components/order/OrderDialog";
 import SideDrawer from "./SideDrawer";
 import TransporterDialog from "../components/transporter/TransporterDialog";
-import OrderStatusEditDialog from "../components/order/OrderStatusEditDialog";
+import OrderStatusUpdateDialog from "../components/order/OrderStatusUpdateDialog";
 import OrderStatusEditDialogReducer from "../store/reducers/OrderStatusEditDialogReducer";
 
 export default function Layout(props) {
@@ -51,9 +51,10 @@ export default function Layout(props) {
                 onCancel={orderDialogProps.onCancel}
             />
 
-            <OrderStatusEditDialog
+            <OrderStatusUpdateDialog
                 order={orderStatusEditDialogProps.order}
                 isVisible={orderStatusEditDialogProps.isVisible}
+                isLoading={orderStatusEditDialogProps.orderStatusUpdateIsLoading}
             />
 
             <TransporterDialog

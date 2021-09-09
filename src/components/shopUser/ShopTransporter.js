@@ -1,10 +1,9 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Translate from "../common/Translate";
 import { Button } from "@material-ui/core";
 
 export default function ShopTransporter(props) {
-    const dispatch = useDispatch();
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
     const shopTransporter = props.shopTransporter;
     const flexRowClassName = selectedLangWriteFrom === 'right' ? ' flex-row-reverse ' : '';

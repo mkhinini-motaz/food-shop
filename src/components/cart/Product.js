@@ -30,9 +30,10 @@ export default function Product(props) {
             <Typography
                 variant="body2"
                 color="textPrimary"
+                component="span"
                 className={'d-flex ' + flexRowClassName}
             >
-                <span>{optionGroupsOutput(product.option_groups, selectedLang)}</span>
+                {optionGroupsOutput(product.option_groups, selectedLang)}
             </Typography>
             {! props.minifiedDisplay ? '' :
                 <Typography

@@ -23,7 +23,7 @@ export default function Home(props) {
                     </div>
                 </div>
                 <div className="col-12 col-sm-4 mt-0 pt-0 pb-3 overflow_sm_auto mh_sm_84vh border_radius_30" >
-                    {currentOrders.map((order, index) => <Order order={order} index={index} />)}
+                    {currentOrders.map((order, index) => <Order key={'order_' + order.id} order={order} index={index} />)}
                 </div>
             </div>
 

@@ -65,3 +65,19 @@ export const optionGroupsOutput = (optionGroups, selectedLang) => {
         }).join(', ')
     ).join(', ')
 };
+
+/**
+ *
+ * @param phone {string}
+ *
+ * @returns {string}
+ */
+export const formatPhoneNumber = (phone) => {
+    phone = phone.replace(' ', '');
+    const match = phone.match(/(\+216)([0-9]{2})([0-9]{3})([0-9]{3})/)
+    if (! match) {
+        return phone;
+    }
+
+    return match[1] + ' ' + match[2] + ' ' + match[3] + ' ' + match[4];
+};

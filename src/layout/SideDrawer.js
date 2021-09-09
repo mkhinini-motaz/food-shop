@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Drawer, IconButton, Typography, Badge, } from '@material-ui/core';
+import { Divider, Drawer, IconButton, Typography, } from '@material-ui/core';
 import PersonIcon from "@material-ui/icons/Person";
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";

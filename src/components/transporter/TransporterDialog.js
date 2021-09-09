@@ -1,17 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-} from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, } from '@material-ui/core';
 
 import Translate from '../common/Translate';
-import ProductList from "../cart/ProductList";
-import {attachTransporterToOrder, hideOrderDialog, hideTransporterDialog} from "../../store/actions";
 import ShopTransporter from "../shopUser/ShopTransporter";
 import Loader from "../common/Loader";
+import { attachTransporterToOrder, hideTransporterDialog } from "../../store/actions";
 
 export default function TransporterDialog(props) {
     const dispatch = useDispatch();
