@@ -21,6 +21,7 @@ export default function ProductList(props) {
             minifiedDisplay={props.showProductPhotos !== false}
             product={productInfoForOrderDisplay(product)}
             hideDivider={parseInt(index) === lastProductInCartIndex}
+            detailedView={props.detailedView}
         />);
 
         totalPrice += product.price * product.product_count;

@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Chip, makeStyles, Typography } from "@material-ui/core";
+import { Chip, makeStyles, Switch, Typography } from "@material-ui/core";
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 import AdditionalNote from "../cart/AdditionalNote";
 import OrderStatus from "./OrderStatus";
 import ProductList from "../cart/ProductList";
 import PromoCode from "../cart/PromoCode";
-import { getShopTransporters, showOrderStatusEditDialog, showTransporterDialog } from "../../store/actions";
+import { getShopTransporters, showOrderStatusEditDialog, showTransporterDialog, } from "../../store/actions";
 import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, } from "../../constants";
-import { formatPhoneNumber } from "../../utils";
+import { formatDateTime, formatPhoneNumber } from "../../utils";
 
 export default function Order(props) {
     const dispatch = useDispatch();
+    const [isDetailedViewEnabled, setIsDetailedViewEnabled] = useState(true);
     const { order, index, showTotal = false, showPromoCode = false, showProductPhotos = false } = props;
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
@@ -38,11 +41,12 @@ export default function Order(props) {
         },
     })();
 
-    const flexRowReverseRule  = selectedLangWriteFrom === 'right' ? 'flex-row-reverse' : '';
     const transporterIconOnClick = () => {
         dispatch(getShopTransporters({ page: 1, perPage: 20, orderBy: 'created_at', orderDirection: 'desc' }));
         dispatch(showTransporterDialog(order));
     };
+
+    const flexRowClassName = ' flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse ' : ' ');
 
     return (
         <div className={classes.orderCardRoot + ' bg-white my-2 p-2 border_radius_15 '}
@@ -51,11 +55,29 @@ export default function Order(props) {
         >
             <div className={classes.orderNumber}><span>{index + 1}</span></div>
 
-            <div className={"d-flex " + flexRowReverseRule}>
-                <Button onClick={transporterIconOnClick} key={'delivery_icon_' + order.id} style={{ borderRadius: '100% 50% 100% 50%' }}>
-                    <DirectionsBikeIcon />
-                </Button>
+            <div className={'px-2 d-flex align-items-center justify-content-between ' + flexRowClassName}>
                 <OrderStatus order={order} onClick={() => dispatch(showOrderStatusEditDialog(order))} key={'order_status_' + order.id} />
+                <Typography variant="body2" component="span" className="mx-4">
+                    {formatDateTime(order.created_at)}
+                </Typography>
+            </div>
+
+            <div className={'px-2 mb-1 d-flex justify-content-between text-' + selectedLangWriteFrom + flexRowClassName}>
+                <Chip className="pl-2"
+                    icon={<DirectionsBikeIcon />}
+                    onClick={transporterIconOnClick} key={'delivery_icon_' + order.id}
+                    style={{ backgroundColor: '#fcbf49', cursor: 'pointer' }}
+                    label={
+                        <Typography variant="h6" color="primary" component="span" className="font-weight-bold m-1" >
+                            {order.shop_transporter.first_name + ' ' + order.shop_transporter.last_name}
+                        </Typography>
+                    }
+                />
+                <div className={'d-inline-flex align-items-center ' + flexRowClassName}>
+                    {isDetailedViewEnabled ? <VisibilityIcon color="secondary" /> : <VisibilityOffIcon color="secondary" />}
+                    <Switch checked={isDetailedViewEnabled} onChange={(event) => setIsDetailedViewEnabled(event.target.checked)} key={'order_enable_detailed_view_' + order.id} />
+                </div>
+
             </div>
 
             <div className={'px-2 text-' + selectedLangWriteFrom}>
@@ -64,7 +86,7 @@ export default function Order(props) {
                 </Typography>
                 <div className="d-block mt-2">
                     <a href={'tel:' + order.client.phone} style={{ textDecoration: 'none' }}>
-                        <Chip
+                        <Chip className="pl-2"
                             icon={<PhoneInTalkIcon />}
                             style={{ backgroundColor: '#caffbf', cursor: 'pointer' }}
                             label={
@@ -78,7 +100,7 @@ export default function Order(props) {
 
             </div>
 
-            <ProductList order={order} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} />
+            <ProductList order={order} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} detailedView={isDetailedViewEnabled} />
 
             <AdditionalNote additionalNote={order.additional_note} withMargins={showPromoCode !== false} />
             {showPromoCode === false ? '' : <PromoCode promoCode={order.promo_code} />}

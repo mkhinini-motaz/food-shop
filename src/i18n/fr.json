@@ -9,6 +9,7 @@
     "common:forgot-password?": "Mot de passe oublié ?",
     "common:profile": "Profil",
     "common:language": "Langue",
+    "common:created_at": "Créé le",
 
     "common:categories": "Catégories",
     "category:edit:title": "Modification catégorie",

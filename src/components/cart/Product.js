@@ -6,18 +6,15 @@ import TranslateField from "../common/TranslateField";
 import { optionGroupsOutput } from "../../utils";
 
 export default function Product(props) {
-    const { product, hideDivider } = props;
-    const [ isShown, setIsShown ] = React.useState(false);
+    const { product, hideDivider, detailedView } = props;
     const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
     const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
     const sideMargin = (selectedLangWriteFrom === 'right' ? 'ml-2' : 'mr-2');
 
-    setTimeout(() => { setIsShown((previousIsShown) => true); }, 500 + props.showDelay); // TODO concider removing, bad output when changing statuses
-
     const primaryOutput = (
-        <span className={'d-flex ' + flexRowClassName}>
+        <span className={'d-flex align-items-center ' + flexRowClassName}>
             {!! props.minifiedDisplay || ! product.product_count ? '' :
                 <Chip label={product.product_count} color="secondary" className={sideMargin + ' font-weight-bold font_size_17px'} />
             }
@@ -26,32 +23,34 @@ export default function Product(props) {
     );
 
     const secondaryOutput = (
-        <span>
-            <Typography
-                variant="body2"
-                color="textPrimary"
-                component="span"
-                className={'d-flex ' + flexRowClassName}
-            >
-                {optionGroupsOutput(product.option_groups, selectedLang)}
-            </Typography>
-            {! props.minifiedDisplay ? '' :
+        <Collapse in={detailedView}>
+            <span>
                 <Typography
-                    component="span"
                     variant="body2"
                     color="textPrimary"
+                    component="span"
                     className={'d-flex ' + flexRowClassName}
                 >
-                    {! product.product_count ? '' : <span>{product.product_count}</span>}
-                    {! product.product_count ? '' : <span className="mx-1">-</span>}
-                    <span>{product.total}</span>
+                    {optionGroupsOutput(product.option_groups, selectedLang)}
                 </Typography>
-            }
-        </span>
+                {! props.minifiedDisplay ? '' :
+                    <Typography
+                        component="span"
+                        variant="body2"
+                        color="textPrimary"
+                        className={'d-flex ' + flexRowClassName}
+                    >
+                        {! product.product_count ? '' : <span>{product.product_count}</span>}
+                        {! product.product_count ? '' : <span className="mx-1">-</span>}
+                        <span>{product.total}</span>
+                    </Typography>
+                }
+            </span>
+        </Collapse>
     );
 
     return (
-        <Collapse in={isShown}>
+        <Collapse in={true}>
             <ListItem className={flexRowClassName + ' ' + props.className}>
                 {!product.photo || props.minifiedDisplay === false ? '' :
                     <ListItemAvatar><Avatar alt="product" src={product.photo} /></ListItemAvatar>

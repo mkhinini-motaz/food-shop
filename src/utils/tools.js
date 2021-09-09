@@ -81,3 +81,49 @@ export const formatPhoneNumber = (phone) => {
 
     return match[1] + ' ' + match[2] + ' ' + match[3] + ' ' + match[4];
 };
+
+
+
+/**
+ * Formats a unixTimestamp to be shown in the following format ('d/m/y') in client timezone
+ *
+ * @param unixTimestamp {int}
+ *
+ * @returns {string} formatted date
+ */
+export const formatDate = (unixTimestamp) => {
+    const date = (new Date(unixTimestamp * 1000));
+    const day = date.getDate().toString().length > 1 ? date.getDate() : '0' + date.getDate();
+    let month = date.getMonth() + 1;
+    month = month.toString().length > 1 ? month : '0' + month;
+
+    return day + '/' + month + '/' + date.getFullYear().toString();
+};
+
+/**
+ * Formats a timestamp to be shown in the following format ('H\hi') in client timezone
+ *
+ * @param timestamp {int}
+ *
+ * @returns {string} formatted date
+ */
+export const formatTime = (timestamp) => {
+    const date = (new Date(timestamp * 1000));
+    let hours = date.getHours();
+    hours = hours.toString().length > 1 ? hours : '0' + hours;
+    let  minutes = date.getMinutes();
+    minutes = minutes.toString().length > 1 ? minutes : '0' + minutes;
+
+    return hours + ':' + minutes;
+}
+
+/**
+ * Formats a timestamp to be shown in the following format ('d.m.y H\hi') in client timezone
+ *
+ * @param timestamp {int}
+ *
+ * @returns {string} formatted date
+ */
+export const formatDateTime = (timestamp) => {
+    return formatDate(timestamp) + ' ' + formatTime(timestamp);
+};

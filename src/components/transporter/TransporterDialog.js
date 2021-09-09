@@ -30,7 +30,6 @@ export default function TransporterDialog(props) {
                                                  shopTransporter={shopUser}
                                                  onClick={() => {
                                                      dispatch(attachTransporterToOrder(order.id, shopUser.id));
-                                                     dispatch(hideTransporterDialog());
                                                  }}
                         />
                         }

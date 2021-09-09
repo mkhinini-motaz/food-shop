@@ -4,6 +4,7 @@ import { BASE_SHOP_API_URL } from "../../constants";
 import { SET_CURRENT_ORDERS, SET_CURRENT_ORDERS_ARE_LOADING, SET_ORDER_STATUS_UPDATE_IS_LOADING, } from './types';
 import { showSnackbar } from "./snackbar";
 import { hideOrderStatusEditDialog } from "./orderStatusEditDialog";
+import { hideTransporterDialog } from "./transporterDialog";
 
 export function setCurrentOrdersAreLoading(status) {
     return { type: SET_CURRENT_ORDERS_ARE_LOADING, payload: status };
@@ -40,6 +41,7 @@ export function attachTransporterToOrder(orderId, transporterId)  {
         axios.post(BASE_SHOP_API_URL + '/order/' + orderId + '/transporter', data)
             .then(response => {
                 dispatch(showSnackbar({ message: 'order:transporter:attach:success' }));
+                dispatch(hideTransporterDialog());
             })
             .catch(error => {
                 dispatch(showSnackbar({ message: 'order:transporter:attach:error', severity: 'error' }));

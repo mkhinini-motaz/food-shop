@@ -16,7 +16,7 @@ export default function OrderStatus(props) {
     const flexRowClassName = selectedLangWriteFrom === 'right' ? ' flex-row-reverse ' : ' ';
 
     return (
-        <div className={'my-1 d-flex justify-content-between' + flexRowClassName + className}>
+        <div className={'my-1 d-inline-flex justify-content-between' + flexRowClassName + className}>
             <Chip
                 className="my-2 p-2"
                 label={

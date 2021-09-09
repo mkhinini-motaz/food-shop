@@ -9,6 +9,7 @@
     "common:forgot-password?": "نسيت كلمة المرور ؟",
     "common:profile": "الحساب الشخصي",
     "common:language": "لغة",
+    "common:created_at": "تصنع في",
 
     "common:categories": "الفئات",
     "category:edit:title": "تبديل الفئة",
