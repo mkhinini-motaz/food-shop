@@ -10,6 +10,8 @@ import PromoCode from "./PromoCode";
 import Total from "./Total";
 import AdditionalNote from "./AdditionalNote";
 import {getShopTransporters, showOrderDialog, showTransporterDialog} from "../../store/actions";
+import OrderStatus from "../order/OrderStatus";
+import {showOrderStatusEditDialog} from "../../store/actions/orderStatusEditDialog";
 
 function productInfoForOrderDisplay(product) {
     return {
@@ -57,6 +59,7 @@ export default function ProductList(props) {
         (<Button onClick={transporterIconOnClick} key={'delivery_icon_' + props.order.id} style={{ borderRadius: '100% 50% 100% 50%' }}>
             <DirectionsBikeIcon />
         </Button>),
+        <OrderStatus order={props.order} onClick={() => dispatch(showOrderStatusEditDialog(props.order))} />
     ];
     return (
         <div>

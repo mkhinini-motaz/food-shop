@@ -9,11 +9,14 @@ import { COLOR_PRIMARY } from "../constants";
 import OrderDialog from "../components/order/OrderDialog";
 import SideDrawer from "./SideDrawer";
 import TransporterDialog from "../components/transporter/TransporterDialog";
+import OrderStatusEditDialog from "../components/order/OrderStatusEditDialog";
+import OrderStatusEditDialogReducer from "../store/reducers/OrderStatusEditDialogReducer";
 
 export default function Layout(props) {
-    const orderDialogProps       = useSelector((state) => state.OrderDialogReducer);
-    const confirmDialogProps     = useSelector((state) => state.ConfirmDialogReducer);
-    const transporterDialogProps = useSelector((state) => state.TransporterDialogReducer);
+    const orderDialogProps           = useSelector((state) => state.OrderDialogReducer);
+    const confirmDialogProps         = useSelector((state) => state.ConfirmDialogReducer);
+    const transporterDialogProps     = useSelector((state) => state.TransporterDialogReducer);
+    const orderStatusEditDialogProps = useSelector((state) => state.OrderStatusEditDialogReducer);
     const selectedLang = useSelector((state) => state.I18nReducer.selectedLang);
 
     const styles = {
@@ -46,6 +49,11 @@ export default function Layout(props) {
                 isVisible={orderDialogProps.isVisible}
                 onConfirm={orderDialogProps.onConfirm}
                 onCancel={orderDialogProps.onCancel}
+            />
+
+            <OrderStatusEditDialog
+                order={orderStatusEditDialogProps.order}
+                isVisible={orderStatusEditDialogProps.isVisible}
             />
 
             <TransporterDialog

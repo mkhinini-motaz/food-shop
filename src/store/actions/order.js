@@ -41,3 +41,19 @@ export function attachTransporterToOrder(orderId, transporterId)  {
             });
     }
 }
+
+export function updateOrderStatus(orderId, status)  {
+// TODO: loader
+    return function(dispatch) {
+        const data = { status };
+
+        axios.post(BASE_SHOP_API_URL + '/order/' + orderId + '/status', data)
+            .then(response => {
+                dispatch(getCurrentOrders({}));
+                dispatch(showSnackbar({ message: 'order:status:update:success' }));
+            })
+            .catch(error => {
+                dispatch(showSnackbar({ message: 'order:status:update:error', severity: 'error' }));
+            });
+    }
+}

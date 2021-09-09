@@ -14,7 +14,7 @@ export default function Product(props) {
     const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
     const sideMargin = (selectedLangWriteFrom === 'right' ? 'ml-2' : 'mr-2');
 
-    setTimeout(() => { setIsShown((previousIsShown) => true); }, 500 + props.showDelay);
+    setTimeout(() => { setIsShown((previousIsShown) => true); }, 500 + props.showDelay); // TODO concider removing, bad output when changing statuses
 
     const primaryOutput = (
         <span className={'d-flex ' + flexRowClassName}>
