@@ -53,7 +53,7 @@ export default function Order(props) {
              style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
              key={'order_details_' + order.id}
         >
-            <div className={classes.orderNumber}><span>{index + 1}</span></div>
+            {! index ? '' : <div className={classes.orderNumber}><span>{index + 1}</span></div>}
 
             <div className={'px-2 d-flex align-items-center justify-content-between ' + flexRowClassName}>
                 <OrderStatus order={order} onClick={() => dispatch(showOrderStatusEditDialog(order))} key={'order_status_' + order.id} inline />
@@ -68,10 +68,10 @@ export default function Order(props) {
                 </Typography>
                 <div className="d-block mb-2">
                     <a href={'tel:' + order.client.phone} style={{ textDecoration: 'none' }}>
-                        <Chip className="pl-2"
+                        <Chip className="pl-2 h-auto"
                             icon={<PhoneInTalkIcon />}
                             style={{ backgroundColor: '#78c6a3', cursor: 'pointer' }}
-                            label={<Typography variant="h6" color="primary" component="span" className="font-weight-bold m-1" >
+                            label={<Typography variant="h6" color="primary" component="span" className="font-weight-bold m-1 white_space_pre_wrap" >
                                 {formatPhoneNumber(order.client.phone)}
                             </Typography>}
                         />
