@@ -6,7 +6,7 @@ import TranslateField from "../common/TranslateField";
 import { optionGroupsOutput } from "../../utils";
 
 export default function Product(props) {
-    const { product, hideDivider, detailedView } = props;
+    const { product, hideDivider } = props;
     const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
@@ -23,30 +23,28 @@ export default function Product(props) {
     );
 
     const secondaryOutput = (
-        <Collapse in={detailedView}>
-            <span>
+        <span>
+            <Typography
+                variant="body2"
+                color="textPrimary"
+                component="span"
+                className={'d-flex ' + flexRowClassName}
+            >
+                {optionGroupsOutput(product.option_groups, selectedLang)}
+            </Typography>
+            {! props.minifiedDisplay ? '' :
                 <Typography
+                    component="span"
                     variant="body2"
                     color="textPrimary"
-                    component="span"
                     className={'d-flex ' + flexRowClassName}
                 >
-                    {optionGroupsOutput(product.option_groups, selectedLang)}
+                    {! product.product_count ? '' : <span>{product.product_count}</span>}
+                    {! product.product_count ? '' : <span className="mx-1">-</span>}
+                    <span>{product.total}</span>
                 </Typography>
-                {! props.minifiedDisplay ? '' :
-                    <Typography
-                        component="span"
-                        variant="body2"
-                        color="textPrimary"
-                        className={'d-flex ' + flexRowClassName}
-                    >
-                        {! product.product_count ? '' : <span>{product.product_count}</span>}
-                        {! product.product_count ? '' : <span className="mx-1">-</span>}
-                        <span>{product.total}</span>
-                    </Typography>
-                }
-            </span>
-        </Collapse>
+            }
+        </span>
     );
 
     return (

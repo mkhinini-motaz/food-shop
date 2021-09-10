@@ -1,12 +1,16 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import { List } from '@material-ui/core';
 
 import Product from './Product';
 import MoneyFormatter from '../common/MoneyFormatter';
 import Total from "./Total";
+import TranslateField from "../common/TranslateField";
 import { BASE_BACKEND_URL, COMPONENT_SHOW_DELAY, PRODUCT } from '../../constants';
 
 export default function ProductList(props) {
+    const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
+    const flexRowClassName = selectedLangWriteFrom === 'right' ? 'flex-row-reverse' : '';
     let productCartItemComponents = [];
     let showDelay = 0;
     let totalPrice = 0;
@@ -15,15 +19,21 @@ export default function ProductList(props) {
     let product;
     for (let index in products) {
         product = products[index];
-        productCartItemComponents.push(<Product
-            key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '')}
-            showDelay={showDelay}
-            minifiedDisplay={props.showProductPhotos !== false}
-            product={productInfoForOrderDisplay(product)}
-            hideDivider={parseInt(index) === lastProductInCartIndex}
-            detailedView={props.detailedView}
-        />);
-
+        if (props.detailedView) {
+            productCartItemComponents.push(<Product
+                key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '')}
+                showDelay={showDelay}
+                minifiedDisplay={props.showProductPhotos !== false}
+                product={productInfoForOrderDisplay(product)}
+                hideDivider={parseInt(index) === lastProductInCartIndex}
+            />);
+        } else {
+            productCartItemComponents.push(<div className={'mx-2 d-flex ' + flexRowClassName}>
+                <span>{product.product_count}</span>
+                <span className="mx-2">{' x '}</span>
+                <TranslateField value={product.name} />
+            </div>);
+        }
         totalPrice += product.price * product.product_count;
         showDelay += COMPONENT_SHOW_DELAY;
     }

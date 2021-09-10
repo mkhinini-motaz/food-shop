@@ -1,3 +1,5 @@
+// TODO: move file contents to ./types
+
 export const STATUS_NEW                     = 1;
 export const STATUS_ACCEPTED_BY_SHOP        = 2;
 export const STATUS_PROCESSING_BY_SHOP      = 3;
