@@ -224,9 +224,12 @@
     font-size: 17px;;
 }
 
-
 .color_white {
     color: white !important;
+}
+
+.white_space_pre_wrap {
+    white-space: pre-wrap !important;
 }
 
 @media (max-width: 767.98px) {

@@ -7,10 +7,14 @@ import MoneyFormatter from '../common/MoneyFormatter';
 import Total from "./Total";
 import TranslateField from "../common/TranslateField";
 import { BASE_BACKEND_URL, COMPONENT_SHOW_DELAY, PRODUCT } from '../../constants';
+import { optionGroupsOutput } from "../../utils";
 
 export default function ProductList(props) {
+    const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
-    const flexRowClassName = selectedLangWriteFrom === 'right' ? 'flex-row-reverse' : '';
+    const flexRowClassName = selectedLangWriteFrom === 'right' ? ' flex-row-reverse ' : ' ';
+    const textAlign = selectedLangWriteFrom === 'right' ? ' text-right ' : ' text-left ';
+
     let productCartItemComponents = [];
     let showDelay = 0;
     let totalPrice = 0;
@@ -28,16 +32,21 @@ export default function ProductList(props) {
                 hideDivider={parseInt(index) === lastProductInCartIndex}
             />);
         } else {
-            productCartItemComponents.push(<div className={'mx-2 d-flex ' + flexRowClassName}>
-                <span>{product.product_count}</span>
-                <span className="mx-2">{' x '}</span>
-                <TranslateField value={product.name} />
+// TODO: move into ProductSimpleView
+            productCartItemComponents.push(<div className="my-2">
+                <div className={'mx-2 d-flex ' + flexRowClassName}>
+                    <span>{product.product_count}</span>
+                    <span className="mx-2">{' x '}</span>
+                    <TranslateField value={product.name} />
+                </div>
+                <div className={'mx-2 px-3 d-flex ' + flexRowClassName + textAlign}>
+                    {optionGroupsOutput(product.option_groups, selectedLang)}
+                </div>
             </div>);
         }
         totalPrice += product.price * product.product_count;
         showDelay += COMPONENT_SHOW_DELAY;
     }
-
 
     return (
         <div>

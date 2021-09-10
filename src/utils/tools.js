@@ -124,6 +124,6 @@ export const formatTime = (timestamp) => {
  *
  * @returns {string} formatted date
  */
-export const formatDateTime = (timestamp) => {
-    return formatDate(timestamp) + ' ' + formatTime(timestamp);
+export const formatTimeDate = (timestamp) => {
+    return  formatTime(timestamp) + ' ' + formatDate(timestamp);
 };
