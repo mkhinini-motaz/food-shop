@@ -29,12 +29,12 @@ export const STATUSES_COLORS = {
     [STATUS_ACCEPTED_BY_SHOP]: '#cfe1fc',
     [STATUS_PROCESSING_BY_SHOP]: '#fcbf49',
     [STATUS_READY_BY_SHOP]: '#caffbf',
-    [STATUS_REFUSED_BY_SHOP]: '#ffadad',
+    [STATUS_REFUSED_BY_SHOP]: '#ff595e',
     [STATUS_ACCEPTED_BY_TRANSPORTER]: '#cfe1fc',
     [STATUS_PICKED_BY_TRANSPORTER]: '#fcbf49',
     [STATUS_DELIVERED]: '#caffbf',
-    [STATUS_CANCELED]: '#ffadad',
-    [STATUS_CLIENT_NOT_FOUND]: '#ffadad',
+    [STATUS_CANCELED]: '#ff595e',
+    [STATUS_CLIENT_NOT_FOUND]: '#ff595e',
 };
 
 export const STATUS_CAN_GO_TO = {
