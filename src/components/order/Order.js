@@ -56,7 +56,7 @@ export default function Order(props) {
             <div className={classes.orderNumber}><span>{index + 1}</span></div>
 
             <div className={'px-2 d-flex align-items-center justify-content-between ' + flexRowClassName}>
-                <OrderStatus order={order} onClick={() => dispatch(showOrderStatusEditDialog(order))} key={'order_status_' + order.id} />
+                <OrderStatus order={order} onClick={() => dispatch(showOrderStatusEditDialog(order))} key={'order_status_' + order.id} inline />
                 <Typography variant="body2" component="span" className="mx-3 font_size_17px">
                     {formatTimeDate(order.created_at)}
                 </Typography>

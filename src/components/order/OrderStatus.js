@@ -14,9 +14,10 @@ export default function OrderStatus(props) {
 
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
     const flexRowClassName = selectedLangWriteFrom === 'right' ? ' flex-row-reverse ' : ' ';
+    const displayClassName = props.inline ? ' d-inline-flex ' : ' d-flex ';
 
     return (
-        <div className={'my-1 d-inline-flex justify-content-between' + flexRowClassName + className}>
+        <div className={'my-1 justify-content-between' + displayClassName + flexRowClassName + className}>
             <Chip
                 className="my-2 p-2 h-auto"
                 label={

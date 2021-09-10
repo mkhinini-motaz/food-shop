@@ -48,7 +48,7 @@ export default function Total(props) {
             </Typography>
 
             {! promoCode ? '' :
-// TODO: on click on promo code show modal displaying all info about it
+// TODO: on click on promo code show dialog displaying all info about it
                 <span>
                     <Typography
                         component="span"
