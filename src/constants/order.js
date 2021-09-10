@@ -29,7 +29,7 @@ export const STATUSES_COLORS = {
     [STATUS_ACCEPTED_BY_SHOP]: '#cfe1fc',
     [STATUS_PROCESSING_BY_SHOP]: '#fcbf49',
     [STATUS_READY_BY_SHOP]: '#caffbf',
-    [STATUS_REFUSED_BY_SHOP]: '#d1d1d1',
+    [STATUS_REFUSED_BY_SHOP]: '#ffadad',
     [STATUS_ACCEPTED_BY_TRANSPORTER]: '#cfe1fc',
     [STATUS_PICKED_BY_TRANSPORTER]: '#fcbf49',
     [STATUS_DELIVERED]: '#caffbf',

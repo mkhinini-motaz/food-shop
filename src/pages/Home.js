@@ -27,8 +27,8 @@ export default function Home(props) {
         {
             title: <span className={tabTitleClassName}>
                 <MapIcon />
-                <span className="mx-2"></span>
-                <Translate value="order:map" />
+                <span className="mx-2 d-none d-sm-inline"></span>
+                <span className="d-none d-sm-inline"><Translate value="order:map" /></span>
             </span>,
             content: <div className="my-2 col-12 col-sm-8 mx-auto " >
                 <div className="bg-white p-2 border_radius_15" style={{ boxShadow: BOX_SHADOW_CSS_RULE, height: 'fit-content' }} >
@@ -39,13 +39,13 @@ export default function Home(props) {
         {
             title: <span className={tabTitleClassName}>
                 <DescriptionIcon />
-                <span className="mx-2"></span>
-                <Translate value="order:cards" />
+                <span className="mx-2 d-none d-sm-inline"></span>
+                <span className="d-none d-sm-inline"><Translate value="order:cards" /></span>
             </span>,
             content: <div className={"m-2 text-center d-flex justify-content-center flex-wrap " + flexRowClassName} >
-                {currentOrders.map((order, index) => <Order key={'order_card_' + order.id} order={order} index={index} />)}
+                {currentOrders.map((order, index) => <Order key={'order_card_' + order.id} order={order} index={index} showTotal />)}
             </div>,
-        }
+        },
     ];
 
     return (

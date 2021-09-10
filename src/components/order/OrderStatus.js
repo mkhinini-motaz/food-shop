@@ -18,9 +18,9 @@ export default function OrderStatus(props) {
     return (
         <div className={'my-1 d-inline-flex justify-content-between' + flexRowClassName + className}>
             <Chip
-                className="my-2 p-2"
+                className="my-2 p-2 h-auto"
                 label={
-                    <Typography variant="body1" component="span">
+                    <Typography variant="body1" component="span" className="white_space_pre_wrap">
                         <Translate value={'order:status:' + order.status}/>
                     </Typography>
                 }

@@ -53,7 +53,7 @@ export default function ProductList(props) {
             <List className="bg-white" >
                 {productCartItemComponents}
             </List>
-            {props.showTotal === false ? '' : <Total value={totalPrice} promoCode={props.order.promo_code} showDelay={showDelay + COMPONENT_SHOW_DELAY * 4} />}
+            {props.showTotal === false ? '' : <Total value={totalPrice} promoCode={props.order.promo_code} />}
         </div>
     );
 }

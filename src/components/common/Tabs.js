@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import { Box, Typography, Tab, Tabs as MuiTabs } from '@material-ui/core';
+import { AppBar, Tab, Tabs as MuiTabs } from '@material-ui/core';
 
 function TabPanel(props) {
     const { children, selectedTab, index, ...other } = props;
-console.log({ children, selectedTab, index, other }, selectedTab === index)
+
     return (
         <div
             role="tabpanel"
