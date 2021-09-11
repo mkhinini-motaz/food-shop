@@ -13,27 +13,20 @@ import OrderStatusUpdateDialog from "../components/order/OrderStatusUpdateDialog
 import OrderStatusEditDialogReducer from "../store/reducers/OrderStatusEditDialogReducer";
 
 export default function Layout(props) {
+    const selectedLang               = useSelector((state) => state.I18nReducer.selectedLang);
     const orderDialogProps           = useSelector((state) => state.OrderDialogReducer);
     const confirmDialogProps         = useSelector((state) => state.ConfirmDialogReducer);
     const transporterDialogProps     = useSelector((state) => state.TransporterDialogReducer);
     const orderStatusEditDialogProps = useSelector((state) => state.OrderStatusEditDialogReducer);
-    const selectedLang = useSelector((state) => state.I18nReducer.selectedLang);
 
-    const styles = {
-        mainDiv: {
-            paddingTop: "3vh",
-        },
-    };
     return (
         <div className={"main_layout_container main_layout_container_" + selectedLang} >
             <AppBar
                 appbarBackgroundColor={COLOR_PRIMARY}
                 appbarLinkColor="#ffffff"
             />
-            <div className="mx-auto w-md-75 w-sm-100" style={styles.mainDiv}>
-                <SideDrawer />
-                <div className="container-fluid">{props.children}</div>
-            </div>
+            <SideDrawer />
+            <div className="container-fluid">{props.children}</div>
             <Footer />
 
             <ConfirmDialog
