@@ -1,28 +1,25 @@
 import React from "react";
 import { MenuItem, Select, IconButton, Tooltip } from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
 import LanguageIcon from "@material-ui/icons/Language";
 
-import { setLang } from "../../store/actions";
 import { availableLangs } from "../../i18n";
 import Translate from "./Translate";
 
 export default function I18nSelect(props) {
-	const dispatch = useDispatch();
 	const [isSelectOpen, setIsSelectOpen] = React.useState(false);
-	const selectedLang = useSelector((state) => state.I18nReducer.selectedLang);
+	const { selectedLang, onChange } = props;
 
 	let menuItems = [];
 	for (let lang in availableLangs) {
 		menuItems.push(
-			<MenuItem key={"i18n-select-item-" + lang} value={lang}>
+			<MenuItem key={"i18n-select-item-" + lang + Math.random()} value={lang}>
 				<Translate value={"lang:" + lang} />
 			</MenuItem>
 		);
 	}
 
 	return (
-		<div className="">
+		<>
 			<Tooltip title={<Translate value="common:language" />} >
 				<IconButton
 					variant="contained"
@@ -31,13 +28,11 @@ export default function I18nSelect(props) {
 				>
 					<LanguageIcon />
 					<span className="d-none d-sm-inline language-abv">
-						<Translate value={selectedLang} />
+						{selectedLang}
 					</span>
 				</IconButton>
 			</Tooltip>
 			<Select
-				id="i18n-select-field"
-				labelId="i18n-select-label"
 				className="text-white position-absolute invisible"
 				style={{ left: 0, right: 0 }}
 				IconComponent={() => ""}
@@ -45,11 +40,11 @@ export default function I18nSelect(props) {
 				inputProps={{ className: "invisible" }}
 				value={selectedLang}
 				open={isSelectOpen}
-				onChange={(event) => dispatch(setLang(event.target.value))}
+				onChange={onChange}
 				onClose={() => setIsSelectOpen(false)}
 			>
 				{menuItems}
 			</Select>
-		</div>
+		</>
 	);
 }

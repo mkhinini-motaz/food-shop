@@ -9,6 +9,7 @@ import {
     SET_SHOP_USER_LOGIN_IS_LOADING, SET_SHOP_USER_LOGOUT_IS_LOADING,
     SET_SHOP_USER_PROFILE_UPDATE_IS_LOADING
 } from '../types';
+import { showSnackbar } from "../snackbar";
 
 export function shopUserLoginSuccess(client) {
     return { type: SHOP_USER_LOGIN_SUCCESS, payload: client };
@@ -61,7 +62,7 @@ export function fetchShopUserProfile()  {
     return function(dispatch) {
         axios.get(BASE_SHOP_API_URL + '/profile', { headers: { Authorization: shopUserAccessToken() } })
             .then(response => {
-                dispatch(shopUserLoginSuccess(response.data.data));
+                dispatch(shopUserLoginSuccess({ ...response.data.data, access_token: localStorage.getItem('shop_user_access_token') }));
             })
             .catch(error => {
 // TODO: snackbar message
@@ -82,6 +83,24 @@ export function updateShopUserProfile({ first_name, last_name, email, phone, pho
                 dispatch(setShopUserProfileUpdateIsLoading(false));
             })
             .catch(error => {
+// TODO: snackbar message in middleware interceptor
+                dispatch(setShopUserProfileUpdateIsLoading(false));
+            })
+    }
+}
+
+export function updateShopMenuLang({ menu_displayed_lang })  {
+    return function(dispatch) {
+        let data = { menu_displayed_lang };
+
+// TODO: dispatch shop menu lang update is loading true
+        axios.post(BASE_SHOP_API_URL + '/menu/lang', data)
+            .then(response => {
+                dispatch(showSnackbar({ message: 'menu:lang:update:title' }));
+// TODO: dispatch shop menu lang update is loading false
+            })
+            .catch(error => {
+// TODO: dispatch shop menu lang update is loading false
 // TODO: snackbar message in middleware interceptor
                 dispatch(setShopUserProfileUpdateIsLoading(false));
             })

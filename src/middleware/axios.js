@@ -16,7 +16,7 @@ export default function register() {
     }, (error) => {
         if (error.response.status === 403) {
             localStorage.setItem('shop_user_access_token', '');
-            window.location.href = '';
+//            window.location.href = '';
         }
         return Promise.reject(error);
     });

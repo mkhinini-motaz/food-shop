@@ -7,7 +7,7 @@ export * from './orderDialog';
 export * from './orderStatusEditDialog';
 export * from './shopUser';
 export * from './transporterDialog';
-export * from './auth/client';
+export * from './auth/shop';
 export * from './i18n';
 export * from './snackbar';
 export * from './sideDrawer';

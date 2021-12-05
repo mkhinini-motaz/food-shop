@@ -8,7 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { attemptShopUserLogout, openSideDrawer } from "../store/actions";
 import BackToTop from "../components/common/BackToTop";
-import I18nSelect from "../components/common/I18nSelect";
+import StoreI18nSelect from "../components/common/StoreI18nSelect";
 import Translate from "../components/common/Translate";
 
 export default function AppBar(props) {
@@ -62,7 +62,7 @@ export default function AppBar(props) {
 			</MenuItem>
 
 			<MenuItem className="menu-item">
-				<I18nSelect />
+				<StoreI18nSelect />
 			</MenuItem>
 
 			{logoutButton}

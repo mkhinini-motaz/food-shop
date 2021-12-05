@@ -3,6 +3,7 @@ import { Divider, Drawer, IconButton, Typography, } from '@material-ui/core';
 import PersonIcon from "@material-ui/icons/Person";
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import SettingsIcon from '@material-ui/icons/Settings';
 import { Home } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -82,6 +83,16 @@ export default function SideDrawer(props) {
 			</div>
 
 			{categoriesLink}
+
+			<div className={paddingRule} style={currentPath === (clientIsAuthenticated ? "/settings" : "/login") ? activeLinkStyle : {}}>
+				<Link to={clientIsAuthenticated ? "/settings" : "/login"} className={flexRowRule}>
+					<IconButton><SettingsIcon /></IconButton>
+					<Typography variant="body1" color="textPrimary" component="span">
+						<Translate value={'common:' + (clientIsAuthenticated ? "settings" : "login")} />
+					</Typography>
+				</Link>
+			</div>
+
 			{logoutLink}
 		</div>
 	);
