@@ -22,25 +22,25 @@ export default function Total(props) {
                 component="span"
                 variant="body1"
                 color="textPrimary"
-                className={'d-flex ' + flexRowClassName}
+                className={'d-flex align-items-center ' + flexRowClassName}
             >
                 <Translate value="form:total:label" />
             </Typography>
 
             <Typography
                 component="span"
-                variant="body2"
+                variant="body1"
                 color="textPrimary"
-                className={'d-flex ' + flexRowClassName}
+                className={'d-flex align-items-center ' + flexRowClassName}
             >
                 <MoneyFormatter value={props.value} />
             </Typography>
 
             <Typography
                 component="span"
-                variant="body2"
+                variant="body1"
                 color="textPrimary"
-                className={'d-flex ' + flexRowClassName}
+                className={'d-flex align-items-center ' + flexRowClassName}
             >
                 <MoneyFormatter value={2000} />
                 <span className="mx-2"></span>
@@ -52,20 +52,21 @@ export default function Total(props) {
                 <span>
                     <Typography
                         component="span"
-                        variant="body2"
+                        variant="body1"
                         color="textSecondary"
                         style={{ color: COLOR_PRIMARY }}
-                        className={'d-flex ' + flexRowClassName}
+                        className={'d-flex align-items-center ' + flexRowClassName}
                     >
-                        - <MoneyFormatter value={(promoCode ? promoCode.reduction_amount : 0)} />
+                        <span className="mx-1"> - </span>
+                        <MoneyFormatter value={(promoCode ? promoCode.reduction_amount : 0)} />
                         <span className="mx-2"></span>
                         <Translate value="cart:promo_code:label" />
                     </Typography>
                      <Typography
                          component="span"
-                         variant="body2"
+                         variant="body1"
                          color="textPrimary"
-                         className={'d-flex ' + flexRowClassName}
+                         className={'d-flex align-items-center ' + flexRowClassName}
                      >
                         <MoneyFormatter value={total} />
                     </Typography>

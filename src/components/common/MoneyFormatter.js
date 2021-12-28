@@ -17,10 +17,10 @@ export default function MoneyFormatter(props) {
     if (selectedLangWriteFrom === 'right') {
         return (
             <span className="d-flex flex-row-reverse">
-                <span>
+                <span className={'translated_' + selectedLang}>
                     {formatter.format(props.value / 1000).replace(LOCAL_CURRENCY, '')}
                 </span>
-                <span>
+                <span className={'translated_' + selectedLang}>
                     {translate(LOCAL_CURRENCY, selectedLang, true)}
                 </span>
             </span>

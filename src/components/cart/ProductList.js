@@ -34,10 +34,14 @@ export default function ProductList(props) {
         } else {
 // TODO: move into ProductSimpleView
             productCartItemComponents.push(<div className="my-2">
-                <div className={'mx-2 d-flex ' + flexRowClassName}>
+                <div className={'mx-2 d-flex align-items-center ' + flexRowClassName}>
                     <span>{product.product_count}</span>
                     <span className="mx-2">{' x '}</span>
-                    <TranslateField value={product.name} />
+                    <span>
+                        <TranslateField value={product.category.name} />
+                        <span> - </span>
+                        <TranslateField value={product.name} />
+                    </span>
                 </div>
                 <div className={'mx-2 px-3 d-flex ' + flexRowClassName + textAlign}>
                     {optionGroupsOutput(product.option_groups, selectedLang)}
