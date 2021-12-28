@@ -83,9 +83,12 @@
     }
 }
 
-.translated_ar {
+.main_layout_container_ar * {
+    font-family: 'NotoSabsArabic';
+}
+
+.translated_ar, .translated_tnar {
     text-align: right;
-    font-family: 'Amiri';
     font-size: 18px;
     line-height: 1.5;
 }
