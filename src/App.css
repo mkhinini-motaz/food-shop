@@ -235,6 +235,10 @@
     white-space: pre-wrap !important;
 }
 
+.white_space_no_wrap {
+    white-space: nowrap;
+}
+
 @media (max-width: 767.98px) {
     .MuiAppBar-root .MuiListItem-gutters {
         padding-left: 0;

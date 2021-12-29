@@ -22,10 +22,9 @@ export default function Total(props) {
                 component="span"
                 variant="body1"
                 color="textPrimary"
-                className={'d-flex align-items-center ' + flexRowClassName}
+                className={'d-flex align-items-center justify-content-between ' + flexRowClassName}
             >
                 <Translate value="cart:delivery:label" />
-                <span className="mx-2"></span>
                 <MoneyFormatter value={2000} />
             </Typography>
 
@@ -37,22 +36,23 @@ export default function Total(props) {
                         variant="body1"
                         color="textSecondary"
                         style={{ color: COLOR_PRIMARY }}
-                        className={'d-flex align-items-center ' + flexRowClassName}
+                        className={'d-flex align-items-center justify-content-between ' + flexRowClassName}
                     >
                         <Translate value="cart:promo_code:label" />
-                        <span className="mx-1"></span>
-                        <span className="mx-1"> - </span>
-                        <MoneyFormatter value={(promoCode ? promoCode.reduction_amount : 0)} />
+                        <span className="white_space_no_wrap d-inline-flex">
+                            <span className="mx-1">-</span>
+                            <MoneyFormatter value={(promoCode ? promoCode.reduction_amount : 0)} />
+                        </span>
+
                     </Typography>
                      <Typography
                          component="span"
                          variant="body1"
                          color="textPrimary"
-                         className={'d-flex align-items-center ' + flexRowClassName}
+                         className={'d-flex align-items-center justify-content-between ' + flexRowClassName}
                      >
                          <Translate value="form:total:label" />
-                         <span className="mx-2"></span>
-                        <MoneyFormatter value={total} />
+                         <MoneyFormatter value={total} />
                     </Typography>
                 </span>
             }
