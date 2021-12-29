@@ -11,7 +11,7 @@ export default function Total(props) {
     const promoCode = props.promoCode;
     const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
 
-    let total = props.value - (promoCode ? promoCode.reduction_amount : 0) + 2000;
+    let total = props.value - (promoCode ? promoCode.reduction_amount : 0) + 2000; // TODO: make delivery fee dynamic
     if (total <= 0) {
         total = 0;
     }
@@ -24,27 +24,9 @@ export default function Total(props) {
                 color="textPrimary"
                 className={'d-flex align-items-center ' + flexRowClassName}
             >
-                <Translate value="form:total:label" />
-            </Typography>
-
-            <Typography
-                component="span"
-                variant="body1"
-                color="textPrimary"
-                className={'d-flex align-items-center ' + flexRowClassName}
-            >
-                <MoneyFormatter value={props.value} />
-            </Typography>
-
-            <Typography
-                component="span"
-                variant="body1"
-                color="textPrimary"
-                className={'d-flex align-items-center ' + flexRowClassName}
-            >
-                <MoneyFormatter value={2000} />
-                <span className="mx-2"></span>
                 <Translate value="cart:delivery:label" />
+                <span className="mx-2"></span>
+                <MoneyFormatter value={2000} />
             </Typography>
 
             {! promoCode ? '' :
@@ -57,10 +39,10 @@ export default function Total(props) {
                         style={{ color: COLOR_PRIMARY }}
                         className={'d-flex align-items-center ' + flexRowClassName}
                     >
+                        <Translate value="cart:promo_code:label" />
+                        <span className="mx-1"></span>
                         <span className="mx-1"> - </span>
                         <MoneyFormatter value={(promoCode ? promoCode.reduction_amount : 0)} />
-                        <span className="mx-2"></span>
-                        <Translate value="cart:promo_code:label" />
                     </Typography>
                      <Typography
                          component="span"
@@ -68,6 +50,8 @@ export default function Total(props) {
                          color="textPrimary"
                          className={'d-flex align-items-center ' + flexRowClassName}
                      >
+                         <Translate value="form:total:label" />
+                         <span className="mx-2"></span>
                         <MoneyFormatter value={total} />
                     </Typography>
                 </span>

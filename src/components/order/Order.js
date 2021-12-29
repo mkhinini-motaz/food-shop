@@ -3,14 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Chip, makeStyles, Typography } from "@material-ui/core";
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 
 import AdditionalNote from "../cart/AdditionalNote";
 import OrderStatus from "./OrderStatus";
 import ProductList from "../cart/ProductList";
 import PromoCode from "../cart/PromoCode";
-import { getShopTransporters, showOrderStatusEditDialog, showTransporterDialog, } from "../../store/actions";
+import {
+    getShopTransporters,
+    showOrderStatusEditDialog,
+    showSnackbar,
+    showTransporterDialog,
+} from "../../store/actions";
 import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, } from "../../constants";
-import { formatTimeDate, formatPhoneNumber } from "../../utils";
+import { formatTimeDate, formatPhoneNumber, printableOrder } from "../../utils";
+import Translate from "../common/Translate";
 
 export default function Order(props) {
     const dispatch = useDispatch();
@@ -46,6 +53,11 @@ export default function Order(props) {
         dispatch(showTransporterDialog(order));
     };
 
+    const copyInviteCodeToClipboard = () => {
+        navigator.clipboard.writeText(printableOrder(order));
+        dispatch(showSnackbar({ message: 'common:copied' }))
+    };
+
     const flexRowClassName = ' flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse ' : ' ');
 
     return (
@@ -60,6 +72,15 @@ export default function Order(props) {
                 <Typography variant="body2" component="span" className="mx-3 font_size_17px">
                     {formatTimeDate(order.created_at)}
                 </Typography>
+            </div>
+
+            <div>
+                <Chip icon={<FileCopyIcon />}
+                      label={<Translate value="common:copy" />}
+                      clickable
+                      color="primary"
+                      onClick={copyInviteCodeToClipboard}
+                />
             </div>
 
             <div className={'px-2 text-' + selectedLangWriteFrom}>
@@ -93,7 +114,7 @@ export default function Order(props) {
                 />
             </div>
 
-            <ProductList order={order} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} />
+            <ProductList order={order} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} detailedView />
 
             <AdditionalNote additionalNote={order.additional_note} withMargins={showPromoCode !== false} />
             {showPromoCode === false ? '' : <PromoCode promoCode={order.promo_code} />}

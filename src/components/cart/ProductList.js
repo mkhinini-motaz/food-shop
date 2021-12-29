@@ -7,7 +7,7 @@ import MoneyFormatter from '../common/MoneyFormatter';
 import Total from "./Total";
 import TranslateField from "../common/TranslateField";
 import { BASE_BACKEND_URL, COMPONENT_SHOW_DELAY, PRODUCT } from '../../constants';
-import { optionGroupsOutput } from "../../utils";
+import { optionGroupsOutput, productPrice } from "../../utils";
 
 export default function ProductList(props) {
     const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
@@ -33,7 +33,7 @@ export default function ProductList(props) {
             />);
         } else {
 // TODO: move into ProductSimpleView
-            productCartItemComponents.push(<div className="my-2">
+            productCartItemComponents.push(<div className="my-2" key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '')} >
                 <div className={'mx-2 d-flex align-items-center ' + flexRowClassName}>
                     <span>{product.product_count}</span>
                     <span className="mx-2">{' x '}</span>
@@ -44,11 +44,11 @@ export default function ProductList(props) {
                     </span>
                 </div>
                 <div className={'mx-2 px-3 d-flex ' + flexRowClassName + textAlign}>
-                    {optionGroupsOutput(product.option_groups, selectedLang)}
+                    {optionGroupsOutput(product.option_groups, product.product_count, selectedLang)}
                 </div>
             </div>);
         }
-        totalPrice += product.price * product.product_count;
+        totalPrice += productPrice(product);
         showDelay += COMPONENT_SHOW_DELAY;
     }
 
@@ -76,6 +76,6 @@ function productInfoForOrderDisplay(product) {
         option_groups: product.option_groups || [],
         photo: BASE_BACKEND_URL + product.photo,
         price: <MoneyFormatter value={product.price} />,
-        total: <MoneyFormatter value={product.price * product.product_count} />,
+        total: <MoneyFormatter value={productPrice(product)} />,
     };
 }

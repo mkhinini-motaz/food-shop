@@ -3,6 +3,12 @@ export const PRODUCT = {
     TYPE_WITH_OPTIONS: 2,
 };
 
+export const ORDER = {
+    TYPE_ON_SITE: 1,
+    TYPE_TAKE_AWAY: 2,
+    TYPE_DELIVERY: 3,
+};
+
 export const OPTION = {
     QUANTITIES : {
         QUANTITY_A_LITTLE: 1,
