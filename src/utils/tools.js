@@ -180,6 +180,9 @@ export const printableOrder = (order) => {
 
     const lang = 'fr';
     let result = '_________ Ghostchef _________\n\n';
+    result += formatTimeDate(order.created_at) + '\n\n';
+    result += '#Order: ' + String(order.id).slice(-3).padStart(3, '0') + '\n\n';
+
     for (let product of order.products) {
         result += product.product_count + ' X ';
         result += product.category.name[lang] + ' - ' + product.name[lang];
@@ -214,7 +217,7 @@ export const printableOrder = (order) => {
         result += '\n' + translate('cart:delivery:label', lang, true) + ' " 2000 "' + '\n';
     }
 
-    result += translate('form:total:label', lang, true) + ' : ';
+    result += '\n' + translate('form:total:label', lang, true) + ' : ';
     result += '" ' + formatter.format(order.total_price / 1000).replace(LOCAL_CURRENCY, '');
     result += ' ' + translate(LOCAL_CURRENCY, lang, true) + ' "\n';
 

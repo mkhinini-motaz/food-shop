@@ -10,8 +10,8 @@ export default function Product(props) {
     const { product, hideDivider } = props;
     const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
-
     const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
+
     const primaryOutput = (
         <span className={'d-flex justify-content-between ' + flexRowClassName}>
             <span className={'d-flex align-items-center ' + flexRowClassName}>
@@ -21,6 +21,8 @@ export default function Product(props) {
                         <span className="mx-1"> X </span>
                     </span>
                 }
+                <TranslateField value={product.category.name} />
+                <span className="mx-1"> - </span>
                 <TranslateField value={product.name} />
             </span>
             {product.total}

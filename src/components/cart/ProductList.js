@@ -53,6 +53,7 @@ function productInfoForOrderDisplay(product) {
     return {
         id: product.id,
         name: product.name,
+        category: product.category,
         type: product.type,
         product_count: product.product_count,
         option_groups: product.option_groups || [],
