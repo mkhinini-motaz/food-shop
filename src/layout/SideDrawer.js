@@ -73,6 +73,15 @@ export default function SideDrawer(props) {
 				</Link>
 			</div>
 
+			<div className={'mt-3 ' + paddingRule} style={currentPath === '/order' ? activeLinkStyle : {}}>
+				<Link to="/order" className={flexRowRule}>
+					<IconButton><Home /></IconButton>
+					<Typography variant="body1" color="textPrimary" component="span">
+						<Translate value="common:order" />
+					</Typography>
+				</Link>
+			</div>
+
 			<div className={paddingRule} style={currentPath === (clientIsAuthenticated ? "/profile" : "/login") ? activeLinkStyle : {}}>
 				<Link to={clientIsAuthenticated ? "/profile" : "/login"} className={flexRowRule}>
 					<IconButton><PersonIcon /></IconButton>

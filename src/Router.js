@@ -9,6 +9,7 @@ import CategoryShow from "./pages/category/CategoryShow";
 import Login from "./pages/auth/Login";
 import Profile from "./pages/auth/Profile";
 import Settings from "./pages/Settings";
+import Order from "./pages/order/Order";
 
 function Router(props) {
     let authShopUser = useSelector(state => state.AuthReducer.authShopUser);
@@ -36,6 +37,13 @@ function shopUserRoutes(authShopUser) {
             }
         </Route>,
 
+        <Route key="shop-route-order" exact path="/order" >
+            {shopUserIsAuthenticated ?
+                <Layout><Order /></Layout> :
+                <Redirect to="/login" />
+            }
+        </Route>,
+
         <Route key="shop-route-category" exact path="/category" >
             {shopUserIsAuthenticated ?
                 <Layout><CategoryIndex /></Layout> :
@@ -45,7 +53,10 @@ function shopUserRoutes(authShopUser) {
 
         <Route key="shop-route-category-show" exact
                path="/category/:categoryId/product"
-               component={(props) => <Layout><CategoryShow categoryId={props.match.params.categoryId} /></Layout>}
+               component={(props) => shopUserIsAuthenticated ?
+                   <Layout><CategoryShow categoryId={props.match.params.categoryId} /></Layout> :
+                   <Redirect to="/login" />
+               }
         />,
 
        // TODO: Categories listing

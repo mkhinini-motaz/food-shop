@@ -83,22 +83,24 @@ export default function Order(props) {
                 />
             </div>
 
-            <div className={'px-2 text-' + selectedLangWriteFrom}>
-                <Typography variant="h5" component="h4" color="primary" >
-                    {order.client.first_name + ' ' + order.client.last_name}
-                </Typography>
-                <div className="d-block mb-2">
-                    <a href={'tel:' + order.client.phone} style={{ textDecoration: 'none' }}>
-                        <Chip className="pl-2 h-auto"
-                            icon={<PhoneInTalkIcon />}
-                            style={{ backgroundColor: '#78c6a3', cursor: 'pointer' }}
-                            label={<Typography variant="h6" color="primary" component="span" className="font-weight-bold m-1 white_space_pre_wrap" >
-                                {formatPhoneNumber(order.client.phone)}
-                            </Typography>}
-                        />
-                    </a>
+            {! order.client ? '' :
+                <div className={'px-2 text-' + selectedLangWriteFrom}>
+                    <Typography variant="h5" component="h4" color="primary" >
+                        {order.client.first_name + ' ' + order.client.last_name}
+                    </Typography>
+                    <div className="d-block mb-2">
+                        <a href={'tel:' + order.client.phone} style={{ textDecoration: 'none' }}>
+                            <Chip className="pl-2 h-auto"
+                                  icon={<PhoneInTalkIcon />}
+                                  style={{ backgroundColor: '#78c6a3', cursor: 'pointer' }}
+                                  label={<Typography variant="h6" color="primary" component="span" className="font-weight-bold m-1 white_space_pre_wrap" >
+                                      {formatPhoneNumber(order.client.phone)}
+                                  </Typography>}
+                            />
+                        </a>
+                    </div>
                 </div>
-            </div>
+            }
 
 
             <div className={'px-2 mt-1 d-flex justify-content-between text-' + selectedLangWriteFrom + flexRowClassName}>

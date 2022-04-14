@@ -12,6 +12,8 @@ import AuthReducer from './AuthReducer';
 import I18nReducer from './I18nReducer';
 import SnackbarReducer from './SnackbarReducer';
 import SideDrawerReducer from './SideDrawerReducer';
+import CartReducer from './CartReducer';
+import ProductDialogReducer from './ProductDialogReducer';
 
 export default combineReducers({
     CategoryReducer,
@@ -26,4 +28,6 @@ export default combineReducers({
     I18nReducer,
     SnackbarReducer,
     SideDrawerReducer,
+    CartReducer,
+    ProductDialogReducer,
 })

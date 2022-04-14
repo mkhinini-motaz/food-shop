@@ -2,9 +2,11 @@ import React from 'react';
 import { LOCAL_CURRENCY, LOCAL, PRODUCT, ORDER } from '../constants';
 import { defaultLang, translate, translateFromObject} from '../i18n';
 
+
 /**
- * @param {int} amount
- * @param {string} selectedLang
+ * @param amount                {number}
+ * @param selectedLang          {string}
+ * @param selectedLangWriteFrom {string}
  *
  * @returns {string}
  */
@@ -15,23 +17,11 @@ export function formatMoneyDisplay(amount, selectedLang = defaultLang.code, sele
     });
 
     if (selectedLangWriteFrom === 'right') {
-        return (
-            <span className="d-flex flex-row-reverse">
-                <span>
-                    {formatter.format(amount / 1000).replace(LOCAL_CURRENCY, '')}
-                </span>
-                <span>
-                    {translate(LOCAL_CURRENCY, selectedLang, true)}
-                </span>
-            </span>
-        )
+        return formatter.format(amount / 1000).replace(LOCAL_CURRENCY, '') + ' ' +
+            translate(LOCAL_CURRENCY, selectedLang, true);
     }
 
-    return (
-        <span>
-            {formatter.format(amount / 1000).replace(LOCAL_CURRENCY, '') + ' ' + translate(LOCAL_CURRENCY, selectedLang, true)}
-        </span>
-    );
+    return formatter.format(amount / 1000).replace(LOCAL_CURRENCY, '') + ' ' + translate(LOCAL_CURRENCY, selectedLang, true);
 }
 
 /**
@@ -68,7 +58,7 @@ export const optionGroupsOutput = (optionGroups, productCount, selectedLang) => 
         optionGroup.options.map(option => {
             return translateFromObject(option.name, selectedLang, true) +
                 (! option.quantity ? '' : ' ' + '+'.repeat(option.quantity)) +
-                (! option.price ? '' : ' +' + formatter.format((option.price * productCount) / 1000).replace(LOCAL_CURRENCY, '') + translate(LOCAL_CURRENCY, selectedLang, true));
+                (! option.price ? '' : ' +' + formatter.format((option.price) / 1000).replace(LOCAL_CURRENCY, '') + translate(LOCAL_CURRENCY, selectedLang, true));
         }).join(', ')
     ).join(', ')
 };
@@ -136,6 +126,7 @@ export const formatTimeDate = (timestamp) => {
 };
 
 /**
+ * // TODO: merge function with the one below
  * @param product         {object}
  * @param productCartInfo {object}
  *
@@ -156,6 +147,27 @@ export const productPrice = (product) => {
     return price * product.product_count;
 };
 
+
+/**
+ * // TODO: merge function with the one above
+ * @param product         {object}
+ * @param productCartInfo {object}
+ *
+ * @returns {number}
+ */
+export const productPriceForDialog = (product) => {
+    let price = product.price;
+    if (product.type === PRODUCT.TYPE_WITH_OPTIONS) {
+        for (let option of product.options) {
+            if (option.price) {
+                price += option.price;
+            }
+        }
+    }
+
+    return price * product.product_count;
+};
+
 /**
  * @param order {object}
  * @returns {string}
@@ -168,10 +180,7 @@ export const printableOrder = (order) => {
 
     const lang = 'fr';
     let result = '_________ Ghostchef _________\n\n';
-    let total  = 0;
     for (let product of order.products) {
-        let productPrice = product.price;
-
         result += product.product_count + ' X ';
         result += product.category.name[lang] + ' - ' + product.name[lang];
         result += '" ' + formatter.format(product.price / 1000).replace(LOCAL_CURRENCY, '');
@@ -188,18 +197,13 @@ export const printableOrder = (order) => {
                 if (option.price) {
                     result += '" ' + formatter.format(option.price / 1000).replace(LOCAL_CURRENCY, '');
                     result += ' ' + translate(LOCAL_CURRENCY, lang, true) + ' "\n';
-                    productPrice  += option.price;
                 }
                 result += '\n';
             }
         }
-
-        total += productPrice * product.product_count;
     }
 
     if (order.promo_code) {
-        total -= order.promo_code.reduction_amount;
-
         result += '\n' + translate('cart:promo_code:label', lang, true);
         result += ' " -' + formatter.format(order.promo_code.reduction_amount / 1000).replace(LOCAL_CURRENCY, '');
         result += ' ' + translate(LOCAL_CURRENCY, lang, true) + ' "\n';
@@ -207,16 +211,127 @@ export const printableOrder = (order) => {
 
     if (order.type === ORDER.TYPE_DELIVERY) {
 // TODO: dynamic delivery fee
-        total += 2000;
         result += '\n' + translate('cart:delivery:label', lang, true) + ' " 2000 "' + '\n';
     }
 
     result += translate('form:total:label', lang, true) + ' : ';
-    result += '" ' + formatter.format(total / 1000).replace(LOCAL_CURRENCY, '');
+    result += '" ' + formatter.format(order.total_price / 1000).replace(LOCAL_CURRENCY, '');
     result += ' ' + translate(LOCAL_CURRENCY, lang, true) + ' "\n';
 
     result += '\nMerci !\n';
     result += 'A la prochaine !\n';
 
     return result;
+};
+
+/**
+ * @param products       {array}
+ * @param address        {object}
+ * @param promoCode      {object}
+ * @param additionalNote {string}
+ *
+ * @returns {{ delivery_latitude: float, delivery_longitude: float }}
+ */
+export const cartReducerDataToOrderSubmitData = ({products, address, promoCode, additionalNote}) => {
+    const data = {
+        delivery_latitude: address.lat,
+        delivery_longitude: address.lng,
+    };
+
+    if (additionalNote) {
+        data.additional_note = additionalNote;
+    }
+    if (promoCode) {
+        data.promo_code_id = promoCode.id;
+    }
+
+    const productsToSubmit = [];
+    let productToSubmit;
+    for (let product of products) {
+        productToSubmit = {
+            id: product.product_id,
+            product_count: product.product_count,
+        };
+
+        if (product.options) {
+            productToSubmit.options = [];
+            for (let option of product.options) {
+                productToSubmit.options.push({
+                    id: option.id,
+                    quantity: option.quantity,
+                });
+            }
+        }
+
+        productsToSubmit.push(product);
+    }
+    data.products = productsToSubmit;
+    return data;
+};
+
+
+/**
+ * @param optionGroup {object}
+ *
+ * @returns {{severity: string, messageParams: {optionGroupName: *, optionCount: *}, message: string}}
+ * @constructor
+ */
+export const SnackBarErrorMinOptions = optionGroup => ({
+    message: 'option:min:count',
+    messageParams: {
+        optionCount: optionGroup.min_options,
+        optionGroupName: optionGroup.name,
+    },
+    severity: 'error'
+});
+
+/**
+ * @param optionGroup {object}
+ *
+ * @returns {{severity: string, messageParams: {optionGroupName: *, optionCount: *}, message: string}}
+ * @constructor
+ */
+export const SnackBarErrorMaxOptions = optionGroup => ({
+    message: 'option:max:count',
+    messageParams: {
+        optionCount: optionGroup.max_options,
+        optionGroupName: optionGroup.name,
+    },
+    severity: 'error'
+});
+
+
+/**
+ * @param options {array}
+ */
+export const indexOptionsByGroup = options => {
+    const indexedOptions = {};
+    for (let option of options) {
+        if (Array.isArray(indexedOptions[option.option_group_id])) {
+            indexedOptions[option.option_group_id].push(option);
+        } else {
+            indexedOptions[option.option_group_id] = [ option ];
+        }
+    }
+
+    return indexedOptions;
+};
+
+
+/**
+ * @param option            {object}
+ * @param selectedLang          {string}
+ * @param selectedLangWriteFrom {string}
+ *
+ * @returns {string}
+ */
+export const optionOutput = (option, selectedLang, selectedLangWriteFrom) => {
+    let optionOutput = translateFromObject(option.name, selectedLang, true);
+    if (option.quantity) {
+        optionOutput += ' ' + '+'.repeat(option.quantity);
+    }
+    if (option.price) {
+        optionOutput += ' (+' + formatMoneyDisplay(option.price, selectedLang, selectedLangWriteFrom) + ')';
+    }
+    return optionOutput;
 };

@@ -1,61 +1,91 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
-import { Typography } from '@material-ui/core';
+import { Collapse, Typography } from '@material-ui/core';
 
 import Translate from "../common/Translate";
 import MoneyFormatter from "../common/MoneyFormatter";
-import { COLOR_PRIMARY } from "../../constants";
+import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY } from "../../constants";
+import { productPrice, productPriceForDialog } from "../../utils";
 
 export default function Total(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
-    const promoCode = props.promoCode;
-    const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
+    const promoCode = useSelector(state => state.CartReducer.promoCode);
+    const [ isShown, setIsShown ] = React.useState(false);
+    const deliveryFee = 0;// TODO: implement
 
-    let total = props.value - (promoCode ? promoCode.reduction_amount : 0) + 2000; // TODO: make delivery fee dynamic
-    if (total <= 0) {
+    let product;
+    let totalProducts = 0;
+    for (let productCartInfo of props.productsInfo) {
+        product = props.products.filter(productObject => productObject.id === productCartInfo.product_id)
+            .shift();
+        if (! product) {
+            continue;
+        }
+        totalProducts += productPriceForDialog({ ...product, product_count: productCartInfo.product_count, options: productCartInfo.options });
+    }
+
+    let total = totalProducts - (promoCode ? promoCode.reduction_amount : 0) + deliveryFee;
+    if (total < 0) {
         total = 0;
     }
 
-    return (
-        <div className={props.className + ' bg-white px-2'} >
-            <Typography
-                component="span"
-                variant="body1"
-                color="textPrimary"
-                className={'d-flex align-items-center justify-content-between ' + flexRowClassName}
-            >
-                <Translate value="cart:delivery:label" />
-                <MoneyFormatter value={2000} />
-            </Typography>
+    const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
 
-            {! promoCode ? '' :
-// TODO: on click on promo code show dialog displaying all info about it
-                <span>
+    useEffect(() => {
+        setTimeout(() => { setIsShown(() => true); }, 500 + props.showDelay);
+    }, []);
+
+    return (
+        <Collapse in={isShown}>
+            <div className={props.className + ' bg-white my-2 p-3 border_radius_15'} style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
+                <Typography
+                    component="span"
+                    variant="body1"
+                    color="textPrimary"
+                    className={'d-flex align-items-center  ' + flexRowClassName}
+                >
+                    <MoneyFormatter value={totalProducts} />
+                </Typography>
+
+{/*
+                <Typography
+                    component="span"
+                    variant="body1"
+                    color="textPrimary"
+                    className={'d-flex align-items-center ' + flexRowClassName}
+                >
+                    <MoneyFormatter value={deliveryFee} />
+                    <span className="mx-2"></span>
+                    <Translate value="cart:delivery:label" />
+                </Typography>
+*/}
+
+                {! promoCode ? '' :
                     <Typography
                         component="span"
                         variant="body1"
                         color="textSecondary"
                         style={{ color: COLOR_PRIMARY }}
-                        className={'d-flex align-items-center justify-content-between ' + flexRowClassName}
+                        className={'d-flex align-items-center  ' + flexRowClassName}
                     >
+                        <span className="mx-1">-</span>
+                        <MoneyFormatter value={(promoCode ? promoCode.reduction_amount : 0)} />
+                        <span className="mx-2"></span>
                         <Translate value="cart:promo_code:label" />
-                        <span className="white_space_no_wrap d-inline-flex">
-                            <span className="mx-1">-</span>
-                            <MoneyFormatter value={(promoCode ? promoCode.reduction_amount : 0)} />
-                        </span>
+                    </Typography>
+                }
 
-                    </Typography>
-                     <Typography
-                         component="span"
-                         variant="body1"
-                         color="textPrimary"
-                         className={'d-flex align-items-center justify-content-between ' + flexRowClassName}
-                     >
-                         <Translate value="form:total:label" />
-                         <MoneyFormatter value={total} />
-                    </Typography>
-                </span>
-            }
-        </div>
+                <Typography
+                    component="span"
+                    variant="body1"
+                    color="textPrimary"
+                    className={'d-flex align-items-center  ' + flexRowClassName}
+                >
+                    <MoneyFormatter value={total} />
+                    <span className="mx-2"></span>
+                    <Translate value="form:total:label" />
+                </Typography>
+            </div>
+        </Collapse>
     );
 }

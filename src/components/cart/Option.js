@@ -8,8 +8,11 @@ import Grow from "@material-ui/core/Grow/Grow";
 import { BASE_BACKEND_URL, COLOR_PRIMARY, COLOR_SECONDARY, FORM_FIELD_TYPE_SLIDER, IMAGE_WITH_TEXT_TINT, OPTION } from "../../constants";
 import TranslateField from "../common/TranslateField";
 import Form from "../common/form/Form";
+import MoneyFormatter from "../common/MoneyFormatter";
 
 export default function Option(props) {
+    const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
+    const checkboxContainerClassName = ' pt-3 ' + (selectedLangWriteFrom === 'left' ? 'pr-3' : 'pl-3');
     const classes = makeStyles({
         root: {
             position: 'relative',
@@ -21,7 +24,7 @@ export default function Option(props) {
         checkboxContainer: {
             position: 'absolute',
             width: '100%',
-            textAlign: 'right',
+            textAlign:  selectedLangWriteFrom === 'left' ? 'right' : 'left',
         },
         title: {
             color: 'white',
@@ -59,13 +62,27 @@ export default function Option(props) {
                 outlineOffset: 2,
             },
         },
+        optionPrice: {
+            backgroundColor: COLOR_PRIMARY,
+            position: "absolute",
+            color: 'white',
+            zIndex: 3,
+            textAlign: 'center',
+            textTransform: 'uppercase',
+            padding: 5,
+            top: 0,
+            [selectedLangWriteFrom === 'left' ? 'left' : 'right']: 0,
+            minWidth: '40px',
+            fontSize: '17px',
+            fontWeight: '500',
+            borderRadius: selectedLangWriteFrom === 'right' ? '0 15px 0 15px' : '15px 0 15px 0',
+        },
     })();
+
     const [ isShown, setIsShown ] = React.useState(false);
-    const [ isSelected, setIsSelected ] = React.useState(false);
     setTimeout(() => { setIsShown((previousIsShown) => true); }, 500 + props.showDelay);
 
-    const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
-    const writeFromCssRule      = selectedLangWriteFrom === 'right' ? 'flex-row-reverse' : '';
+    const writeFromCssRule = selectedLangWriteFrom === 'right' ? 'flex-row-reverse' : '';
 
     const formDescription = [
         {
@@ -87,24 +104,27 @@ export default function Option(props) {
         <Grow in={isShown}>
             <div className={classes.root + ' ' + writeFromCssRule + ' my-2 mx-2 row'}>
                 <div className={classes.media} />
+                {! props.option.price ? '' :
+                    <div className={classes.optionPrice}>
+                        <span className="mx-1">+</span>
+                        <MoneyFormatter value={props.option.price} inline />
+                    </div>
+                }
 
                 <Typography className={classes.title} variant="h6" component="h4">
                     <TranslateField value={props.option.name} />
                 </Typography>
-                <div className={classes.checkboxContainer}>
+                <div className={classes.checkboxContainer + checkboxContainerClassName}>
                     <Checkbox
-                        onChange={(event) => {
-                            setIsSelected(event.target.checked);
-                            props.onChange(event.target.checked);
-                        }}
+                        onChange={(event) => props.onChange(event.target.checked)}
                         color="primary"
-                        style={{ transform: "scale(1.2)" }}
+                        style={{ transform: "scale(2.5)" }}
                         className={classes.checkbox}
                         checked={props.isSelected}
                     />
                 </div>
 
-                <Zoom in={props.isQuantifiable && isSelected}>
+                <Zoom in={props.isQuantifiable && props.isSelected}>
                     <div className={classes.sliderFormContainer + ' px-3'}>
                         <Form
                             initialValue={{ quantity: OPTION.DEFAULT_QUANTITY}}

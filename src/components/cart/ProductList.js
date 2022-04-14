@@ -4,7 +4,7 @@ import { List } from '@material-ui/core';
 
 import Product from './Product';
 import MoneyFormatter from '../common/MoneyFormatter';
-import Total from "./Total";
+import Total from "../order/Total";
 import TranslateField from "../common/TranslateField";
 import { BASE_BACKEND_URL, COMPONENT_SHOW_DELAY, PRODUCT } from '../../constants';
 import { optionGroupsOutput, productPrice } from "../../utils";
@@ -18,36 +18,18 @@ export default function ProductList(props) {
     let productCartItemComponents = [];
     let showDelay = 0;
     let totalPrice = 0;
-    const products = props.order.products || [];
+    const products = props.category?.products || props.order?.products || [];
     const lastProductInCartIndex = products.length - 1;
     let product;
     for (let index in products) {
         product = products[index];
-        if (props.detailedView) {
-            productCartItemComponents.push(<Product
-                key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '')}
-                showDelay={showDelay}
-                minifiedDisplay={props.showProductPhotos !== false}
-                product={productInfoForOrderDisplay(product)}
-                hideDivider={parseInt(index) === lastProductInCartIndex}
-            />);
-        } else {
-// TODO: move into ProductSimpleView
-            productCartItemComponents.push(<div className="my-2" key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '')} >
-                <div className={'mx-2 d-flex align-items-center ' + flexRowClassName}>
-                    <span>{product.product_count}</span>
-                    <span className="mx-2">{' x '}</span>
-                    <span>
-                        <TranslateField value={product.category.name} />
-                        <span> - </span>
-                        <TranslateField value={product.name} />
-                    </span>
-                </div>
-                <div className={'mx-2 px-3 d-flex ' + flexRowClassName + textAlign}>
-                    {optionGroupsOutput(product.option_groups, product.product_count, selectedLang)}
-                </div>
-            </div>);
-        }
+        productCartItemComponents.push(<Product
+            key={'product-cart-item-' + product.id + (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '')}
+            showDelay={showDelay}
+            minifiedDisplay={props.showProductPhotos !== false}
+            product={productInfoForOrderDisplay(product)}
+            hideDivider={parseInt(index) === lastProductInCartIndex}
+        />);
         totalPrice += productPrice(product);
         showDelay += COMPONENT_SHOW_DELAY;
     }
@@ -57,7 +39,7 @@ export default function ProductList(props) {
             <List className="bg-white" >
                 {productCartItemComponents}
             </List>
-            {props.showTotal === false ? '' : <Total value={totalPrice} promoCode={props.order.promo_code} />}
+            {props.showTotal === false ? '' : <Total value={totalPrice} />}
         </div>
     );
 }

@@ -26,6 +26,16 @@ export default function Home(props) {
     const tabs = [
         {
             title: <span className={tabTitleClassName}>
+                <DescriptionIcon />
+                <span className="mx-2 d-none d-sm-inline"></span>
+                <span className="d-none d-sm-inline"><Translate value="order:cards" /></span>
+            </span>,
+            content: <div className={"m-2 text-center d-flex justify-content-center flex-wrap " + flexRowClassName} >
+                {currentOrders.map((order, index) => <Order key={'order_card_' + order.id} order={order} index={index} showTotal />)}
+            </div>,
+        },
+        {
+            title: <span className={tabTitleClassName}>
                 <MapIcon />
                 <span className="mx-2 d-none d-sm-inline"></span>
                 <span className="d-none d-sm-inline"><Translate value="order:map" /></span>
@@ -34,16 +44,6 @@ export default function Home(props) {
                 <div className="bg-white p-2 border_radius_15" style={{ boxShadow: BOX_SHADOW_CSS_RULE, height: 'fit-content' }} >
                     <GoogleMap height="80vh" orders={currentOrders} />
                 </div>
-            </div>,
-        },
-        {
-            title: <span className={tabTitleClassName}>
-                <DescriptionIcon />
-                <span className="mx-2 d-none d-sm-inline"></span>
-                <span className="d-none d-sm-inline"><Translate value="order:cards" /></span>
-            </span>,
-            content: <div className={"m-2 text-center d-flex justify-content-center flex-wrap " + flexRowClassName} >
-                {currentOrders.map((order, index) => <Order key={'order_card_' + order.id} order={order} index={index} showTotal />)}
             </div>,
         },
     ];

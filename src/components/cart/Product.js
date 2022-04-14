@@ -15,8 +15,12 @@ export default function Product(props) {
     const primaryOutput = (
         <span className={'d-flex justify-content-between ' + flexRowClassName}>
             <span className={'d-flex align-items-center ' + flexRowClassName}>
-                <span>{product.product_count}</span>
-                <span className="mx-1"> X </span>
+                {! product.product_count ? '' :
+                    <span>
+                        <span>{product.product_count}</span>
+                        <span className="mx-1"> X </span>
+                    </span>
+                }
                 <TranslateField value={product.name} />
             </span>
             {product.total}

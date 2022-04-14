@@ -11,13 +11,18 @@ import SideDrawer from "./SideDrawer";
 import TransporterDialog from "../components/transporter/TransporterDialog";
 import OrderStatusUpdateDialog from "../components/order/OrderStatusUpdateDialog";
 import OrderStatusEditDialogReducer from "../store/reducers/OrderStatusEditDialogReducer";
+import ProductCreateDialog from "../components/product/ProductCreateDialog";
+import ProductDeleteDialog from "../components/product/ProductDeleteDialog";
 
 export default function Layout(props) {
     const selectedLang               = useSelector((state) => state.I18nReducer.selectedLang);
     const orderDialogProps           = useSelector((state) => state.OrderDialogReducer);
     const confirmDialogProps         = useSelector((state) => state.ConfirmDialogReducer);
     const transporterDialogProps     = useSelector((state) => state.TransporterDialogReducer);
+    const productCreateDialogProps   = useSelector(state => state.ProductDialogReducer.create);
+    const productDeleteDialogProps   = useSelector(state => state.ProductDialogReducer.delete);
     const orderStatusEditDialogProps = useSelector((state) => state.OrderStatusEditDialogReducer);
+
 
     return (
         <div className={"main_layout_container main_layout_container_" + selectedLang} >
@@ -55,6 +60,8 @@ export default function Layout(props) {
                 isVisible={transporterDialogProps.isVisible}
             />
 
+            <ProductCreateDialog {...productCreateDialogProps} />
+            <ProductDeleteDialog {...productDeleteDialogProps} />
             <Snackbar />
         </div>
     );
