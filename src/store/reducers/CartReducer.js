@@ -1,4 +1,4 @@
-import { SET_CART_PRODUCT_TYPE_FIXED, SET_CART_PRODUCTS, SET_CART_ADDRESS, PERSIST_REHYDRATE, CREATE_CART_PRODUCT_WITH_OPTIONS, DELETE_CART_PRODUCT_WITH_OPTIONS, SET_CART_PROMO_CODE, SET_CART_PROMO_CODE_IS_LOADING, SET_ADDITIONAL_NOTE, SET_ORDER_IN_PROGRESS, EMPTY_CART, UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS } from '../actions';
+import { SET_CART_PRODUCT_TYPE_FIXED, SET_CART_PRODUCTS, SET_CART_ADDRESS, PERSIST_REHYDRATE, CREATE_CART_PRODUCT_WITH_OPTIONS, DELETE_CART_PRODUCT_WITH_OPTIONS, SET_CART_PROMO_CODE, SET_CART_PROMO_CODE_IS_LOADING, SET_ADDITIONAL_NOTE, SET_ORDER_IN_PROGRESS, EMPTY_CART, UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS, SET_IS_PAYED, } from '../actions';
 
 export const initialCartReducerState = {
     products: [ ],
@@ -8,6 +8,7 @@ export const initialCartReducerState = {
     orderSubmitIsLoading: false,
     orderInProgress: false,
     additionalNote: '',
+    isPayed: false,
 };
 
 export default (state = initialCartReducerState, action) => {
@@ -76,6 +77,10 @@ export default (state = initialCartReducerState, action) => {
 
     if (action.type === SET_ORDER_IN_PROGRESS) {
         return { ...state, orderInProgress: action.payload};
+    }
+
+    if (action.type === SET_IS_PAYED) {
+        return { ...state, isPayed: action.payload};
     }
 
     if (action.type === EMPTY_CART) {

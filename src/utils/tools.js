@@ -186,8 +186,7 @@ export const printableOrder = (order) => {
     for (let product of order.products) {
         result += product.product_count + ' X ';
         result += product.category.name[lang] + ' - ' + product.name[lang];
-        result += '" ' + formatter.format(product.price / 1000).replace(LOCAL_CURRENCY, '');
-        result += ' ' + translate(LOCAL_CURRENCY, lang, true) + ' "\n';
+        result += ' " ' + formatter.format(product.price / 1000).replace(LOCAL_CURRENCY, '').trim()+ ' "\n';
 
         if (product.type !== PRODUCT.TYPE_WITH_OPTIONS) {
             continue;
@@ -198,8 +197,7 @@ export const printableOrder = (order) => {
             for (let option of optionGroup.options) {
                 result += '*'.repeat(starCount) + ' ' + option.name[lang] + ' ' + '+'.repeat(option.quantity || 0);
                 if (option.price) {
-                    result += '" ' + formatter.format(option.price / 1000).replace(LOCAL_CURRENCY, '');
-                    result += ' ' + translate(LOCAL_CURRENCY, lang, true) + ' "\n';
+                    result += ' " ' + formatter.format(option.price / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
                 }
                 result += '\n';
             }
@@ -208,8 +206,7 @@ export const printableOrder = (order) => {
 
     if (order.promo_code) {
         result += '\n' + translate('cart:promo_code:label', lang, true);
-        result += ' " -' + formatter.format(order.promo_code.reduction_amount / 1000).replace(LOCAL_CURRENCY, '');
-        result += ' ' + translate(LOCAL_CURRENCY, lang, true) + ' "\n';
+        result += ' " -' + formatter.format(order.promo_code.reduction_amount / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
     }
 
     if (order.type === ORDER.TYPE_DELIVERY) {
@@ -218,8 +215,7 @@ export const printableOrder = (order) => {
     }
 
     result += '\n' + translate('form:total:label', lang, true) + ' : ';
-    result += '" ' + formatter.format(order.total_price / 1000).replace(LOCAL_CURRENCY, '');
-    result += ' ' + translate(LOCAL_CURRENCY, lang, true) + ' "\n';
+    result += '" ' + formatter.format(order.total_price / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
 
     result += '\nMerci !\n';
     result += 'A la prochaine !\n';
@@ -233,9 +229,9 @@ export const printableOrder = (order) => {
  * @param promoCode      {object}
  * @param additionalNote {string}
  *
- * @returns {{ delivery_latitude: float, delivery_longitude: float }}
+ * @returns {object}
  */
-export const cartReducerDataToOrderSubmitData = ({products, address, promoCode, additionalNote}) => {
+export const cartReducerDataToOrderSubmitData = ({products, address, promoCode, additionalNote, isPayed}) => {
     const data = {
         delivery_latitude: address.lat,
         delivery_longitude: address.lng,
@@ -246,6 +242,9 @@ export const cartReducerDataToOrderSubmitData = ({products, address, promoCode, 
     }
     if (promoCode) {
         data.promo_code_id = promoCode.id;
+    }
+    if (isPayed) {
+        data.is_payed = isPayed;
     }
 
     const productsToSubmit = [];

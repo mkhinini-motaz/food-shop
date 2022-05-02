@@ -68,3 +68,17 @@ export function updateOrderStatus(orderId, status)  {
             });
     }
 }
+
+export function updateOrderIsPayed(orderId, isPayed)  {
+    return function(dispatch) {
+        const data = { is_payed: isPayed };
+        axios.post(BASE_SHOP_API_URL + '/order/' + orderId + '/is-payed', data)
+            .then(response => {
+                dispatch(showSnackbar({ message: 'order:is_payed:update:success' }));
+                dispatch(getCurrentOrders({}));
+            })
+            .catch(error => {
+                dispatch(showSnackbar({ message: 'order:is_payed:update:error', severity: 'error' }));
+            });
+    }
+}

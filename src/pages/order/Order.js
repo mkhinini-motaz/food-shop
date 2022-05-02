@@ -8,6 +8,7 @@ import TranslateField from "../../components/common/TranslateField";
 import Product from "../../components/order/Product";
 import Category from "../../components/order/Category";
 import CartContents from "../../components/cart/CartContents";
+import ClientInfo from "../../components/cart/ClientInfo";
 
 export default function Order(props) {
     const dispatch = useDispatch();
@@ -39,8 +40,8 @@ export default function Order(props) {
         <Collapse in={isShown}>
             <div>
                 <div className="row">
-                    {categories.map(category => <div key={'category_order_' + category.id}  className={'col-3 '} style={{ color: selectedCategoryId === category.id ? COLOR_PRIMARY : 'white' }}>
-                        <Category category={category} onClick={() => setSelectedCategoryId(category.id)} />
+                    {categories.map(category => <div key={'category_order_' + category.id}  className={'col-3 '}>
+                        <Category category={category} isSelected={selectedCategoryId === category.id} onClick={() => setSelectedCategoryId(category.id)} />
                     </div>)}
                 </div>
 
@@ -52,8 +53,13 @@ export default function Order(props) {
 
                 <div className={'my-4'}><Divider /></div>
 
-                <div className={"row px-3"}>
-                    <CartContents products={products} productsInfo={productsInfo} />
+                <div className={"row px-3 flex-column-reverse flex-sm-row"}>
+                    <div className={"col-12 col-sm-6"}>
+                        <CartContents products={products} productsInfo={productsInfo} />
+                    </div>
+                    <div className={"col-12 col-sm-6"}>
+                        <ClientInfo />
+                    </div>
                 </div>
             </div>
         </Collapse>

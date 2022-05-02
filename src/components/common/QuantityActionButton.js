@@ -11,8 +11,9 @@ export default function QuantityActionButton(props) {
                 color="secondary"
                 className={'no_focus_frame' + (! props.hideCount ? '' : ' p-1' )}
                 onClick={event => {props.onClick(props.count - 1, -1)}}
+                size={props.bigSize ? 'large' : 'medium'}
             >
-                <Icon className="m-0">remove_circle</Icon>
+                <Icon className="m-0" style={{ transform: props.bigSize ? "scale(2.0)" : '' }}>remove_circle</Icon>
             </IconButton>
         ));
 
@@ -26,7 +27,8 @@ export default function QuantityActionButton(props) {
     }
 
     let rootClasses = 'w-100 text-' + (props.textAlign || 'center') +
-        ' ' + (props.classes && props.classes.root ? props.classes.root : '');
+        ' ' + (props.classes && props.classes.root ? props.classes.root : '') +
+        ' ' + (props.bigSize ? 'h1' : '');
     return (
         <div className={rootClasses}>
             {icons}
@@ -36,8 +38,9 @@ export default function QuantityActionButton(props) {
                 color="primary"
                 className={'no_focus_frame' + (! props.hideCount ? '' : ' p-1' )}
                 onClick={event => {props.onClick(props.count + 1, 1)}}
+                size={props.bigSize ? 'large' : 'medium'}
             >
-                <Icon className="m-0">add_circle</Icon>
+                <Icon className="m-0" style={{ transform: props.bigSize ? "scale(2.0)" : '' }}>add_circle</Icon>
             </IconButton>
 
         </div>

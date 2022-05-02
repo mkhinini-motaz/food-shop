@@ -15,7 +15,7 @@ export const IMAGE_WITH_TEXT_TINT = "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0
 export const SELECTED_LANG_NAME_IN_WINDOW = "selected_lang";
 export const GOOGLE_MAP_API_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
 
-export const COLOR_PRIMARY = "#355C7D";
+export const COLOR_PRIMARY = "#ff6600";
 export const COLOR_SECONDARY = "#BC2C3D";
 
 export const APPBAR_LOGIN_BUTTON_BG_COLOR = "#169e1f";

@@ -11,6 +11,7 @@
     "common:profile": "Profil",
     "common:language": "Langue",
     "common:created_at": "Créé le",
+    "common:copy": "Copy",
 
     "common:categories": "Catégories",
     "category:edit:title": "Modification catégorie",
@@ -42,6 +43,8 @@
 
     "shop_user:active_orders": "${count} ordres actifs",
     "order:affect": "Affecter",
+    "order:is_payed": "Payé",
+    "order:is_not_payed": "Non payé",
     "order:transporter:attach:success": "Commande attribué au livreur avec succés",
     "order:transporter:attach:error": "Erreur lors de l'attribution du commande au livreur",
     "order:status:update:success": "Status de commande modifié avec succés",

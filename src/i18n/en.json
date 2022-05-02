@@ -11,6 +11,7 @@
     "common:profile": "Profile",
     "common:language": "Language",
     "common:created_at": "Created at",
+    "common:copy": "Copy",
 
     "common:categories": "Categories",
     "category:edit:title": "Category edit",
@@ -42,6 +43,8 @@
 
     "shop_user:active_orders": "${count} active orders",
     "order:affect": "Affect",
+    "order:is_payed": "Payed",
+    "order:is_not_payed": "Not payed",
     "order:transporter:attach:success": "Order assigned successfully to transporter",
     "order:transporter:attach:error": "Error while attributing order to transporter",
     "order:status:update:success": "Order status modified successfully",

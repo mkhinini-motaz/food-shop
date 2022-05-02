@@ -1,7 +1,21 @@
 import axios from "axios";
 
 import {BASE_SHOP_API_URL, SHOP_ID} from "../../constants";
-import { SET_CART_PRODUCT_TYPE_FIXED, CREATE_CART_PRODUCT_WITH_OPTIONS, SET_CART_PRODUCTS, SET_CART_ADDRESS, SET_CART_PROMO_CODE, SET_CART_PROMO_CODE_IS_LOADING, DELETE_CART_PRODUCT_WITH_OPTIONS, SET_ADDITIONAL_NOTE, SET_ORDER_SUBMIT_IS_LOADING, SET_ORDER_IN_PROGRESS, EMPTY_CART, UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS } from './types';
+import {
+    SET_CART_PRODUCT_TYPE_FIXED,
+    CREATE_CART_PRODUCT_WITH_OPTIONS,
+    SET_CART_PRODUCTS,
+    SET_CART_ADDRESS,
+    SET_CART_PROMO_CODE,
+    SET_CART_PROMO_CODE_IS_LOADING,
+    DELETE_CART_PRODUCT_WITH_OPTIONS,
+    SET_ADDITIONAL_NOTE,
+    SET_ORDER_SUBMIT_IS_LOADING,
+    SET_ORDER_IN_PROGRESS,
+    EMPTY_CART,
+    UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS,
+    SET_IS_PAYED
+} from './types';
 import { showSnackbar } from "./snackbar";
 import { cartReducerDataToOrderSubmitData } from "../../utils";
 import { attemptShopUserLogout } from "./auth/shop";
@@ -48,6 +62,10 @@ export function setAdditionalNote(additionalNote) {
 
 export function setOrderInProgress(orderIsInProgress) {
     return { type: SET_ORDER_IN_PROGRESS, payload: orderIsInProgress, };
+}
+
+export function setIsPayed(isPayed) {
+    return { type: SET_IS_PAYED, payload: isPayed, };
 }
 
 export function emptyCart() {

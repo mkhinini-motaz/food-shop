@@ -1,7 +1,7 @@
 // TODO: get from api
 const GHOSTCHEF = {
     SHOP_ID: 1,
-    COLOR_PRIMARY: "#dd1c1a",
+    COLOR_PRIMARY: "#ff6600",
     COLOR_SECONDARY: "#333333",
 
     APPBAR_LOGIN_BUTTON_BG_COLOR: "#169e1f",

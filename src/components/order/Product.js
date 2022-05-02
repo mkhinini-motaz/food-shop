@@ -87,6 +87,7 @@ export default function Product(props) {
                     count={productCountInCart}
                     textAlign={'center'}
                     onClick={quantityButtonOnClick}
+                    bigSize
                 />
             </div>
         </div>

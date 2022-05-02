@@ -16,7 +16,7 @@ export default function Product(props) {
         <span className={'d-flex justify-content-between ' + flexRowClassName}>
             <span className={'d-flex align-items-center ' + flexRowClassName}>
                 {! product.product_count ? '' :
-                    <span>
+                    <span className={'d-flex'}>
                         <span>{product.product_count}</span>
                         <span className="mx-1"> X </span>
                     </span>

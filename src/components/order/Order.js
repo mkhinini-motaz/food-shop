@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Chip, makeStyles, Typography } from "@material-ui/core";
+import { Chip, FormControlLabel, makeStyles, Switch, Typography } from "@material-ui/core";
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
@@ -10,10 +10,10 @@ import OrderStatus from "./OrderStatus";
 import ProductList from "../cart/ProductList";
 import PromoCode from "../cart/PromoCode";
 import {
-    getShopTransporters,
+    getShopTransporters, setIsPayed,
     showOrderStatusEditDialog,
     showSnackbar,
-    showTransporterDialog,
+    showTransporterDialog, updateOrderIsPayed,
 } from "../../store/actions";
 import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, } from "../../constants";
 import { formatTimeDate, formatPhoneNumber, printableOrder } from "../../utils";
@@ -60,6 +60,8 @@ export default function Order(props) {
 
     const flexRowClassName = ' flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse ' : ' ');
 
+    // TODO: change is payed
+
     return (
         <div className={classes.orderCardRoot + ' bg-white my-2 p-2 border_radius_15 '}
              style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
@@ -74,7 +76,20 @@ export default function Order(props) {
                 </Typography>
             </div>
 
-            <div>
+            <div className={'px-2 d-flex align-items-center ' + flexRowClassName}>
+                <FormControlLabel
+                    control={
+                        <Switch
+                            onChange={(event) => dispatch(updateOrderIsPayed(order.id, event.target.checked))}
+                            color="primary"
+                            checked={order.is_payed}
+                        />
+                    }
+                    label={<Translate value={order.is_payed ? "order:is_payed" : "order:is_not_payed"}/>}
+                />
+            </div>
+
+            <div className={'px-2 d-flex align-items-center ' + flexRowClassName}>
                 <Chip icon={<FileCopyIcon />}
                       label={<Translate value="common:copy" />}
                       clickable
@@ -118,7 +133,9 @@ export default function Order(props) {
 
             <ProductList order={order} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} detailedView />
 
-            <AdditionalNote additionalNote={order.additional_note} withMargins={showPromoCode !== false} />
+            {! order.additional_note ? '' :
+                <AdditionalNote additionalNote={order.additional_note} withMargins={showPromoCode !== false} />
+            }
             {showPromoCode === false ? '' : <PromoCode promoCode={order.promo_code} />}
         </div>
     );

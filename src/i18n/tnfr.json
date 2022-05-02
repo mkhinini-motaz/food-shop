@@ -11,6 +11,7 @@
     "common:profile": "Profil",
     "common:language": "Lougha",
     "common:created_at": "Tesna3 le",
+    "common:copy": "Copy",
 
     "common:categories": "Catégories",
     "category:edit:title": "Modification category",
@@ -42,6 +43,8 @@
 
     "shop_user:active_orders": "${count} cmanda temchi",
     "order:affect": "Affecter",
+    "order:is_payed": "5ales",
+    "order:is_not_payed": "Mouch 5ales",
     "order:transporter:attach:success": "Cmanda affecté lil livreur",
     "order:transporter:attach:error": "Erreur fi l'affectation mta3 cmanda lil livreur",
     "order:status:update:success": "Status cmanda modifié",
