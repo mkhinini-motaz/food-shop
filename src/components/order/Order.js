@@ -24,6 +24,8 @@ export default function Order(props) {
     const { order, index, showTotal = false, showPromoCode = false, showProductPhotos = false } = props;
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
+    const products = order?.products;
+
     const classes = makeStyles({
         orderCardRoot: {
             maxWidth: '300px',
@@ -76,7 +78,7 @@ export default function Order(props) {
                 </Typography>
             </div>
 
-            <div className={'px-2 d-flex align-items-center ' + flexRowClassName}>
+            <div className={'px-2 d-flex align-items-center justify-content-between ' + flexRowClassName}>
                 <FormControlLabel
                     control={
                         <Switch
@@ -87,9 +89,6 @@ export default function Order(props) {
                     }
                     label={<Translate value={order.is_payed ? "order:is_payed" : "order:is_not_payed"}/>}
                 />
-            </div>
-
-            <div className={'px-2 d-flex align-items-center ' + flexRowClassName}>
                 <Chip icon={<FileCopyIcon />}
                       label={<Translate value="common:copy" />}
                       clickable
@@ -131,7 +130,7 @@ export default function Order(props) {
                 />
             </div>
 
-            <ProductList order={order} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} detailedView />
+            <ProductList products={products} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} detailedView />
 
             {! order.additional_note ? '' :
                 <AdditionalNote additionalNote={order.additional_note} withMargins={showPromoCode !== false} />

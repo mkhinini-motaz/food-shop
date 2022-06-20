@@ -22,7 +22,7 @@ render = 'no data'; // TODO: implement
     } else {
         render = (
             <div>
-                <ProductList category={category} showDelay={props.showDelay} key={'category-show-product-list-' + category.id} />
+                <ProductList products={category?.products} showDelay={props.showDelay} key={'category-show-product-list-' + category.id} />
             </div>
         );
     }

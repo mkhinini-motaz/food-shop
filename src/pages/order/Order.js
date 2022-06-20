@@ -40,7 +40,7 @@ export default function Order(props) {
         <Collapse in={isShown}>
             <div>
                 <div className="row">
-                    {categories.map(category => <div key={'category_order_' + category.id}  className={'col-3 '}>
+                    {categories.map(category => <div key={'category_order_' + category.id}  className={'col-6 col-sm-4 col-md-2 '}>
                         <Category category={category} isSelected={selectedCategoryId === category.id} onClick={() => setSelectedCategoryId(category.id)} />
                     </div>)}
                 </div>

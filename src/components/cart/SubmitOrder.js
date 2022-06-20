@@ -48,7 +48,7 @@ export default function SubmitOrder(props) {
 
     return (
         <Collapse in={isShown}>
-            <div className={props.className + ' bg-white mt-2 py-3 border_radius_15'} style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
+            <div className={props.className + ' text-center bg-white mt-2 py-3 border_radius_15'} style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
                 {orderSubmitIsLoading ?
                     <Loader size={40} /> :
                     <div>

@@ -18,7 +18,7 @@ export default function ProductList(props) {
     let productCartItemComponents = [];
     let showDelay = 0;
     let totalPrice = 0;
-    const products = props.category?.products || props.order?.products || [];
+    const products = props.products;
     const lastProductInCartIndex = products.length - 1;
     let product;
     for (let index in products) {
