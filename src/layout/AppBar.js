@@ -5,6 +5,10 @@ import { IconButton, MenuItem, Tooltip, } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MenuIcon from '@material-ui/icons/Menu';
+import MapIcon from '@material-ui/icons/Map';
+import DescriptionIcon from '@material-ui/icons/Description';
+import ShoppingCart from "@material-ui/icons/ShoppingCart";
+import { Home } from "@material-ui/icons";
 
 import { attemptShopUserLogout, openSideDrawer } from "../store/actions";
 import BackToTop from "../components/common/BackToTop";
@@ -50,7 +54,29 @@ export default function AppBar(props) {
 				<MenuIcon />
 			</IconButton>
 
-            <MenuItem className="ml-auto menu-item">
+			<MenuItem className="ml-auto menu-item">
+				<Tooltip title={<Translate value={shopUserIsAuthenticated ? "order:cards" : "common:login"} />} >
+					<IconButton
+						to={shopUserIsAuthenticated ? "/" : "/login"}
+						component={Link}
+					>
+						<Home />
+					</IconButton>
+				</Tooltip>
+			</MenuItem>
+
+            <MenuItem className="menu-item">
+				<Tooltip title={<Translate value={shopUserIsAuthenticated ? "order:order" : "common:login"} />} >
+					<IconButton
+						to={shopUserIsAuthenticated ? "/order" : "/login"}
+						component={Link}
+					>
+						<ShoppingCart />
+					</IconButton>
+				</Tooltip>
+			</MenuItem>
+
+            <MenuItem className="menu-item">
 				<Tooltip title={<Translate value={shopUserIsAuthenticated ? "common:profile" : "common:login"} />} >
 					<IconButton
 						to={shopUserIsAuthenticated ? "/profile" : "/login"}

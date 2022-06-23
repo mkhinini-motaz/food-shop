@@ -5,6 +5,7 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Home } from "@material-ui/icons";
+import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -75,7 +76,7 @@ export default function SideDrawer(props) {
 
 			<div className={'mt-3 ' + paddingRule} style={currentPath === '/order' ? activeLinkStyle : {}}>
 				<Link to="/order" className={flexRowRule}>
-					<IconButton><Home /></IconButton>
+					<IconButton><ShoppingCart /></IconButton>
 					<Typography variant="body1" color="textPrimary" component="span">
 						<Translate value="common:order" />
 					</Typography>
