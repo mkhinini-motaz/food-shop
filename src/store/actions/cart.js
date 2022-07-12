@@ -14,7 +14,7 @@ import {
     SET_ORDER_IN_PROGRESS,
     EMPTY_CART,
     UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS,
-    SET_IS_PAYED
+    SET_IS_PAYED, SET_ORDER_TIMESTAMP
 } from './types';
 import { showSnackbar } from "./snackbar";
 import { cartReducerDataToOrderSubmitData } from "../../utils";
@@ -66,6 +66,10 @@ export function setOrderInProgress(orderIsInProgress) {
 
 export function setIsPayed(isPayed) {
     return { type: SET_IS_PAYED, payload: isPayed, };
+}
+
+export function setOrderTimestamp(timestamp) {
+    return { type: SET_ORDER_TIMESTAMP, payload: timestamp, };
 }
 
 export function emptyCart() {

@@ -3,12 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Switch, Collapse, FormControlLabel } from '@material-ui/core';
 
 import Translate from "../common/Translate";
-import { BOX_SHADOW_CSS_RULE, CART_ADDITIONAL_NOTE_CHANGE_TIMEOUT_DELAY, } from "../../constants";
-import { setAdditionalNote, setIsPayed } from "../../store/actions";
+import { BOX_SHADOW_CSS_RULE, } from "../../constants";
+import { setIsPayed } from "../../store/actions";
 
 export default function IsPayed(props) {
     const dispatch = useDispatch();
-    const [ timeoutId, setTimeoutId ] = React.useState(0);
     const [ isShown, setIsShown ] = React.useState(false);
     const isPayed = useSelector(state => state.CartReducer.isPayed);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
