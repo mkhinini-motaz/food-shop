@@ -211,7 +211,7 @@ export const printableOrder = (order) => {
 
     if (order.type === ORDER.TYPE_DELIVERY) {
 // TODO: dynamic delivery fee
-        result += '\n' + translate('cart:delivery:label', lang, true) + ' " 2000 "' + '\n';
+        result += '\n' + translate('cart:delivery:label', lang, true) + ' " *****  "' + '\n';
     }
 
     result += '\n' + translate('form:total:label', lang, true) + ' : ';
