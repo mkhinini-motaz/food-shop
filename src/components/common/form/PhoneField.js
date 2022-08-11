@@ -36,6 +36,7 @@ export default function PhoneField(props) {
                         className={'w-100'}
                         name={props.name}
                         required={isRequired}
+                        type="tel"
                     />
                 </div>}
             </InputMask>
