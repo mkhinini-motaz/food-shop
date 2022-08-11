@@ -61,6 +61,13 @@
     "order:status:21": "ملغى",
     "order:status:22": "العميل غير موجود",
 
+    "order:type:on_site": "في طبق",
+    "order:type:take_away": "هزان",
+    "order:type:delivery": "توصيل",
+
+    "order:source:on_site": "المطعم",
+    "order:source:by_phone": "هاتف",
+
     "lang:fr": "فرنسية",
     "lang:en": "إنجليزية",
     "lang:tnar": "تونسي بالعربي",

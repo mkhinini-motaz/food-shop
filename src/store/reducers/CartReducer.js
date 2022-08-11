@@ -1,4 +1,21 @@
-import { SET_CART_PRODUCT_TYPE_FIXED, SET_CART_PRODUCTS, SET_CART_ADDRESS, PERSIST_REHYDRATE, CREATE_CART_PRODUCT_WITH_OPTIONS, DELETE_CART_PRODUCT_WITH_OPTIONS, SET_CART_PROMO_CODE, SET_CART_PROMO_CODE_IS_LOADING, SET_ADDITIONAL_NOTE, SET_ORDER_IN_PROGRESS, EMPTY_CART, UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS, SET_IS_PAYED, SET_ORDER_TIMESTAMP } from '../actions';
+import {
+    SET_CART_PRODUCT_TYPE_FIXED,
+    SET_CART_PRODUCTS,
+    SET_CART_ADDRESS,
+    PERSIST_REHYDRATE,
+    CREATE_CART_PRODUCT_WITH_OPTIONS,
+    DELETE_CART_PRODUCT_WITH_OPTIONS,
+    SET_CART_PROMO_CODE,
+    SET_CART_PROMO_CODE_IS_LOADING,
+    SET_ADDITIONAL_NOTE,
+    SET_ORDER_IN_PROGRESS,
+    EMPTY_CART,
+    UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS,
+    SET_IS_PAYED,
+    SET_ORDER_TIMESTAMP,
+    SET_TYPE, SET_SOURCE, SET_ASSOCIATED_PHONE
+} from '../actions';
+import { SOURCE_ON_SITE, TYPE_TAKE_AWAY } from "../../constants";
 
 export const initialCartReducerState = {
     products: [ ],
@@ -8,7 +25,10 @@ export const initialCartReducerState = {
     orderSubmitIsLoading: false,
     orderInProgress: false,
     additionalNote: '',
+    associatedPhone: '',
     isPayed: false,
+    type: TYPE_TAKE_AWAY,
+    source: SOURCE_ON_SITE,
     orderTimestamp: null,
 };
 
@@ -76,12 +96,24 @@ export default (state = initialCartReducerState, action) => {
         return { ...state, additionalNote: action.payload};
     }
 
+    if (action.type === SET_ASSOCIATED_PHONE) {
+        return { ...state, associatedPhone: action.payload};
+    }
+
     if (action.type === SET_ORDER_IN_PROGRESS) {
         return { ...state, orderInProgress: action.payload};
     }
 
     if (action.type === SET_IS_PAYED) {
         return { ...state, isPayed: action.payload};
+    }
+
+    if (action.type === SET_TYPE) {
+        return { ...state, type: parseInt(action.payload)};
+    }
+
+    if (action.type === SET_SOURCE) {
+        return { ...state, source: parseInt(action.payload)};
     }
 
     if (action.type === SET_ORDER_TIMESTAMP) {

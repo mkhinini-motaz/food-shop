@@ -224,19 +224,26 @@ export const printableOrder = (order) => {
 };
 
 /**
- * @param products       {array}
- * @param address        {object}
- * @param promoCode      {object}
- * @param additionalNote {string}
+ * @param products        {array}
+ * @param address         {object}
+ * @param promoCode       {object}
+ * @param associatedPhone {string}
+ * @param additionalNote  {string}
+ * @param isPayed
+ * @param type
+ * @param source
  *
  * @returns {object}
  */
-export const cartReducerDataToOrderSubmitData = ({products, address, promoCode, additionalNote, isPayed}) => {
+export const cartReducerDataToOrderSubmitData = ({ products, address, promoCode, associatedPhone, additionalNote, isPayed, type, source }) => {
     const data = {
         delivery_latitude: address.lat,
         delivery_longitude: address.lng,
     };
 
+    if (associatedPhone) {
+        data.associated_phone = associatedPhone;
+    }
     if (additionalNote) {
         data.additional_note = additionalNote;
     }
@@ -244,7 +251,13 @@ export const cartReducerDataToOrderSubmitData = ({products, address, promoCode, 
         data.promo_code_id = promoCode.id;
     }
     if (isPayed) {
-        data.is_payed = isPayed;
+        data.is_payed = !! isPayed ? 1 : 0;
+    }
+    if (type) {
+        data.type = type;
+    }
+    if (source) {
+        data.source = source;
     }
 
     const productsToSubmit = [];

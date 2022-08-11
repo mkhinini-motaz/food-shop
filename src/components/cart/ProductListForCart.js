@@ -26,6 +26,10 @@ export default function ProductListForCart(props) {
         showDelay += COMPONENT_SHOW_DELAY;
     }
 
+    if (productCartItemComponents.length === 0) {
+        return <></>;
+    }
+
     return (
         <List className="bg-white mb-2 border_radius_15" style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
             {productCartItemComponents}

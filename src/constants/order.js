@@ -11,6 +11,13 @@ export const STATUS_DELIVERED               = 20;
 export const STATUS_CANCELED                = 21;
 export const STATUS_CLIENT_NOT_FOUND        = 22;
 
+export const SOURCE_ON_SITE  = 2;
+export const SOURCE_BY_PHONE = 3;
+
+export const TYPE_ON_SITE   = 1;
+export const TYPE_TAKE_AWAY = 2;
+export const TYPE_DELIVERY  = 3;
+
 export const STATUSES = [
     STATUS_NEW,
     STATUS_ACCEPTED_BY_SHOP,
@@ -48,4 +55,15 @@ export const STATUS_CAN_GO_TO = {
     [STATUS_DELIVERED]: [],
     [STATUS_CANCELED]: [],
     [STATUS_CLIENT_NOT_FOUND]: [],
+};
+
+export const TYPES = {
+    [TYPE_ON_SITE]: 'order:type:on_site',
+    [TYPE_TAKE_AWAY]: 'order:type:take_away',
+    [TYPE_DELIVERY]: 'order:type:delivery',
+};
+
+export const SOURCES = {
+    [SOURCE_ON_SITE]: 'order:source:on_site',
+    [SOURCE_BY_PHONE]: 'order:source:by_phone',
 };

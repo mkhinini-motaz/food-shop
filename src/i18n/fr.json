@@ -61,6 +61,13 @@
     "order:status:21": "Annulé",
     "order:status:22": "Client non trouvé",
 
+    "order:type:on_site": "Sur place",
+    "order:type:take_away":"Emporté",
+    "order:type:delivery": "Livraison",
+
+    "order:source:on_site": "Caisse",
+    "order:source:by_phone": "Téléphone",
+
     "lang:fr": "Français",
     "lang:en": "Anglais",
     "lang:tnar": "Tunisien en arabe",

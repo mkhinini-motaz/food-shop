@@ -47,12 +47,13 @@ export default function Order(props) {
 
                 <div className={'my-4'}><Divider /></div>
 
-                <div className={"row px-3 text-white"}>
-                    {selectedCategory?.products.map(product => <Product key={'product_order_' + product.id} product={product} />)}
-                </div>
+                {! selectedCategory ? '' : <>
+                    <div className={"row px-3 text-white"}>
+                        {selectedCategory?.products.map(product => <Product key={'product_order_' + product.id} product={product} />)}
+                    </div>
 
-                <div className={'my-4'}><Divider /></div>
-
+                    <div className={'my-4'}><Divider /></div>
+                </>}
                 <div className={"row px-3 flex-column-reverse flex-sm-row"}>
                     <div className={"col-12 col-sm-6"}>
                         <CartContents products={products} productsInfo={productsInfo} />

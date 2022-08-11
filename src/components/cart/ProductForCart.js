@@ -28,8 +28,8 @@ export default function Product(props) {
         (product.type === PRODUCT.TYPE_WITH_OPTIONS ? '-' + Math.random() : '');
 
     const optionsOutput = product.options
-    .map(option => optionOutput(option, selectedLang, selectedLangWriteFrom))
-    .join(', ');
+        .map(option => optionOutput(option, selectedLang, selectedLangWriteFrom))
+        .join(', ');
 
     const quantityActionButtonOnClick = newValue => {
         if (orderInProgress) {

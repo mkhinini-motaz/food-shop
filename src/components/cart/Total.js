@@ -4,14 +4,14 @@ import { Collapse, Typography } from '@material-ui/core';
 
 import Translate from "../common/Translate";
 import MoneyFormatter from "../common/MoneyFormatter";
-import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY } from "../../constants";
+import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, TYPE_DELIVERY } from "../../constants";
 import { productPrice, productPriceForDialog } from "../../utils";
 
 export default function Total(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
     const promoCode = useSelector(state => state.CartReducer.promoCode);
     const [ isShown, setIsShown ] = React.useState(false);
-    const deliveryFee = 0;// TODO: implement
+    const deliveryFee = useSelector(state => state.CartReducer.type === TYPE_DELIVERY ? 2000 : 0);
 
     let product;
     let totalProducts = 0;
@@ -47,18 +47,18 @@ export default function Total(props) {
                     <MoneyFormatter value={totalProducts} />
                 </Typography>
 
-{/*
-                <Typography
-                    component="span"
-                    variant="body1"
-                    color="textPrimary"
-                    className={'d-flex align-items-center ' + flexRowClassName}
-                >
-                    <MoneyFormatter value={deliveryFee} />
-                    <span className="mx-2"></span>
-                    <Translate value="cart:delivery:label" />
-                </Typography>
-*/}
+                { deliveryFee === 0 ? '' :
+                    <Typography
+                        component="span"
+                        variant="body1"
+                        color="textPrimary"
+                        className={'d-flex align-items-center ' + flexRowClassName}
+                    >
+                        <MoneyFormatter value={deliveryFee} />
+                        <span className="mx-2"></span>
+                        <Translate value="cart:delivery:label" />
+                    </Typography>
+                }
 
                 {! promoCode ? '' :
                     <Typography

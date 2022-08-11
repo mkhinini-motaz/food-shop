@@ -61,6 +61,13 @@
     "order:status:21": "Annulé",
     "order:status:22": "Client mouch mawjoud",
 
+    "order:type:on_site": "Hni",
+    "order:type:take_away":"Hazzen",
+    "order:type:delivery": "Livraison",
+
+    "order:source:on_site": "Caissa",
+    "order:source:by_phone": "Telifoun",
+
     "lang:fr": "Français",
     "lang:en": "Anglais",
     "lang:tnar": "Tounsi bil 3arbi",

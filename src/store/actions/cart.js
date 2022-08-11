@@ -14,7 +14,7 @@ import {
     SET_ORDER_IN_PROGRESS,
     EMPTY_CART,
     UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS,
-    SET_IS_PAYED, SET_ORDER_TIMESTAMP
+    SET_IS_PAYED, SET_ORDER_TIMESTAMP, SET_TYPE, SET_SOURCE, SET_ASSOCIATED_PHONE
 } from './types';
 import { showSnackbar } from "./snackbar";
 import { cartReducerDataToOrderSubmitData } from "../../utils";
@@ -60,12 +60,24 @@ export function setAdditionalNote(additionalNote) {
     return { type: SET_ADDITIONAL_NOTE, payload: additionalNote };
 }
 
+export function setAssociatedPhone(associatedPhone) {
+    return { type: SET_ASSOCIATED_PHONE, payload: associatedPhone };
+}
+
 export function setOrderInProgress(orderIsInProgress) {
     return { type: SET_ORDER_IN_PROGRESS, payload: orderIsInProgress, };
 }
 
 export function setIsPayed(isPayed) {
     return { type: SET_IS_PAYED, payload: isPayed, };
+}
+
+export function setType(type) {
+    return { type: SET_TYPE, payload: type, };
+}
+
+export function setSource(source) {
+    return { type: SET_SOURCE, payload: source, };
 }
 
 export function setOrderTimestamp(timestamp) {
@@ -122,13 +134,7 @@ export function submitOrder(cartReducerData) {
                 }
 
                 if (error.response.status === 422) {
-                    const errors = error.response.data.errors;
-                    const locationErrors = (errors.delivery_latitude || errors.delivery_longitude);
-                    const locationIsNotInServiceArea = locationErrors[0] === 'delivery_latitude.location_not_served' ||
-                        locationErrors[0] === 'delivery_longitude.location_not_served';
-                    if (locationIsNotInServiceArea) {
-                        dispatch(showSnackbar({ message: 'cart:location:not_served', severity: 'error' }));
-                    }
+//                    const errors = error.response.data.errors;
                 }
 
             })
