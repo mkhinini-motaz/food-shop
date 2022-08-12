@@ -1,5 +1,5 @@
 import React from 'react';
-import { LOCAL_CURRENCY, LOCAL, PRODUCT, ORDER } from '../constants';
+import { LOCAL_CURRENCY, LOCAL, PRODUCT, ORDER, TYPES, SOURCES, TYPE_DELIVERY } from '../constants';
 import { defaultLang, translate, translateFromObject} from '../i18n';
 
 
@@ -182,6 +182,21 @@ export const printableOrder = (order) => {
     let result = '_________ Ghostchef _________\n\n';
     result += formatTimeDate(order.created_at) + '\n\n';
     result += '#Order: ' + String(order.id).slice(-3).padStart(3, '0') + '\n\n';
+    result += '---------------\n\n';
+
+    if (order.associated_phone) {
+        result += 'Telephone : ' + order.associated_phone + '\n';
+        result += '---------------\n\n';
+    }
+
+    if (order.additional_note) {
+        result += order.additional_note + '\n';
+        result += '---------------\n\n';
+    }
+
+    result += 'source : ' + translate(SOURCES[order.source], lang, true) + '\n';
+    result += 'type : ' + translate(TYPES[order.type], lang, true) + '\n';
+    result += '---------------\n\n';
 
     for (let product of order.products) {
         result += product.product_count + ' X ';
@@ -216,6 +231,10 @@ export const printableOrder = (order) => {
 
     result += '\n' + translate('form:total:label', lang, true) + ' : ';
     result += '" ' + formatter.format(order.total_price / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
+
+    if (order.type === TYPE_DELIVERY) {
+        result += translate('cart:delivery:label', lang) + ' : *****';
+    }
 
     result += '\nMerci !\n';
     result += 'A la prochaine !\n';

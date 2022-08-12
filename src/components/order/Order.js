@@ -69,7 +69,7 @@ export default function Order(props) {
              style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
              key={'order_details_' + order.id}
         >
-            {! index ? '' : <div className={classes.orderNumber}><span>{index + 1}</span></div>}
+            <div className={classes.orderNumber}><span>{String(order.id).slice(-3).padStart(3, '0')}</span></div>
 
             <div className={'px-2 d-flex align-items-center justify-content-between ' + flexRowClassName}>
                 <OrderStatus order={order} onClick={() => dispatch(showOrderStatusEditDialog(order))} key={'order_status_' + order.id} inline />

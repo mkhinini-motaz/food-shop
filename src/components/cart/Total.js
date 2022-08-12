@@ -24,7 +24,7 @@ export default function Total(props) {
         totalProducts += productPriceForDialog({ ...product, product_count: productCartInfo.product_count, options: productCartInfo.options });
     }
 
-    let total = totalProducts - (promoCode ? promoCode.reduction_amount : 0) + deliveryFee;
+    let total = totalProducts - (promoCode ? promoCode.reduction_amount : 0); // TODO: +delivery fee
     if (total < 0) {
         total = 0;
     }
@@ -54,7 +54,7 @@ export default function Total(props) {
                         color="textPrimary"
                         className={'d-flex align-items-center ' + flexRowClassName}
                     >
-                        <MoneyFormatter value={deliveryFee} />
+                        <span>****</span>
                         <span className="mx-2"></span>
                         <Translate value="cart:delivery:label" />
                     </Typography>
