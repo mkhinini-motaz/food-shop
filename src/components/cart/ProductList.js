@@ -7,7 +7,7 @@ import MoneyFormatter from '../common/MoneyFormatter';
 import Total from "../order/Total";
 import TranslateField from "../common/TranslateField";
 import { BASE_BACKEND_URL, COMPONENT_SHOW_DELAY, PRODUCT } from '../../constants';
-import { optionGroupsOutput, productPrice } from "../../utils";
+import { productPrice, productPriceForDialog } from "../../utils";
 
 export default function ProductList(props) {
     const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
@@ -30,7 +30,7 @@ export default function ProductList(props) {
             product={productInfoForOrderDisplay(product)}
             hideDivider={parseInt(index) === lastProductInCartIndex}
         />);
-        totalPrice += productPrice(product);
+        totalPrice += productPriceForDialog(product);
         showDelay += COMPONENT_SHOW_DELAY;
     }
 
@@ -56,9 +56,9 @@ function productInfoForOrderDisplay(product) {
         category: product.category,
         type: product.type,
         product_count: product.product_count,
-        option_groups: product.option_groups || [],
+        options: product.options || [],
         photo: BASE_BACKEND_URL + product.photo,
         price: <MoneyFormatter value={product.price} />,
-        total: <MoneyFormatter value={productPrice(product)} />,
+        total: <MoneyFormatter value={productPriceForDialog(product)} />,
     };
 }

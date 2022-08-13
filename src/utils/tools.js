@@ -44,23 +44,21 @@ export function shopUserAccessToken() {
 
 /**
  *
- * @param optionGroups {array}
+ * @param options      {array}
  * @param productCount {int}
  * @param selectedLang {string}
  */
-export const optionGroupsOutput = (optionGroups, productCount, selectedLang) => {
+export const optionsOutput = (options, productCount, selectedLang) => {
     const formatter = new Intl.NumberFormat(LOCAL, {
         style: 'currency',
         currency: LOCAL_CURRENCY,
     });
 
-    return optionGroups.map(optionGroup =>
-        optionGroup.options.map(option => {
-            return translateFromObject(option.name, selectedLang, true) +
-                (! option.quantity ? '' : ' ' + '+'.repeat(option.quantity)) +
-                (! option.price ? '' : ' +' + formatter.format((option.price) / 1000).replace(LOCAL_CURRENCY, '') + translate(LOCAL_CURRENCY, selectedLang, true));
-        }).join(', ')
-    ).join(', ')
+    return options.map(option => {
+        return translateFromObject(option.name, selectedLang, true) +
+            (! option.quantity ? '' : ' ' + '+'.repeat(option.quantity)) +
+            (! option.price ? '' : ' +' + formatter.format((option.price) / 1000).replace(LOCAL_CURRENCY, '') + translate(LOCAL_CURRENCY, selectedLang, true));
+    }).join(', ')
 };
 
 /**

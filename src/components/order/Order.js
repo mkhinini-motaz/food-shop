@@ -24,7 +24,7 @@ export default function Order(props) {
     const { order, index, showTotal = false, showPromoCode = false, showProductPhotos = false } = props;
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
-    const products = order?.products;
+    const products = order?.choices.map(choice => ({ ...choice.product, options: choice.options, product_count: choice.product_count }));
 
     const classes = makeStyles({
         orderCardRoot: {

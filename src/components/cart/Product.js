@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Avatar, Chip, Collapse, Divider, ListItem, ListItemText, ListItemAvatar, Typography } from '@material-ui/core';
 
 import TranslateField from "../common/TranslateField";
-import { optionGroupsOutput } from "../../utils";
+import { optionsOutput } from "../../utils";
 import MoneyFormatter from "../common/MoneyFormatter";
 
 export default function Product(props) {
@@ -37,7 +37,7 @@ export default function Product(props) {
                 component="span"
                 className={'d-flex ' + flexRowClassName}
             >
-                {optionGroupsOutput(product.option_groups, product.product_count, selectedLang)}
+                {optionsOutput(product.options, product.product_count, selectedLang)}
             </Typography>
             {! props.minifiedDisplay ? '' :
                 <Typography
