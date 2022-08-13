@@ -18,7 +18,7 @@ export function setOrderStatusUpdateIsLoading(status) {
     return { type: SET_ORDER_STATUS_UPDATE_IS_LOADING, payload: status };
 }
 
-export function getCurrentOrders({ page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc' })  {
+export function getCurrentOrders({ page = 1, perPage = 160, orderBy = 'created_at', orderDirection = 'desc' })  {
     return function(dispatch) {
         dispatch(setCurrentOrdersAreLoading(true));
         const params = { page, perPage, orderBy, orderDirection };
