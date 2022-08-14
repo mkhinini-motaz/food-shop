@@ -25,7 +25,9 @@ export default function Product(props) {
                 <span className="mx-1"> - </span>
                 <TranslateField value={product.name} />
             </span>
-            {product.total}
+            <span className={'font-weight-bold'}>
+                {product.total}
+            </span>
         </span>
     );
 

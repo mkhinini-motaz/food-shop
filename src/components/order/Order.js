@@ -98,18 +98,15 @@ export default function Order(props) {
                 />
             </div>
 
-            {! order.client ? '' :
+            {! order.associated_phone ? '' :
                 <div className={'px-2 text-' + selectedLangWriteFrom}>
-                    <Typography variant="h5" component="h4" color="primary" >
-                        {order.client.first_name + ' ' + order.client.last_name}
-                    </Typography>
                     <div className="d-block mb-2">
-                        <a href={'tel:' + order.client.phone} style={{ textDecoration: 'none' }}>
+                        <a href={'tel:' + order.associated_phone} style={{ textDecoration: 'none' }}>
                             <Chip className="pl-2 h-auto"
                                   icon={<PhoneInTalkIcon />}
                                   style={{ backgroundColor: '#78c6a3', cursor: 'pointer' }}
                                   label={<Typography variant="h6" color="primary" component="span" className="font-weight-bold m-1 white_space_pre_wrap" >
-                                      {formatPhoneNumber(order.client.phone)}
+                                      {formatPhoneNumber(order.associated_phone)}
                                   </Typography>}
                             />
                         </a>
@@ -154,9 +151,6 @@ export default function Order(props) {
             <div className={"px-2"}>
                 {! order.additional_note ? '' :
                     <Typography component={'h4'} >{order.additional_note}</Typography>
-                }
-                {! order.associated_phone ? '' :
-                    <Typography component={'h4'} >{formatPhoneNumber(order.associated_phone)}</Typography>
                 }
             </div>
 

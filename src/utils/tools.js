@@ -220,21 +220,18 @@ export const printableOrder = (order, lang, langWriteFrom) => { // TODO: use lan
         }
     }
 
+    result = result.slice(0, -1) + '---------------\n\n';
+
     if (order.promo_code) {
         result += '\n' + translate('cart:promo_code:label', lang, true);
         result += ' " -' + formatter.format(order.promo_code.reduction_amount / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
     }
 
-    if (order.type === ORDER.TYPE_DELIVERY) {
-// TODO: dynamic delivery fee
-        result += '\n' + translate('cart:delivery:label', lang, true) + ' " *****  "' + '\n';
-    }
-
-    result += '\n' + translate('form:total:label', lang, true) + ' : ';
+    result += translate('form:total:label', lang, true) + ' : ';
     result += '" ' + formatter.format(order.total_price / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
 
-    if (order.type === TYPE_DELIVERY) {
-        result += translate('cart:delivery:label', lang, true) + ' : *****';
+    if (order.type === ORDER.TYPE_DELIVERY) {
+        result += translate('cart:delivery:label', lang, true) + ' : *****\n';
     }
 
     result += '\nMerci !\n';

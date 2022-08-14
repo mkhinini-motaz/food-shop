@@ -26,7 +26,7 @@ export default function Total(props) {
         <Collapse in={isShown}>
             <div className={props.className + ' bg-white my-2 p-3 border_radius_15'} style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
                 <Typography component="span" variant="body1" color="textPrimary" className={'d-flex align-items-center  ' + flexRowClassName} >
-                    <MoneyFormatter value={total} />
+                    <span className={"font-weight-bold"}><MoneyFormatter value={total} /></span>
                     <span className="mx-2"></span>
                     <Translate value="form:total:label" />
                 </Typography>
