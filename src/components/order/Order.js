@@ -131,7 +131,12 @@ export default function Order(props) {
                 />
             </div>
 
-            <ProductList products={products} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} detailedView />
+            <ProductList products={products}
+                         showPromoCode={showPromoCode}
+                         showTotal={showTotal}
+                         showProductPhotos={showProductPhotos}
+                         orderType={order.type}
+                         detailedView />
 
             <div className={"px-2"}>
                 <div className={'d-flex' + flexRowClassName}>

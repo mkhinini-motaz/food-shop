@@ -6,7 +6,7 @@ import Product from './Product';
 import MoneyFormatter from '../common/MoneyFormatter';
 import Total from "../order/Total";
 import TranslateField from "../common/TranslateField";
-import { BASE_BACKEND_URL, COMPONENT_SHOW_DELAY, PRODUCT } from '../../constants';
+import { BASE_BACKEND_URL, COMPONENT_SHOW_DELAY, ORDER, PRODUCT } from '../../constants';
 import { productPrice, productPriceForDialog } from "../../utils";
 
 export default function ProductList(props) {
@@ -39,7 +39,7 @@ export default function ProductList(props) {
             <List className="bg-white" >
                 {productCartItemComponents}
             </List>
-            {props.showTotal === false ? '' : <Total value={totalPrice} />}
+            {props.showTotal === false ? '' : <Total value={totalPrice} withDelivery={props.orderType === ORDER.TYPE_DELIVERY} />}
         </div>
     );
 }
