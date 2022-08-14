@@ -133,22 +133,28 @@ export default function Order(props) {
 
             <ProductList products={products} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} detailedView />
 
-            <div className={'d-flex' + flexRowClassName}>
-                <Translate value={"order:source"}/>
-                <span className={'mx-2'}>:</span>
-                <Translate value={SOURCES[order.source]}/>
+            <div className={"px-2"}>
+                <div className={'d-flex' + flexRowClassName}>
+                    <Translate value={"order:source"}/>
+                    <span className={'mx-2'}>:</span>
+                    <Translate value={SOURCES[order.source]}/>
+                </div>
+                <div className={'d-flex' + flexRowClassName}>
+                    <Translate value={"order:type"}/>
+                    <span className={'mx-2'}>:</span>
+                    <Translate value={TYPES[order.type]}/>
+                </div>
             </div>
-            <div className={'d-flex' + flexRowClassName}>
-                <Translate value={"order:type"}/>
-                <span className={'mx-2'}>:</span>
-                <Translate value={TYPES[order.type]}/>
+
+            <div className={"px-2"}>
+                {! order.additional_note ? '' :
+                    <Typography component={'h4'} >{order.additional_note}</Typography>
+                }
+                {! order.associated_phone ? '' :
+                    <Typography component={'h4'} >{formatPhoneNumber(order.associated_phone)}</Typography>
+                }
             </div>
-            {! order.additional_note ? '' :
-                <Typography component={'span'} >{order.additional_note}</Typography>
-            }
-            {! order.associated_phone ? '' :
-                <Typography component={'span'} >{order.associated_phone}</Typography>
-            }
+
             {showPromoCode === false ? '' : <PromoCode promoCode={order.promo_code} />}
         </div>
     );
