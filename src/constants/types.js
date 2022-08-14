@@ -18,3 +18,14 @@ export const OPTION = {
 
     DEFAULT_QUANTITY: 2,
 };
+
+export const SHOP_USER = {
+    ROLES: {
+        ROLE_OWNER       : 1,
+        ROLE_MASTER_CHEF : 2,
+        ROLE_SHOP_KEEPER : 3,
+        ROLE_COOK        : 4,
+        ROLE_TRANSPORTER : 5,
+    },
+};
+SHOP_USER.CAN_SEE_ORDERS_STATISTICS = [ SHOP_USER.ROLES.ROLE_OWNER, SHOP_USER.ROLES.ROLE_MASTER_CHEF ];

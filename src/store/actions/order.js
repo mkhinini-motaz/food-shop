@@ -18,10 +18,11 @@ export function setOrderStatusUpdateIsLoading(status) {
     return { type: SET_ORDER_STATUS_UPDATE_IS_LOADING, payload: status };
 }
 
-export function getCurrentOrders({ page = 1, perPage = 160, orderBy = 'created_at', orderDirection = 'desc' })  {
+// TODO: used everywhere without date
+export function getCurrentOrders({ page = 1, perPage = 160, orderBy = 'created_at', orderDirection = 'desc', date = null })  {
     return function(dispatch) {
         dispatch(setCurrentOrdersAreLoading(true));
-        const params = { page, perPage, orderBy, orderDirection };
+        const params = { page, perPage, orderBy, orderDirection, date };
 
         axios.get(BASE_SHOP_API_URL + '/order/current', { params })
             .then(response => {

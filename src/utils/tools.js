@@ -124,6 +124,17 @@ export const formatTimeDate = (timestamp) => {
 };
 
 /**
+ * Formats a timestamp to be shown in the following format ('d.m.y H\hi') in client timezone
+ *
+ * @param timestamp {int}
+ *
+ * @returns {string} formatted date
+ */
+export const formatDateTime = (timestamp) => {
+    return  formatDate(timestamp) + ' ' + formatTime(timestamp);
+};
+
+/**
  * // TODO: merge function with the one below
  * @param product         {object}
  * @param productCartInfo {object}
