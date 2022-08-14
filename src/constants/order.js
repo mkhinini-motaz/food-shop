@@ -14,6 +14,7 @@ export const STATUS_CLIENT_NOT_FOUND        = 22;
 export const SOURCE_ON_SITE  = 2;
 export const SOURCE_BY_PHONE = 3;
 
+// TODO: duplicated in ./types
 export const TYPE_ON_SITE   = 1;
 export const TYPE_TAKE_AWAY = 2;
 export const TYPE_DELIVERY  = 3;

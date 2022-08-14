@@ -167,19 +167,20 @@ export const productPriceForDialog = (product) => {
 };
 
 /**
- * @param order {object}
+ * @param order         {object}
+ * @param lang          {string}
+ * @param langWriteFrom {string}
  * @returns {string}
  */
-export const printableOrder = (order) => {
+export const printableOrder = (order, lang, langWriteFrom) => { // TODO: use langWriteFrom
     const formatter = new Intl.NumberFormat(LOCAL, {
         style: 'currency',
         currency: LOCAL_CURRENCY,
     });
 
-    const lang = 'fr';
-    let result = '_________ Ghostchef _________\n\n';
-    result += formatTimeDate(order.created_at) + '\n\n';
-    result += '#Order: ' + String(order.id).slice(-3).padStart(3, '0') + '\n\n';
+    let result = '_________ Ghostchef _________\n';
+    result += formatTimeDate(order.created_at) + '\n';
+    result += '#Order: ' + String(order.id).slice(-3).padStart(3, '0') + '\n';
     result += '---------------\n\n';
 
     if (order.associated_phone) {
@@ -196,24 +197,26 @@ export const printableOrder = (order) => {
     result += 'type : ' + translate(TYPES[order.type], lang, true) + '\n';
     result += '---------------\n\n';
 
-    for (let product of order.products) {
-        result += product.product_count + ' X ';
+    for (let choice of order.choices) {
+        const product = choice.product;
+        result += choice.product_count + ' X ';
         result += product.category.name[lang] + ' - ' + product.name[lang];
-        result += ' " ' + formatter.format(product.price / 1000).replace(LOCAL_CURRENCY, '').trim()+ ' "\n';
+        result += ' " ' +
+            formatter.format(product.price / 1000)
+                .replace(LOCAL_CURRENCY, '')
+                .trim() +
+            ' "\n';
 
         if (product.type !== PRODUCT.TYPE_WITH_OPTIONS) {
             continue;
         }
 
-        for (let optionGroup of product.option_groups) {
-            let starCount = 1;
-            for (let option of optionGroup.options) {
-                result += '*'.repeat(starCount) + ' ' + option.name[lang] + ' ' + '+'.repeat(option.quantity || 0);
-                if (option.price) {
-                    result += ' " ' + formatter.format(option.price / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
-                }
-                result += '\n';
+        for (let option of choice.options) {
+            result += '*'.repeat(2) + ' ' + option.name[lang] + ' ' + '+'.repeat(option.quantity || 0);
+            if (option.price) {
+                result += ' " ' + formatter.format(option.price / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
             }
+            result += '\n';
         }
     }
 
@@ -231,7 +234,7 @@ export const printableOrder = (order) => {
     result += '" ' + formatter.format(order.total_price / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
 
     if (order.type === TYPE_DELIVERY) {
-        result += translate('cart:delivery:label', lang) + ' : *****';
+        result += translate('cart:delivery:label', lang, true) + ' : *****';
     }
 
     result += '\nMerci !\n';

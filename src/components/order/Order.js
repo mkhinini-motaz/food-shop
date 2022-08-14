@@ -15,13 +15,14 @@ import {
     showSnackbar,
     showTransporterDialog, updateOrderIsPayed,
 } from "../../store/actions";
-import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, } from "../../constants";
-import { formatTimeDate, formatPhoneNumber, printableOrder } from "../../utils";
+import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, SOURCES, TYPES, } from "../../constants";
+import { formatTime, formatPhoneNumber, printableOrder } from "../../utils";
 import Translate from "../common/Translate";
 
 export default function Order(props) {
     const dispatch = useDispatch();
     const { order, index, showTotal = false, showPromoCode = false, showProductPhotos = false } = props;
+    const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
     const products = order?.choices.map(choice => ({ ...choice.product, options: choice.options, product_count: choice.product_count }));
@@ -56,16 +57,14 @@ export default function Order(props) {
     };
 
     const copyInviteCodeToClipboard = () => {
-        navigator.clipboard.writeText(printableOrder(order));
+        navigator.clipboard.writeText(printableOrder(order, selectedLang, selectedLangWriteFrom));
         dispatch(showSnackbar({ message: 'common:copied' }))
     };
 
     const flexRowClassName = ' flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse ' : ' ');
 
-    // TODO: change is payed
-
     return (
-        <div className={classes.orderCardRoot + ' bg-white my-2 p-2 border_radius_15 '}
+        <div className={classes.orderCardRoot + ' bg-white my-2 pb-2 px-2 pt-3 border_radius_15 '}
              style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
              key={'order_details_' + order.id}
         >
@@ -73,9 +72,11 @@ export default function Order(props) {
 
             <div className={'px-2 d-flex align-items-center justify-content-between ' + flexRowClassName}>
                 <OrderStatus order={order} onClick={() => dispatch(showOrderStatusEditDialog(order))} key={'order_status_' + order.id} inline />
-                <Typography variant="body2" component="span" className="mx-3 font_size_17px">
-                    {formatTimeDate(order.created_at)}
-                </Typography>
+                <Chip color="secondary"
+                      label={<Typography variant="h5" component="h5" className={'my-2'}>
+                          {formatTime(order.created_at)}
+                      </Typography>}
+                />
             </div>
 
             <div className={'px-2 d-flex align-items-center justify-content-between ' + flexRowClassName}>
@@ -132,8 +133,21 @@ export default function Order(props) {
 
             <ProductList products={products} showPromoCode={showPromoCode} showTotal={showTotal} showProductPhotos={showProductPhotos} detailedView />
 
+            <div className={'d-flex' + flexRowClassName}>
+                <Translate value={"order:source"}/>
+                <span className={'mx-2'}>:</span>
+                <Translate value={SOURCES[order.source]}/>
+            </div>
+            <div className={'d-flex' + flexRowClassName}>
+                <Translate value={"order:type"}/>
+                <span className={'mx-2'}>:</span>
+                <Translate value={TYPES[order.type]}/>
+            </div>
             {! order.additional_note ? '' :
-                <AdditionalNote additionalNote={order.additional_note} withMargins={showPromoCode !== false} />
+                <Typography component={'span'} >{order.additional_note}</Typography>
+            }
+            {! order.associated_phone ? '' :
+                <Typography component={'span'} >{order.associated_phone}</Typography>
             }
             {showPromoCode === false ? '' : <PromoCode promoCode={order.promo_code} />}
         </div>
