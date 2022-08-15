@@ -27,7 +27,7 @@ export default function OrderOverview(props) {
                 <div>
                     <Translate value={'order:count'}/>
                     <span className={"mx-2"}>:</span>
-                    <span>{orders.length}</span>
+                    <span>{orders?.length || 0}</span>
                 </div>
             </>}
             <MuiPickersUtilsProvider utils={DateFnsUtils}>

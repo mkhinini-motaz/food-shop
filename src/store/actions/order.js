@@ -19,10 +19,11 @@ export function setOrderStatusUpdateIsLoading(status) {
 }
 
 // TODO: used everywhere without date
-export function getCurrentOrders({ page = 1, perPage = 160, orderBy = 'created_at', orderDirection = 'desc', date = null })  {
+export function getCurrentOrders({ date_time = null })  {
     return function(dispatch) {
         dispatch(setCurrentOrdersAreLoading(true));
-        const params = { page, perPage, orderBy, orderDirection, date };
+        dispatch(setCurrentOrders([]));
+        const params = { date_time: date_time.replaceAll('/', '-') };
 
         axios.get(BASE_SHOP_API_URL + '/order/current', { params })
             .then(response => {
