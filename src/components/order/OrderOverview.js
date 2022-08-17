@@ -12,34 +12,104 @@ import {
 import { BOX_SHADOW_CSS_RULE, SHOP_USER } from "../../constants";
 import Translate from "../common/Translate";
 import { useSelector } from "react-redux";
+import MoneyFormatter from "../common/MoneyFormatter";
+import TranslateField from "../common/TranslateField";
 
 export default function OrderOverview(props) {
     const authShopUser = useSelector(state => state.AuthReducer.authShopUser);
 
-    const { orders, displayDate, onDisplayDateChange } = props;
+    const { orders, report, displayDate, onDisplayDateChange } = props;
 
 // TODO: statistics from server
     return (
-        <div className={"bg-white my-2 p-2 border_radius_15 w-100 "}
-             style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
-        >
-            {! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
-                <div>
-                    <Translate value={'order:count'}/>
-                    <span className={"mx-2"}>:</span>
-                    <span>{orders?.length || 0}</span>
+        <div className={"row"}>
+            <div className={"p-2 col-12 col-sm-4"}>
+                <div className={"bg-white p-2 border_radius_15 "}
+                     style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
+                >
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            margin="normal"
+                            format="dd/MM/yyyy"
+                            label={<Translate value={"common:date"}/>}
+                            value={displayDate}
+                            onChange={onDisplayDateChange}
+                            disableFuture
+                        />
+                    </MuiPickersUtilsProvider>
+                </div>
+            </div>
+
+            {! report.count || ! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
+                <div className={"p-2 col-12 col-sm-4"}>
+                    <div className={"bg-white p-2 border_radius_15 "}
+                         style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
+                    >
+                        <div>
+                            <Translate value={'order:count'}/>
+                            <span className={"mx-2"}>:</span>
+                            <span>{report.count.count}</span>
+                        </div>
+                        <div>
+                            <Translate value={'order:total_price'}/>
+                            <span className={"mx-2"}>:</span>
+                            <span><MoneyFormatter value={report.count.total_price}/></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={"p-2 col-12 col-sm-4"}>
+                    <div className={"bg-white p-2 border_radius_15 "}
+                         style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
+                    >
+                        {report.categories.map(category => <div>
+                            <TranslateField value={category.name}/>
+                            <div className={"px-3"}>
+                                <span className={"mx-2"}>:</span>
+                                <span>{category.count}</span>
+                                <span className={"mx-2"}>=</span>
+                                <span><MoneyFormatter value={category.sum_price}/></span>
+                            </div>
+                        </div>)}
+                    </div>
+                </div>
+
+                <div className={"p-2 col-12 col-sm-4"}>
+                    <div className={"bg-white p-2 border_radius_15 "}
+                         style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
+                    >
+                        {report.products.map(product => <div>
+                            <TranslateField value={product.category.name}/>
+                            <span className={"mx-2"}>-</span>
+                            <TranslateField value={product.name}/>
+                            <span className={"mx-2"}>:</span>
+                            <div className={"px-3"}>
+                                <span>{product.count}</span>
+                                <span className={"mx-2"}>=</span>
+                                <span><MoneyFormatter value={product.sum_price}/></span>
+                            </div>
+                        </div>)}
+                    </div>
+                </div>
+
+                <div className={"p-2 col-12 col-sm-4"}>
+                    <div className={"bg-white p-2 border_radius_15 "}
+                         style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
+                    >
+                        {report.options.map(option => <div>
+                            <TranslateField value={option.name}/>
+                            <span className={"mx-2"}>:</span>
+                            <div className={"px-3"}>
+                                <span>{option.count}</span>
+                                {! option.sum_price ? '' : <>
+                                    <span className={"mx-2"}>=</span>
+                                    <span><MoneyFormatter value={option.sum_price}/></span>
+                                </>}
+                            </div>
+                        </div>)}
+                    </div>
                 </div>
             </>}
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                    margin="normal"
-                    format="dd/MM/yyyy"
-                    label={<Translate value={"common:date"}/>}
-                    value={displayDate}
-                    onChange={onDisplayDateChange}
-                    disableFuture
-                />
-            </MuiPickersUtilsProvider>
         </div>
     );
 };

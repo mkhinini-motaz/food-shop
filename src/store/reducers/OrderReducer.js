@@ -1,13 +1,14 @@
 import { SET_CURRENT_ORDERS, SET_CURRENT_ORDERS_ARE_LOADING, } from '../actions';
 
 export const initialOrderReducerState = {
-    currentOrders: { data: [] },
+    currentOrders: [],
+    currentOrdersReport: {},
     currentOrdersAreLoading: false,
 };
 
 export default (state = initialOrderReducerState, action) => {
     if (action.type === SET_CURRENT_ORDERS) {
-        return { ...state, currentOrders: action.payload};
+        return { ...state, currentOrders: action.payload.orders, currentOrdersReport: action.payload.report };
     }
 
     if (action.type === SET_CURRENT_ORDERS_ARE_LOADING) {

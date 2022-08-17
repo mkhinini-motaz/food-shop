@@ -10,8 +10,8 @@ export function setCurrentOrdersAreLoading(status) {
     return { type: SET_CURRENT_ORDERS_ARE_LOADING, payload: status };
 }
 
-export function setCurrentOrders(orders) {
-    return { type: SET_CURRENT_ORDERS, payload: orders };
+export function setCurrentOrders(ordersAndReport) {
+    return { type: SET_CURRENT_ORDERS, payload: ordersAndReport };
 }
 
 export function setOrderStatusUpdateIsLoading(status) {
@@ -27,7 +27,7 @@ export function getCurrentOrders({ date_time = null })  {
 
         axios.get(BASE_SHOP_API_URL + '/order/current', { params })
             .then(response => {
-                dispatch(setCurrentOrders(response.data));
+                dispatch(setCurrentOrders(response.data.data));
                 dispatch(setCurrentOrdersAreLoading(false));
             })
             .catch(error => {

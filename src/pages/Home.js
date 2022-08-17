@@ -31,7 +31,8 @@ export default function Home(props) {
     setTimeout(() => { setIsShown((previousIsShown) => true); }, COMPONENT_SHOW_DELAY);
 
     React.useEffect(() => dispatch(getCurrentOrders({ date_time: formatDateTime(orderDisplayDate.getTime() / 1000) })), [orderDisplayDate]);
-    const currentOrders = useSelector(state => state.OrderReducer.currentOrders.data);
+    const currentOrders = useSelector(state => state.OrderReducer.currentOrders);
+    const currentOrdersReport = useSelector(state => state.OrderReducer.currentOrdersReport);
     const currentOrdersAreLoading = useSelector(state => state.OrderReducer.currentOrdersAreLoading);
 
     if (currentOrdersAreLoading) {
@@ -46,7 +47,7 @@ export default function Home(props) {
     }
     return (
         <Collapse in={isShown}>
-            <OrderOverview orders={currentOrders} displayDate={orderDisplayDate} onDisplayDateChange={setOrderDisplayDate} />
+            <OrderOverview orders={currentOrders} report={currentOrdersReport} displayDate={orderDisplayDate} onDisplayDateChange={setOrderDisplayDate} />
 
             <div className="row">
                 <div className={"m-2 text-center d-flex justify-content-center flex-wrap " + flexRowClassName} >
