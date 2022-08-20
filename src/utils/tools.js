@@ -191,7 +191,7 @@ export const printableOrder = (order, lang, langWriteFrom) => { // TODO: use lan
 
     let result = '_________ Ghostchef _________\n';
     result += formatTimeDate(order.created_at) + '\n';
-    result += '#Order: ' + String(order.id).slice(-3).padStart(3, '0') + '\n';
+    result += '#Order: ' + String(order.id).slice(-2).padStart(2, '0') + '\n';
     result += '---------------\n\n';
 
     if (order.associated_phone) {
@@ -231,7 +231,7 @@ export const printableOrder = (order, lang, langWriteFrom) => { // TODO: use lan
         }
     }
 
-    result = result.slice(0, -1) + '---------------\n\n';
+    result += '---------------\n\n';
 
     if (order.promo_code) {
         result += '\n' + translate('cart:promo_code:label', lang, true);

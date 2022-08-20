@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Chip, FormControlLabel, makeStyles, Switch, Typography } from "@material-ui/core";
+import { Chip, Divider, FormControlLabel, makeStyles, Switch, Typography } from "@material-ui/core";
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
@@ -68,7 +68,7 @@ export default function Order(props) {
              style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
              key={'order_details_' + order.id}
         >
-            <div className={classes.orderNumber}><span>{String(order.id).slice(-3).padStart(3, '0')}</span></div>
+            <div className={classes.orderNumber}><span>{String(order.id).slice(-2).padStart(2, '0')}</span></div>
 
             <div className={'px-2 d-flex align-items-center justify-content-between ' + flexRowClassName}>
                 <OrderStatus order={order} onClick={() => dispatch(showOrderStatusEditDialog(order))} key={'order_status_' + order.id} inline />
@@ -97,6 +97,30 @@ export default function Order(props) {
                       onClick={copyInviteCodeToClipboard}
                 />
             </div>
+
+            <Divider className={"my-2"} />
+
+            <div className={"px-2"}>
+                <div className={'d-flex' + flexRowClassName}>
+                    <Translate value={"order:source"}/>
+                    <span className={'mx-2'}>:</span>
+                    <Translate value={SOURCES[order.source]}/>
+                </div>
+                <div className={'d-flex' + flexRowClassName}>
+                    <Translate value={"order:type"}/>
+                    <span className={'mx-2'}>:</span>
+                    <Translate value={TYPES[order.type]}/>
+                </div>
+            </div>
+
+            <div className={"px-2"}>
+                {! order.additional_note ? '' : <>
+                    <Divider className={"my-2"} />
+                    <Typography component={'h4'} >{order.additional_note}</Typography>
+                </>}
+            </div>
+
+            <Divider className={"my-2"} />
 
             {! order.associated_phone ? '' :
                 <div className={'px-2 text-' + selectedLangWriteFrom}>
@@ -134,25 +158,6 @@ export default function Order(props) {
                          showProductPhotos={showProductPhotos}
                          orderType={order.type}
                          detailedView />
-
-            <div className={"px-2"}>
-                <div className={'d-flex' + flexRowClassName}>
-                    <Translate value={"order:source"}/>
-                    <span className={'mx-2'}>:</span>
-                    <Translate value={SOURCES[order.source]}/>
-                </div>
-                <div className={'d-flex' + flexRowClassName}>
-                    <Translate value={"order:type"}/>
-                    <span className={'mx-2'}>:</span>
-                    <Translate value={TYPES[order.type]}/>
-                </div>
-            </div>
-
-            <div className={"px-2"}>
-                {! order.additional_note ? '' :
-                    <Typography component={'h4'} >{order.additional_note}</Typography>
-                }
-            </div>
 
             {showPromoCode === false ? '' : <PromoCode promoCode={order.promo_code} />}
         </div>
