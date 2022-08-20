@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
-import { Collapse } from '@material-ui/core';
+import { Collapse } from '@material-ui/core'
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/pickers';
 
 import Order from "../components/order/Order";
 import { getCurrentOrders } from "../store/actions";
-import { BASE_WS_URL, COMPONENT_SHOW_DELAY } from "../constants";
+import { BASE_WS_URL, BOX_SHADOW_CSS_RULE, COMPONENT_SHOW_DELAY } from "../constants";
 import OrderOverview from "../components/order/OrderOverview";
 import Loader from '../components/common/Loader';
 
@@ -47,8 +49,22 @@ export default function Home(props) {
     }
     return (
         <Collapse in={isShown}>
-            <OrderOverview orders={currentOrders} report={currentOrdersReport} displayDate={orderDisplayDate} onDisplayDateChange={setOrderDisplayDate} />
-
+            <div className={"p-2 col-12 col-sm-4"}>
+                <div className={"bg-white p-2 border_radius_15 "}
+                     style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
+                >
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            margin="normal"
+                            format="dd/MM/yyyy"
+                            label={<Translate value={"common:date"}/>}
+                            value={orderDisplayDate}
+                            onChange={setOrderDisplayDate}
+                            disableFuture
+                        />
+                    </MuiPickersUtilsProvider>
+                </div>
+            </div>
             <div className="row">
                 <div className={"m-2 text-center d-flex justify-content-center flex-wrap " + flexRowClassName} >
                     {ordersOutput}

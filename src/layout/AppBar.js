@@ -5,8 +5,7 @@ import { IconButton, MenuItem, Tooltip, } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MenuIcon from '@material-ui/icons/Menu';
-import MapIcon from '@material-ui/icons/Map';
-import DescriptionIcon from '@material-ui/icons/Description';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import { Home } from "@material-ui/icons";
 
@@ -72,6 +71,17 @@ export default function AppBar(props) {
 						component={Link}
 					>
 						<ShoppingCart />
+					</IconButton>
+				</Tooltip>
+			</MenuItem>
+
+            <MenuItem className="menu-item">
+				<Tooltip title={<Translate value={shopUserIsAuthenticated ? "order:overview" : "common:login"} />} >
+					<IconButton
+						to={shopUserIsAuthenticated ? "/order/overview" : "/login"}
+						component={Link}
+					>
+						<AccountBalanceWalletIcon />
 					</IconButton>
 				</Tooltip>
 			</MenuItem>

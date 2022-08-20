@@ -1,13 +1,7 @@
 import React from 'react';
-import { DatePicker } from "@material-ui/pickers";
 import 'date-fns';
-import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/pickers';
 
 import { BOX_SHADOW_CSS_RULE, SHOP_USER } from "../../constants";
 import Translate from "../common/Translate";
@@ -18,7 +12,7 @@ import TranslateField from "../common/TranslateField";
 export default function OrderOverview(props) {
     const authShopUser = useSelector(state => state.AuthReducer.authShopUser);
 
-    const { orders, report, displayDate, onDisplayDateChange } = props;
+    const { report, displayDate, onDisplayDateChange } = props;
 
 // TODO: statistics from server
     return (
@@ -40,7 +34,7 @@ export default function OrderOverview(props) {
                 </div>
             </div>
 
-            {! report.count || ! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
+            {! report.count ? '' :
                 <div className={"p-2 col-12 col-sm-4"}>
                     <div className={"bg-white p-2 border_radius_15 "}
                          style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
@@ -57,7 +51,9 @@ export default function OrderOverview(props) {
                         </div>
                     </div>
                 </div>
+            }
 
+            {! report.count || ! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
                 <div className={"p-2 col-12 col-sm-4"}>
                     <div className={"bg-white p-2 border_radius_15 "}
                          style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
