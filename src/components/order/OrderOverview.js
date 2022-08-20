@@ -62,7 +62,7 @@ export default function OrderOverview(props) {
                     <div className={"bg-white p-2 border_radius_15 "}
                          style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
                     >
-                        {report.categories.map(category => <div>
+                        {report.categories.map(category => <div key={"report_category_" + category.id}>
                             <TranslateField value={category.name}/>
                             <div className={"px-3"}>
                                 <span className={"mx-2"}>:</span>
@@ -78,7 +78,7 @@ export default function OrderOverview(props) {
                     <div className={"bg-white p-2 border_radius_15 "}
                          style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
                     >
-                        {report.products.map(product => <div>
+                        {report.products.map(product => <div key={"report_product_" + product.id}>
                             <TranslateField value={product.category.name}/>
                             <span className={"mx-2"}>-</span>
                             <TranslateField value={product.name}/>
@@ -96,7 +96,7 @@ export default function OrderOverview(props) {
                     <div className={"bg-white p-2 border_radius_15 "}
                          style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
                     >
-                        {report.options.map(option => <div>
+                        {report.options.map(option => <div key={"report_option_" + option.id}>
                             <TranslateField value={option.name}/>
                             <span className={"mx-2"}>:</span>
                             <div className={"px-3"}>
