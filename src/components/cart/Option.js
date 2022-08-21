@@ -16,7 +16,7 @@ export default function Option(props) {
     const classes = makeStyles({
         root: {
             position: 'relative',
-            height: 130,
+            height: 60,
         },
         checkbox: {
             '&:hover': { backgroundColor: 'transparent', },
