@@ -49,6 +49,18 @@ export default function OrderOverview(props) {
                             <span className={"mx-2"}>:</span>
                             <span><MoneyFormatter value={report.count.total_price}/></span>
                         </div>
+                        {0 === report.countStatus.length ? '' : <div>
+                            <Translate value={'order:status'}/>
+                            {report.countStatus.map(status =>
+                                <div key={'order_status_' + status.status}>
+                                    <span>{status.count}</span>
+                                    <span className={"mx-2"}>-</span>
+                                    <Translate value={'order:status:' + status.status}/>
+                                    <span className={"mx-2"}>:</span>
+                                    <span><MoneyFormatter value={status.total_price}/></span>
+                                </div>
+                            )}
+                        </div>}
                     </div>
                 </div>
             }
