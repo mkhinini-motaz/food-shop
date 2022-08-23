@@ -36,7 +36,7 @@ export default function Option(props) {
         },
         sliderFormContainer: {
             position: 'absolute',
-            width: '90%',
+            width: '78%',
             textAlign: 'center',
             bottom: '5%',
             left: '5%',
