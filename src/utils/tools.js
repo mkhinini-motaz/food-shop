@@ -208,11 +208,22 @@ export const printableOrder = (order, lang, langWriteFrom) => { // TODO: use lan
     result += 'type : ' + translate(TYPES[order.type], lang, true) + '\n';
     result += '---------------\n\n';
 
+    let choicesOutput = '';
+    let choicesSummary = {};
     for (let choice of order.choices) {
         const product = choice.product;
-        result += choice.product_count + ' X ';
-        result += product.category.name[lang] + ' - ' + product.name[lang];
-        result += ' " ' +
+        const categoryId = product.category_id;
+        if (! choicesSummary[categoryId]) {
+            choicesSummary[categoryId] = {
+                name: product.category.name[lang],
+                count: choice.product_count,
+            };
+        } else {
+            choicesSummary[categoryId].count += choice.product_count;
+        }
+        choicesOutput += '- ' + choice.product_count + ' X ';
+        choicesOutput += product.category.name[lang] + ' - ' + product.name[lang];
+        choicesOutput += ' " ' +
             formatter.format(product.price / 1000)
                 .replace(LOCAL_CURRENCY, '')
                 .trim() +
@@ -223,15 +234,18 @@ export const printableOrder = (order, lang, langWriteFrom) => { // TODO: use lan
         }
 
         for (let option of choice.options) {
-            result += '*'.repeat(2) + ' ' + option.name[lang] + ' ' + '+'.repeat(option.quantity || 0);
+            choicesOutput += '  ' + '*'.repeat(2) + ' ' + option.name[lang] + ' ' + '+'.repeat(option.quantity || 0);
             if (option.price) {
-                result += ' " ' + formatter.format(option.price / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
+                choicesOutput += ' " ' + formatter.format(option.price / 1000).replace(LOCAL_CURRENCY, '').trim() + ' "\n';
             }
-            result += '\n';
+            choicesOutput += '\n';
         }
     }
 
-    result += '---------------\n\n';
+    for (let category of Object.values(choicesSummary)) {
+        result += category.count + ' ' + category.name + '\n';
+    }
+    result += '---------------\n\n' + choicesOutput + '---------------\n\n';
 
     if (order.promo_code) {
         result += '\n' + translate('cart:promo_code:label', lang, true);

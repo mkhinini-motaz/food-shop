@@ -11,7 +11,7 @@ export default function ShopTransporter(props) {
     return (
         <div className={flexRowClassName + ' d-flex row my-2 py-2'} style={{ backgroundColor: '#999', borderRadius: '15px', }}>
             <div className="col-6">
-                {shopTransporter.first_name + ' ' + shopTransporter.last_name}
+                {shopTransporter.first_name}
             </div>
             <div className="col-6">
                 <div>

@@ -146,7 +146,7 @@ export default function Order(props) {
                     style={{ backgroundColor: '#fcbf49', cursor: 'pointer' }}
                     label={! order.shop_transporter ? '' :
                         <Typography variant="h6" color="primary" component="span" className="m-1 font-weight-bold white_space_pre_wrap" >
-                            {order.shop_transporter.first_name + ' ' + order.shop_transporter.last_name}
+                            {order.shop_transporter.first_name}
                         </Typography>
                     }
                 />
