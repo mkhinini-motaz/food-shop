@@ -11,7 +11,7 @@ export function setShopUsers(shopUsers) {
     return { type: SET_SHOP_USERS, payload: shopUsers };
 }
 
-export function getShopTransporters({ page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc' })  {
+export function getShopTransporters({ page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'asc' })  {
     return function(dispatch) {
         dispatch(setShopUsersAreLoading(true));
         const params = { page, perPage, orderBy, orderDirection };

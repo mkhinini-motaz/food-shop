@@ -52,7 +52,7 @@ export default function Order(props) {
     })();
 
     const transporterIconOnClick = () => {
-        dispatch(getShopTransporters({ page: 1, perPage: 20, orderBy: 'created_at', orderDirection: 'desc' }));
+        dispatch(getShopTransporters({ page: 1, perPage: 20, orderBy: 'created_at', orderDirection: 'asc' }));
         dispatch(showTransporterDialog(order));
     };
 

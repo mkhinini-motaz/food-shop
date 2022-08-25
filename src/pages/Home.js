@@ -45,8 +45,11 @@ export default function Home(props) {
     if (! currentOrdersAreLoading && (! currentOrders || 0 === currentOrders.length)) {
         ordersOutput = <Translate value={"order:no_orders"}/>;
     } else {
-        ordersOutput = currentOrders.map((order, index) => <Order key={'order_card_' + order.id} order={order} index={index} showTotal />);
+        ordersOutput = currentOrders.map((order, index) =>
+            <Order key={'order_card_' + order.id} order={order} index={index} showTotal />
+        );
     }
+
     return (
         <Collapse in={isShown}>
             <div className={"p-2 col-12 col-sm-4"}>

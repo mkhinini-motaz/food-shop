@@ -19,6 +19,8 @@ export default function TransporterDialog(props) {
 
     return (
         <Dialog
+            fullWidth
+            maxWidth={"xs"}
             open={isVisible}
             onClose={() => dispatch(hideTransporterDialog())}
         >

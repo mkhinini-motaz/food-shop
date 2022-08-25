@@ -10,10 +10,10 @@ export default function ShopTransporter(props) {
 
     return (
         <div className={flexRowClassName + ' d-flex row my-2 py-2'} style={{ backgroundColor: '#999', borderRadius: '15px', }}>
-            <div className="col-6">
+            <div className="col-5">
                 {shopTransporter.first_name}
             </div>
-            <div className="col-6">
+            <div className="col-7 px-0">
                 <div>
                     <Translate value="shop_user:active_orders" params={{ count: shopTransporter.active_orders_count }} />
                 </div>
