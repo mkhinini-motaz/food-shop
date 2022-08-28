@@ -7,7 +7,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/picke
 
 import Order from "../components/order/Order";
 import { getCurrentOrders } from "../store/actions";
-import { BASE_WS_URL, BOX_SHADOW_CSS_RULE, COMPONENT_SHOW_DELAY } from "../constants";
+import { BASE_WS_URL, BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, COMPONENT_SHOW_DELAY } from "../constants";
 import OrderOverview from "../components/order/OrderOverview";
 import Loader from '../components/common/Loader';
 
@@ -36,9 +36,20 @@ export default function Home(props) {
     const currentOrders = useSelector(state => state.OrderReducer.currentOrders);
     const currentOrdersReport = useSelector(state => state.OrderReducer.currentOrdersReport);
     const currentOrdersAreLoading = useSelector(state => state.OrderReducer.currentOrdersAreLoading);
+    let loaderComponent = '';
 
     if (currentOrdersAreLoading) {
-         return <div className={"text-center"}><Loader size={200} /></div>;
+        loaderComponent = <div className={"text-center position-absolute"}
+                               style={{
+                                   backgroundColor: COLOR_PRIMARY + '66',
+                                   top: 0,
+                                   left: '-15px',
+                                   width: '100vw',
+                                   height: '100vh',
+                                   zIndex: 5,
+                               }} >
+            <Loader size={200} />
+        </div>;
     }
 
     let ordersOutput;
@@ -52,25 +63,28 @@ export default function Home(props) {
 
     return (
         <Collapse in={isShown}>
-            <div className={"p-2 col-12 col-sm-4"}>
-                <div className={"bg-white p-2 border_radius_15 "}
-                     style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
-                >
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                            margin="normal"
-                            format="dd/MM/yyyy"
-                            label={<Translate value={"common:date"}/>}
-                            value={orderDisplayDate}
-                            onChange={setOrderDisplayDate}
-                            disableFuture
-                        />
-                    </MuiPickersUtilsProvider>
+            <div className={"position-relative"}>
+                <div className={"p-2 col-12 col-sm-4"}>
+                    {loaderComponent}
+                    <div className={"bg-white p-2 border_radius_15 "}
+                         style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
+                    >
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <KeyboardDatePicker
+                                margin="normal"
+                                format="dd/MM/yyyy"
+                                label={<Translate value={"common:date"}/>}
+                                value={orderDisplayDate}
+                                onChange={setOrderDisplayDate}
+                                disableFuture
+                            />
+                        </MuiPickersUtilsProvider>
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className={"m-2 text-center d-flex justify-content-center flex-wrap " + flexRowClassName} >
-                    {ordersOutput}
+                <div className="row">
+                    <div className={"m-2 text-center d-flex justify-content-center flex-wrap " + flexRowClassName} >
+                        {ordersOutput}
+                    </div>
                 </div>
             </div>
         </Collapse>

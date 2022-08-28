@@ -22,7 +22,6 @@ export function setOrderStatusUpdateIsLoading(status) {
 export function getCurrentOrders({ date_time = null })  {
     return function(dispatch) {
         dispatch(setCurrentOrdersAreLoading(true));
-        dispatch(setCurrentOrders([]));
         const params = { date_time: ! date_time ? date_time : date_time.replaceAll('/', '-') };
 
         axios.get(BASE_SHOP_API_URL + '/order/current', { params })
