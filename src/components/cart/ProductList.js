@@ -57,7 +57,7 @@ function productInfoForOrderDisplay(product) {
         type: product.type,
         product_count: product.product_count,
         options: product.options || [],
-        options_str: product.options_str.replace(/XX (.*?), /g, '<span class="crossed">$1</span>, '),
+        options_str: product.options_str.replace(/XX (.*?)(, |\n)/g, '<span class="crossed">$1</span>$2'),
         photo: BASE_BACKEND_URL + product.photo,
         price: <MoneyFormatter value={product.price} />,
         total: <MoneyFormatter value={productPriceForDialog(product)} />,
