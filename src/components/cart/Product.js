@@ -34,12 +34,12 @@ export default function Product(props) {
     const secondaryOutput = (
         <span>
             <Typography
-                variant="body2"
+                variant="body1"
                 color="textPrimary"
                 component="span"
                 className={'d-flex ' + flexRowClassName}
             >
-                {optionsOutput(product.options, product.product_count, selectedLang)}
+                <span dangerouslySetInnerHTML={{ __html: product.options_str }} />
             </Typography>
             {! props.minifiedDisplay ? '' :
                 <Typography

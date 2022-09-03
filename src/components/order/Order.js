@@ -25,7 +25,7 @@ export default function Order(props) {
     const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
-    const products = order?.choices.map(choice => ({ ...choice.product, options: choice.options, product_count: choice.product_count }));
+    const products = order?.choices.map(choice => ({ ...choice.product, options: choice.options, options_str: choice.options_str, product_count: choice.product_count }));
 
     const classes = makeStyles({
         orderCardRoot: {
@@ -57,7 +57,7 @@ export default function Order(props) {
     };
 
     const copyInviteCodeToClipboard = () => {
-        navigator.clipboard.writeText(printableOrder(order, selectedLang, selectedLangWriteFrom));
+        navigator.clipboard.writeText(order.printable_form);
         dispatch(showSnackbar({ message: 'common:copied' }))
     };
 

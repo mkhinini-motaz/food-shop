@@ -239,6 +239,11 @@
     white-space: nowrap;
 }
 
+.crossed {
+    text-decoration: line-through;
+    text-decoration-thickness: 1.2px;
+}
+
 @media (max-width: 767.98px) {
     .MuiAppBar-root .MuiListItem-gutters {
         padding-left: 0;
