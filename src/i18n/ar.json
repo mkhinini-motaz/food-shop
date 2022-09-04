@@ -12,6 +12,7 @@
     "common:language": "لغة",
     "common:created_at": "صنع في",
     "common:copy": "نسخ",
+    "common:edit": "تبديل",
 
     "common:categories": "الفئات",
     "category:edit:title": "تعديل الفئة",
@@ -45,6 +46,8 @@
     "order:affect": "تعيين",
     "order:is_payed": "خالص",
     "order:is_not_payed": "غير خالص",
+    "order:source": "نوع",
+    "order:type": "غير خالص",
     "order:transporter:attach:success": "تم تعيين الطلب إلى الناقل بنجاح",
     "order:transporter:attach:error": "خطأ عند إسناد الطلب إلى الناقل",
     "order:status:update:success": "تم تغيير حالة الطلب بنجاح",

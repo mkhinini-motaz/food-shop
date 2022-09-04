@@ -2,7 +2,6 @@ import React from 'react';
 import FormField from './FormField';
 
 export default function Form(props) {
-
     const initialValue = props.initialValue || {};
     let [value, setValue] = React.useState(initialValue)
     let fieldComponents = [];

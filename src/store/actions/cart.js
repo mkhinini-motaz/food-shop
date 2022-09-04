@@ -25,6 +25,7 @@ export function setCartProductTypeFixed({ product_id, product_count }) {
 }
 
 export function setCartProductTypeWithOptions({ product_id, product_count, options }) {
+console.log({ product_id, product_count, options })
     return { type: CREATE_CART_PRODUCT_WITH_OPTIONS, payload: { product_id, product_count, options } };
 }
 
@@ -113,7 +114,8 @@ export function submitOrder(cartReducerData) {
     return function(dispatch) {
         dispatch(setOrderSubmitIsLoading(true));
         const history = cartReducerData.history;
-        const url = BASE_SHOP_API_URL + '/order';
+        const url = BASE_SHOP_API_URL + '/order' +
+            (cartReducerData.orderId ? '/' + cartReducerData.orderId : '');
         const data = cartReducerDataToOrderSubmitData(cartReducerData);
 
         axios.post(url, data)
@@ -122,6 +124,7 @@ export function submitOrder(cartReducerData) {
                 dispatch(emptyCart());
                 dispatch(setOrderSubmitIsLoading(false));
                 dispatch(showSnackbar({ message: 'cart:order:submit:success' }));
+                history.push('/');
             })
             .catch(error => {
                 dispatch(setOrderSubmitIsLoading(false));

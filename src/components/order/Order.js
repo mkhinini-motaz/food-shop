@@ -1,26 +1,23 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Chip, Divider, FormControlLabel, makeStyles, Switch, Typography } from "@material-ui/core";
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
+import EditIcon from '@material-ui/icons/Edit';
 
-import AdditionalNote from "../cart/AdditionalNote";
 import OrderStatus from "./OrderStatus";
 import ProductList from "../cart/ProductList";
 import PromoCode from "../cart/PromoCode";
-import {
-    getShopTransporters, setIsPayed,
-    showOrderStatusEditDialog,
-    showSnackbar,
-    showTransporterDialog, updateOrderIsPayed,
-} from "../../store/actions";
+import { getShopTransporters, showOrderStatusEditDialog, showSnackbar, showTransporterDialog, updateOrderIsPayed, } from "../../store/actions";
 import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, SOURCES, TYPES, } from "../../constants";
-import { formatTime, formatPhoneNumber, printableOrder } from "../../utils";
+import { formatTime, formatPhoneNumber } from "../../utils";
 import Translate from "../common/Translate";
 
 export default function Order(props) {
     const dispatch = useDispatch();
+    const history  = useHistory();
     const { order, index, showTotal = false, showPromoCode = false, showProductPhotos = false } = props;
     const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
@@ -29,7 +26,7 @@ export default function Order(props) {
 
     const classes = makeStyles({
         orderCardRoot: {
-            maxWidth: '300px',
+            maxWidth: '350px',
             margin: 10,
             display: 'inline-block',
             position: 'relative',
@@ -85,32 +82,39 @@ export default function Order(props) {
                         <Switch
                             onChange={(event) => dispatch(updateOrderIsPayed(order.id, event.target.checked))}
                             color="primary"
-                            checked={order.is_payed}
+                            checked={!! order.is_payed}
                         />
                     }
                     label={<Translate value={order.is_payed ? "order:is_payed" : "order:is_not_payed"}/>}
                 />
-                <Chip icon={<FileCopyIcon />}
-                      label={<Translate value="common:copy" />}
+                <Chip icon={<FileCopyIcon style={{ color: 'white' }} />}
+                      label={<span style={{ color: 'white', fontWeight: 'bold' }}><Translate value="common:copy" /></span>}
                       clickable
                       color="primary"
                       onClick={copyInviteCodeToClipboard}
                 />
             </div>
-
             <Divider className={"my-2"} />
 
-            <div className={"px-2"}>
-                <div className={'d-flex' + flexRowClassName}>
-                    <Translate value={"order:source"}/>
-                    <span className={'mx-2'}>:</span>
-                    <Translate value={SOURCES[order.source]}/>
+            <div className={'px-2 d-flex align-items-center justify-content-between ' + flexRowClassName}>
+                <div>
+                    <div className={'d-flex' + flexRowClassName}>
+                        <Translate value={"order:source"}/>
+                        <span className={'mx-2'}>:</span>
+                        <Translate value={SOURCES[order.source]}/>
+                    </div>
+                    <div className={'d-flex' + flexRowClassName}>
+                        <Translate value={"order:type"}/>
+                        <span className={'mx-2'}>:</span>
+                        <Translate value={TYPES[order.type]}/>
+                    </div>
                 </div>
-                <div className={'d-flex' + flexRowClassName}>
-                    <Translate value={"order:type"}/>
-                    <span className={'mx-2'}>:</span>
-                    <Translate value={TYPES[order.type]}/>
-                </div>
+                <Chip icon={<EditIcon style={{ color: 'white' }} />}
+                      label={<span style={{ color: 'white', fontWeight: 'bold' }}><Translate value="common:edit" /></span>}
+                      clickable
+                      color="secondary"
+                      onClick={() => history.push('/order/' + order.id)}
+                />
             </div>
 
             <div className={"px-2"}>

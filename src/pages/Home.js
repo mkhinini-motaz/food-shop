@@ -8,7 +8,6 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker, } from '@material-ui/picke
 import Order from "../components/order/Order";
 import { getCurrentOrders } from "../store/actions";
 import { BASE_WS_URL, BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, COMPONENT_SHOW_DELAY } from "../constants";
-import OrderOverview from "../components/order/OrderOverview";
 import Loader from '../components/common/Loader';
 
 import { formatDateTime } from "../utils";
@@ -81,8 +80,8 @@ export default function Home(props) {
                         </MuiPickersUtilsProvider>
                     </div>
                 </div>
-                <div className="row">
-                    <div className={"m-2 text-center d-flex justify-content-center flex-wrap " + flexRowClassName} >
+                <div className="row justify-content-center">
+                    <div className={"m-2 text-center d-flex flex-wrap " + flexRowClassName} >
                         {ordersOutput}
                     </div>
                 </div>

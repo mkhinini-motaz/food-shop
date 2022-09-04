@@ -6,6 +6,7 @@ import Translate from "../common/Translate";
 import Form from "../common/form/Form";
 import { BOX_SHADOW_CSS_RULE, CART_ADDITIONAL_NOTE_CHANGE_TIMEOUT_DELAY, } from "../../constants";
 import { setAdditionalNote } from "../../store/actions";
+import TextField from "../common/form/TextField";
 
 export default function AdditionalNote(props) {
     const dispatch = useDispatch();
@@ -25,27 +26,16 @@ export default function AdditionalNote(props) {
         setTimeout(() => { setIsShown(() => true); }, 500 + props.showDelay);
     }, []);
 
-    const onChange = (newValue) => {
-        setTimeoutId(previousTimeoutId => {
-            clearTimeout(previousTimeoutId);
-            return setTimeout(
-                () => dispatch(setAdditionalNote(newValue.additional_note)),
-                CART_ADDITIONAL_NOTE_CHANGE_TIMEOUT_DELAY
-            );
-        });
-    };
-
     return (
         <Collapse in={isShown}>
             <div className={props.className + ' ' + flexRowClassName + ' row mx-0 bg-white my-2 py-2 px-3 text-left border_radius_15'}
                  style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
             >
-                <Form
-                    initialValue={{ additional_note: additionalNote }}
-                    fieldDescriptions={formDescription}
-                    onChange={onChange}
-                />
-
+                <TextField value={additionalNote}
+                           label={<Translate value="cart:additional_note:label" />}
+                           onChange={(event) => dispatch(setAdditionalNote(event.target.value))}
+                           multiline
+                           required={false}/>
             </div>
         </Collapse>
     );

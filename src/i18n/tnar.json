@@ -12,6 +12,7 @@
     "common:language": "لغة",
     "common:created_at": "تصنع في",
     "common:copy": "نسخ",
+    "common:edit": "تبديل",
 
     "common:categories": "الفئات",
     "category:edit:title": "تبديل الفئة",
@@ -45,6 +46,8 @@
     "order:affect": "تعيين",
     "order:is_payed": "خالص",
     "order:is_not_payed": "موش خالص",
+    "order:source": "نوع",
+    "order:type": "غير خالص",
     "order:transporter:attach:success": "تم تعيين الكماندا إلى الليفرور بنجاح",
     "order:transporter:attach:error": "صارت مشكلة في تعيين الكماندا إلى الليفرور",
     "order:status:update:success": "تم تغيير حالة الكماندا بنجاح",

@@ -17,7 +17,6 @@ export default function CartContents(props) {
             <ProductListForCart products={props.products} productsInfo={props.productsInfo} />
             <PromoCode showDelay={showDelay + COMPONENT_SHOW_DELAY * showDelayMultiplier++} />
             <Total products={props.products} productsInfo={props.productsInfo} showDelay={showDelay + COMPONENT_SHOW_DELAY * showDelayMultiplier++} />
-            <SubmitOrder showDelay={showDelay + COMPONENT_SHOW_DELAY * showDelayMultiplier++} />
         </div>
     );
 }

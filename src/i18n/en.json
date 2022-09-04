@@ -12,6 +12,7 @@
     "common:language": "Language",
     "common:created_at": "Created at",
     "common:copy": "Copy",
+    "common:edit": "Edit",
 
     "common:categories": "Categories",
     "category:edit:title": "Category edit",
@@ -45,6 +46,8 @@
     "order:affect": "Affect",
     "order:is_payed": "Payed",
     "order:is_not_payed": "Not payed",
+    "order:source": "Source",
+    "order:type": "Type",
     "order:transporter:attach:success": "Order assigned successfully to transporter",
     "order:transporter:attach:error": "Error while attributing order to transporter",
     "order:status:update:success": "Order status modified successfully",

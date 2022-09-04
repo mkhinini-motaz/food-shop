@@ -41,7 +41,7 @@ export default function SubmitOrder(props) {
             title: <Translate value="cart:order:submit"/>,
             content: <Translate value="cart:order:submit:content"/>,
             onConfirm: () => {
-                dispatch(submitOrder({ ...cartReducerData, history }));
+                dispatch(submitOrder({ ...cartReducerData, history, orderId: props.orderId }));
             },
         }));
     };

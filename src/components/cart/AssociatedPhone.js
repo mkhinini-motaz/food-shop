@@ -15,6 +15,7 @@ import { setAssociatedPhone } from "../../store/actions";
 import { Collapse } from "@material-ui/core";
 import PhoneField from "../common/form/PhoneField";
 import Form from "../common/form/Form";
+import TextField from "../common/form/TextField";
 
 export default function AssociatedPhone(props) {
     const dispatch = useDispatch();
@@ -43,10 +44,9 @@ export default function AssociatedPhone(props) {
             <div className={props.className + ' ' + flexRowClassName + ' row mx-0 bg-white my-2 py-2 px-3 text-left border_radius_15'}
                  style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
             >
-                <Form fieldDescriptions={formDescriptions}
-                      value={{ phone: associatedPhone }}
-                      onChange={(formData) => dispatch(setAssociatedPhone(formData.phone))}
-                />
+                <PhoneField value={associatedPhone}
+                            label={<Translate value="form:phone:label" />}
+                            onChange={(event) => dispatch(setAssociatedPhone(event.target.value))}/>
             </div>
         </Collapse>
     );
