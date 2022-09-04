@@ -5,6 +5,7 @@ import { SET_CURRENT_ORDERS, SET_CURRENT_ORDERS_ARE_LOADING, SET_ORDER_STATUS_UP
 import { showSnackbar } from "./snackbar";
 import { hideOrderStatusEditDialog } from "./orderStatusEditDialog";
 import { hideTransporterDialog } from "./transporterDialog";
+import { setIsLoading } from "./loader";
 
 export function setCurrentOrdersAreLoading(status) {
     return { type: SET_CURRENT_ORDERS_ARE_LOADING, payload: status };
@@ -21,16 +22,16 @@ export function setOrderStatusUpdateIsLoading(status) {
 // TODO: used everywhere without date
 export function getCurrentOrders({ date_time = null })  {
     return function(dispatch) {
-        dispatch(setCurrentOrdersAreLoading(true));
+        dispatch(setIsLoading(true));
         const params = { date_time: ! date_time ? date_time : date_time.replaceAll('/', '-') };
 
         axios.get(BASE_SHOP_API_URL + '/order/current', { params })
             .then(response => {
                 dispatch(setCurrentOrders(response.data.data));
-                dispatch(setCurrentOrdersAreLoading(false));
+                dispatch(setIsLoading(false));
             })
             .catch(error => {
-                dispatch(setCurrentOrdersAreLoading(false));
+                dispatch(setIsLoading(false));
             });
     }
 }
@@ -53,7 +54,7 @@ export function attachTransporterToOrder(orderId, transporterId)  {
 
 export function updateOrderStatus(orderId, status)  {
     return function(dispatch) {
-        dispatch(setOrderStatusUpdateIsLoading(true));
+        dispatch(setIsLoading(true));
 
         const data = { status };
         axios.post(BASE_SHOP_API_URL + '/order/' + orderId + '/status', data)
@@ -61,11 +62,11 @@ export function updateOrderStatus(orderId, status)  {
                 dispatch(showSnackbar({ message: 'order:status:update:success' }));
                 dispatch(getCurrentOrders({}));
                 dispatch(hideOrderStatusEditDialog());
-                dispatch(setOrderStatusUpdateIsLoading(false));
+                dispatch(setIsLoading(false));
             })
             .catch(error => {
                 dispatch(showSnackbar({ message: 'order:status:update:error', severity: 'error' }));
-                dispatch(setOrderStatusUpdateIsLoading(false));
+                dispatch(setIsLoading(false));
             });
     }
 }

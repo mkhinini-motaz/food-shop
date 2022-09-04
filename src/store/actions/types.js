@@ -1,5 +1,6 @@
 export const PERSIST_REHYDRATE = 'persist/REHYDRATE'; // for redux-persist package
 export const SET_LANG= 'SET_LANG';
+export const SET_IS_LOADING= 'SET_IS_LOADING';
 
 export const SHOP_USER_LOGIN_SUCCESS= 'SHOP_USER_LOGIN_SUCCESS';
 export const SHOP_USER_LOGOUT_SUCCESS= 'SHOP_USER_LOGOUT_SUCCESS';

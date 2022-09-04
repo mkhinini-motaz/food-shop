@@ -14,6 +14,7 @@ import SnackbarReducer from './SnackbarReducer';
 import SideDrawerReducer from './SideDrawerReducer';
 import CartReducer from './CartReducer';
 import ProductDialogReducer from './ProductDialogReducer';
+import LoaderReducer from './LoaderReducer';
 
 export default combineReducers({
     CategoryReducer,
@@ -30,4 +31,5 @@ export default combineReducers({
     SideDrawerReducer,
     CartReducer,
     ProductDialogReducer,
+    LoaderReducer,
 })

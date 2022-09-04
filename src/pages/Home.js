@@ -33,23 +33,7 @@ export default function Home(props) {
 
     React.useEffect(() => dispatch(getCurrentOrders({ date_time: formatDateTime(orderDisplayDate.getTime() / 1000) })), [orderDisplayDate]);
     const currentOrders = useSelector(state => state.OrderReducer.currentOrders);
-    const currentOrdersReport = useSelector(state => state.OrderReducer.currentOrdersReport);
     const currentOrdersAreLoading = useSelector(state => state.OrderReducer.currentOrdersAreLoading);
-    let loaderComponent = '';
-
-    if (currentOrdersAreLoading) {
-        loaderComponent = <div className={"text-center position-absolute"}
-                               style={{
-                                   backgroundColor: COLOR_PRIMARY + '66',
-                                   top: 0,
-                                   left: '-15px',
-                                   width: '100vw',
-                                   height: '100vh',
-                                   zIndex: 5,
-                               }} >
-            <Loader size={200} />
-        </div>;
-    }
 
     let ordersOutput;
     if (! currentOrdersAreLoading && (! currentOrders || 0 === currentOrders.length)) {
@@ -64,7 +48,6 @@ export default function Home(props) {
         <Collapse in={isShown}>
             <div className={"position-relative"}>
                 <div className={"p-2 col-12 col-sm-4"}>
-                    {loaderComponent}
                     <div className={"bg-white p-2 border_radius_15 "}
                          style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
                     >

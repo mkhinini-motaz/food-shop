@@ -9,6 +9,7 @@ import {
 } from './types';
 import { BASE_SHOP_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
 import {showSnackbar} from "./snackbar";
+import { setIsLoading } from "./loader";
 
 export function appendCategories(categories) {
     return { type: APPEND_CATEGORIES, payload: categories };
@@ -42,7 +43,7 @@ function fetchCategoriesAction(payload, fetchType) {
 
 export function fetchCategories({ page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc', fetchType = FETCH_TYPE_OVERRIDE })  {
     return function(dispatch) {
-        dispatch(setCategoriesAreLoading(true));
+        dispatch(setIsLoading(true));
         if (fetchType === FETCH_TYPE_OVERRIDE) {
             dispatch(setCategories(initialCategoryReducerState.categories));
         }
@@ -52,10 +53,10 @@ export function fetchCategories({ page = 1, perPage = 20, orderBy = 'created_at'
         axios.get(BASE_SHOP_API_URL + '/category', { params })
             .then(response => {
                 dispatch(fetchCategoriesAction(response.data, fetchType));
-                dispatch(setCategoriesAreLoading(false));
+                dispatch(setIsLoading(false));
             })
             .catch(error => {
-                dispatch(setCategoriesAreLoading(false));
+                dispatch(setIsLoading(false));
             })
     }
 }

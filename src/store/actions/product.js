@@ -4,6 +4,7 @@ import { initialProductReducerState } from '../reducers/ProductReducer';
 import { APPEND_PRODUCTS, SET_PRODUCT_IS_VISIBLE_IS_LOADING, SET_PRODUCTS, SET_PRODUCTS_ARE_LOADING, UPDATE_PRODUCT_IN_LIST } from './types';
 import { BASE_SHOP_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
 import { showSnackbar } from "./snackbar";
+import { setIsLoading } from "./loader";
 
 export function appendProducts(products) {
     return { type: APPEND_PRODUCTS, payload: products };
@@ -41,7 +42,7 @@ export function fetchProducts({ categoryId = null, productIds = null, page = 1, 
     }
 
     return function(dispatch) {
-        dispatch(setProductsAreLoading(true));
+        dispatch(setIsLoading(true));
         if (fetchType === FETCH_TYPE_OVERRIDE) {
             dispatch(setProducts(initialProductReducerState.products));
         }
@@ -52,10 +53,10 @@ export function fetchProducts({ categoryId = null, productIds = null, page = 1, 
         axios.get(url, { params })
             .then(response => {
                 dispatch(fetchProductsAction(response.data, fetchType));
-                dispatch(setProductsAreLoading(false));
+                dispatch(setIsLoading(false));
             })
             .catch(error => {
-                dispatch(setProductsAreLoading(false));
+                dispatch(setIsLoading(false));
             })
     }
 }

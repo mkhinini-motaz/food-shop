@@ -13,3 +13,4 @@ export * from './snackbar';
 export * from './sideDrawer';
 export * from './cart';
 export * from './productDialog';
+export * from './loader';

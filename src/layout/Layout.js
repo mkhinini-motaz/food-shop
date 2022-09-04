@@ -10,11 +10,12 @@ import OrderDialog from "../components/order/OrderDialog";
 import SideDrawer from "./SideDrawer";
 import TransporterDialog from "../components/transporter/TransporterDialog";
 import OrderStatusUpdateDialog from "../components/order/OrderStatusUpdateDialog";
-import OrderStatusEditDialogReducer from "../store/reducers/OrderStatusEditDialogReducer";
 import ProductCreateDialog from "../components/product/ProductCreateDialog";
 import ProductDeleteDialog from "../components/product/ProductDeleteDialog";
+import Loader from "../components/common/Loader";
 
 export default function Layout(props) {
+    const isLoading                  = useSelector(state => state.LoaderReducer.isLoading);
     const selectedLang               = useSelector((state) => state.I18nReducer.selectedLang);
     const orderDialogProps           = useSelector((state) => state.OrderDialogReducer);
     const confirmDialogProps         = useSelector((state) => state.ConfirmDialogReducer);
@@ -23,6 +24,20 @@ export default function Layout(props) {
     const productDeleteDialogProps   = useSelector(state => state.ProductDialogReducer.delete);
     const orderStatusEditDialogProps = useSelector((state) => state.OrderStatusEditDialogReducer);
 
+    let loaderComponent = '';
+    if (isLoading) {
+        loaderComponent = <div className={"position-fixed py-5 d-flex justify-content-center"}
+                               style={{
+                                   backgroundColor: COLOR_PRIMARY + '66',
+                                   top: 0,
+                                   left: '-15px',
+                                   width: '100vw',
+                                   height: '100vh',
+                                   zIndex: 5,
+                               }} >
+            <Loader size={200} />
+        </div>;
+    }
 
     return (
         <div className={"main_layout_container main_layout_container_" + selectedLang} >
@@ -31,6 +46,7 @@ export default function Layout(props) {
                 appbarLinkColor="#ffffff"
             />
             <SideDrawer />
+            {loaderComponent}
             <div className="container-fluid">{props.children}</div>
             <Footer />
 

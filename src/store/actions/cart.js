@@ -19,13 +19,13 @@ import {
 import { showSnackbar } from "./snackbar";
 import { cartReducerDataToOrderSubmitData } from "../../utils";
 import { attemptShopUserLogout } from "./auth/shop";
+import { setIsLoading } from "./loader";
 
 export function setCartProductTypeFixed({ product_id, product_count }) {
     return { type: SET_CART_PRODUCT_TYPE_FIXED, payload: { product_id, product_count } };
 }
 
 export function setCartProductTypeWithOptions({ product_id, product_count, options }) {
-console.log({ product_id, product_count, options })
     return { type: CREATE_CART_PRODUCT_WITH_OPTIONS, payload: { product_id, product_count, options } };
 }
 
@@ -112,7 +112,7 @@ export function getPromoCode(code) {
 
 export function submitOrder(cartReducerData) {
     return function(dispatch) {
-        dispatch(setOrderSubmitIsLoading(true));
+        dispatch(setIsLoading(true));
         const history = cartReducerData.history;
         const url = BASE_SHOP_API_URL + '/order' +
             (cartReducerData.orderId ? '/' + cartReducerData.orderId : '');
@@ -122,12 +122,12 @@ export function submitOrder(cartReducerData) {
             .then(response => {
                 dispatch(setOrderInProgress(true)); // TODO: why order in progress true
                 dispatch(emptyCart());
-                dispatch(setOrderSubmitIsLoading(false));
+                dispatch(setIsLoading(false));
                 dispatch(showSnackbar({ message: 'cart:order:submit:success' }));
                 history.push('/');
             })
             .catch(error => {
-                dispatch(setOrderSubmitIsLoading(false));
+                dispatch(setIsLoading(false));
                 dispatch(showSnackbar({ message: 'cart:order:submit:error', severity: 'error' })); // TODO: make more specific
 
                 if (error.response.status === 403) {
