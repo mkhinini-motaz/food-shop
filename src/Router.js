@@ -46,6 +46,13 @@ function shopUserRoutes(authShopUser) {
             }
         </Route>,
 
+        <Route key="shop-route-order-overview" exact path="/order/overview" >
+            {shopUserIsAuthenticated ?
+                <Layout><Overview /></Layout> :
+                <Redirect to="/login" />
+            }
+        </Route>,
+
         <Route key="shop-route-order-edit" exact
                path="/order/:orderId"
                component={(props) => shopUserIsAuthenticated ?
@@ -53,13 +60,6 @@ function shopUserRoutes(authShopUser) {
                    <Redirect to="/login" />
                }
         />,
-
-        <Route key="shop-route-order-overview" exact path="/order/overview" >
-            {shopUserIsAuthenticated ?
-                <Layout><Overview /></Layout> :
-                <Redirect to="/login" />
-            }
-        </Route>,
 
         <Route key="shop-route-category" exact path="/category" >
             {shopUserIsAuthenticated ?
