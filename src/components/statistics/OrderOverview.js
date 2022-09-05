@@ -13,6 +13,9 @@ import OrderCount from "./OrderCount";
 import CategoriesCount from "./CategoriesCount";
 import ProductsCount from "./ProductsCount";
 import OptionsCount from "./OptionsCount";
+import OrderStatusCount from "./OrderStatusCount";
+import OrderTypeCount from "./OrderTypeCount";
+import OrderTransporterCount from "./OrderTransporterCount";
 
 export default function OrderOverview(props) {
     const authShopUser = useSelector(state => state.AuthReducer.authShopUser);
@@ -37,7 +40,12 @@ export default function OrderOverview(props) {
                 </div>
             </div>
 
-            {! report.count ? '' : <OrderCount report={report} />}
+            {! report.count ? '' : <>
+                <OrderCount report={report} />
+                <OrderStatusCount report={report} />
+                <OrderTypeCount report={report} />
+                <OrderTransporterCount report={report} />
+            </>}
 
             {! report.count || ! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
                 <CategoriesCount report={report} />
