@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { BASE_SHOP_API_URL } from "../../constants";
-import { SET_CURRENT_ORDERS, SET_CURRENT_ORDERS_ARE_LOADING, SET_ORDER_STATUS_UPDATE_IS_LOADING, } from './types';
+import { SET_CURRENT_ORDERS, SET_CURRENT_ORDERS_ARE_LOADING, SET_ORDER_STATUS_UPDATE_IS_LOADING, SET_REPORT, } from './types';
 import { showSnackbar } from "./snackbar";
 import { hideOrderStatusEditDialog } from "./orderStatusEditDialog";
 import { hideTransporterDialog } from "./transporterDialog";
@@ -11,8 +11,12 @@ export function setCurrentOrdersAreLoading(status) {
     return { type: SET_CURRENT_ORDERS_ARE_LOADING, payload: status };
 }
 
-export function setCurrentOrders(ordersAndReport) {
-    return { type: SET_CURRENT_ORDERS, payload: ordersAndReport };
+export function setCurrentOrders(orders) {
+    return { type: SET_CURRENT_ORDERS, payload: orders };
+}
+
+export function setReport(report) {
+    return { type: SET_REPORT, payload: report };
 }
 
 export function setOrderStatusUpdateIsLoading(status) {
@@ -28,6 +32,22 @@ export function getCurrentOrders({ date_time = null })  {
         axios.get(BASE_SHOP_API_URL + '/order/current', { params })
             .then(response => {
                 dispatch(setCurrentOrders(response.data.data));
+                dispatch(setIsLoading(false));
+            })
+            .catch(error => {
+                dispatch(setIsLoading(false));
+            });
+    }
+}
+
+export function getReport({ date_time = null })  {
+    return function(dispatch) {
+        dispatch(setIsLoading(true));
+        const params = { date_time: ! date_time ? date_time : date_time.replaceAll('/', '-') };
+
+        axios.get(BASE_SHOP_API_URL + '/order/report', { params })
+            .then(response => {
+                dispatch(setReport(response.data.data));
                 dispatch(setIsLoading(false));
             })
             .catch(error => {

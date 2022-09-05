@@ -54,7 +54,7 @@ function shopUserRoutes(authShopUser) {
         </Route>,
 
         <Route key="shop-route-order-edit" exact
-               path="/order/:orderId"
+               path="/order/:orderId(\\d+)"
                component={(props) => shopUserIsAuthenticated ?
                    <Layout><EditOrder orderId={props.match.params.orderId} /></Layout> :
                    <Redirect to="/login" />

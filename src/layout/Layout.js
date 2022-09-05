@@ -1,13 +1,13 @@
 import React from "react";
-import {connect, useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 import AppBar from "./AppBar";
 import Footer from "./Footer";
+import SideDrawer from "./SideDrawer";
 import ConfirmDialog from "../components/common/ConfirmDialog";
 import Snackbar from "../components/common/Snackbar";
 import { COLOR_PRIMARY } from "../constants";
 import OrderDialog from "../components/order/OrderDialog";
-import SideDrawer from "./SideDrawer";
 import TransporterDialog from "../components/transporter/TransporterDialog";
 import OrderStatusUpdateDialog from "../components/order/OrderStatusUpdateDialog";
 import ProductCreateDialog from "../components/product/ProductCreateDialog";
@@ -24,20 +24,18 @@ export default function Layout(props) {
     const productDeleteDialogProps   = useSelector(state => state.ProductDialogReducer.delete);
     const orderStatusEditDialogProps = useSelector((state) => state.OrderStatusEditDialogReducer);
 
-    let loaderComponent = '';
-    if (isLoading) {
-        loaderComponent = <div className={"position-fixed py-5 d-flex justify-content-center"}
-                               style={{
-                                   backgroundColor: COLOR_PRIMARY + '66',
-                                   top: 0,
-                                   left: '-15px',
-                                   width: '100vw',
-                                   height: '100vh',
-                                   zIndex: 5,
-                               }} >
+    let loaderComponent = ! isLoading ? '' :
+        <div className={"position-fixed py-5 d-flex justify-content-center"}
+           style={{
+               backgroundColor: COLOR_PRIMARY + '66',
+               top: 0,
+               left: '-15px',
+               width: '100vw',
+               height: '100vh',
+               zIndex: 9999,
+           }} >
             <Loader size={200} />
         </div>;
-    }
 
     return (
         <div className={"main_layout_container main_layout_container_" + selectedLang} >
