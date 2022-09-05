@@ -60,7 +60,7 @@ export default (state = initialCartReducerState, action) => {
     }
 
     if (action.type === CREATE_CART_PRODUCT_WITH_OPTIONS) {
-        action.payload.id_in_cart = action.payload.product_id + '_' + Date.now();
+        action.payload.id_in_cart = action.payload.product_id + '_' + Math.random();
         return { ...state, products: [ ...state.products, action.payload ] };
     }
 
