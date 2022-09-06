@@ -39,6 +39,11 @@ export default function OrderTimeChart(props) {
 
             },
         },
+        scales: {
+            yAxis: {
+                beginAtZero: true,
+            }
+        }
     };
 
     return (
