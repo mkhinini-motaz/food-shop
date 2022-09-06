@@ -10,7 +10,7 @@ export default function OrderTimeChart(props) {
     const ordersData = [];
     const labels = [];
     for (let order of report.ordersTime) {
-        ordersData.push(order.total_price);
+        ordersData.push(order.total_price / 1000);
         labels.push(order.date);
     }
 

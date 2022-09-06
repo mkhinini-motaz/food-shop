@@ -16,7 +16,6 @@ import OrderTypeCount from "./OrderTypeCount";
 import OrderTransporterCount from "./OrderTransporterCount";
 import OrderTimeChart from "./OrderTimeChart";
 
-ChartJS.register(ArcElement, Tooltip, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export default function OrderOverview(props) {
     const authShopUser = useSelector(state => state.AuthReducer.authShopUser);

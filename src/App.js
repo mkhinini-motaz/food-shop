@@ -8,8 +8,10 @@ import Store from './store';
 import { COLOR_PRIMARY, COLOR_SECONDARY, GOOGLE_ANALYTICS_TRACKING_ID } from './constants';
 import Router from "./Router";
 import middlewares from './middleware';
+import { ArcElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from "chart.js";
 
 middlewares();
+ChartJS.register(ArcElement, Tooltip, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const theme = createMuiTheme({
     palette: {

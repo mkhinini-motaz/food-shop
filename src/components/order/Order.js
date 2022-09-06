@@ -113,7 +113,7 @@ export default function Order(props) {
                       label={<span style={{ color: 'white', fontWeight: 'bold' }}><Translate value="common:edit" /></span>}
                       clickable
                       color="secondary"
-                      onClick={() => history.push('/order/' + order.id)}
+                      onClick={() => history.push('/order/' + order.id + '/edit')}
                 />
             </div>
 
