@@ -31,13 +31,12 @@ export default function CategoriesTimeChart(props) {
         let categorySumPrice = categoriesSumPrice[categoryData.id];
         let categoryCount = categoriesCount[categoryData.id];
 
-console.log({sumPrice: categoryData.sum_price, count: categoryData.count, name: translateFromObject(categorySumPrice.name, selectedLang, true)})
-        categorySumPrice.data.push(categoryData.sum_price);
+        categorySumPrice.data.push(categoryData.sum_price / 1000);
         categoryCount.data.push(categoryData.count);
 
         labels[categoryData.date] = true;
     }
-console.log({labels: Object.keys(labels), categoriesSumPrice, categoriesCount, report: report.categoriesTime.report})
+
     const dataTotalPrice = {
         labels: Object.keys(labels),
         datasets: Object.values(categoriesSumPrice),

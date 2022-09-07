@@ -16,8 +16,9 @@ export default function OrderCount(props) {
         if (firstValue === secondValue) {
             return '';
         }
+
         return <span className={'m' + (selectedLangWriteFrom === 'left' ? 'l' : 'r') + '-2'}>
-            {firstValue > secondValue ?
+            {parseInt(firstValue) > parseInt(secondValue) ?
                 <TrendingUpIcon style={{ color: "#28a745", transform: selectedLangWriteFrom === 'left' ? '' : 'scaleX(-1)' }} /> :
                 <TrendingDownIcon style={{ color: "#dc3545", transform: selectedLangWriteFrom === 'left' ? '' : 'scaleX(-1)' }} />
             }

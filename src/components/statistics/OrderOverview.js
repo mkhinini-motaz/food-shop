@@ -46,7 +46,9 @@ export default function OrderOverview(props) {
                     <OrderTimeChart report={report} />
                     <CategoriesTimeChart report={report} />
                 </>}
+
                 <OrderCount report={report} />
+
                 {! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
                     <CategoriesCount report={report} />
                 </>}
