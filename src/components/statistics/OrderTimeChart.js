@@ -3,7 +3,6 @@ import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY } from "../../constants";
 
 import { Line } from 'react-chartjs-2';
 
-
 export default function OrderTimeChart(props) {
     const report = props.report;
 

@@ -15,6 +15,7 @@ import OrderStatusCount from "./OrderStatusCount";
 import OrderTypeCount from "./OrderTypeCount";
 import OrderTransporterCount from "./OrderTransporterCount";
 import OrderTimeChart from "./OrderTimeChart";
+import CategoriesTimeChart from "./CategoriesTimeChart";
 
 
 export default function OrderOverview(props) {
@@ -41,7 +42,10 @@ export default function OrderOverview(props) {
             </div>
 
             {! report.count ? '' : <>
-                <OrderTimeChart report={report} />
+                {! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
+                    <OrderTimeChart report={report} />
+                    <CategoriesTimeChart report={report} />
+                </>}
                 <OrderCount report={report} />
                 {! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
                     <CategoriesCount report={report} />
