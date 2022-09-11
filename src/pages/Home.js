@@ -15,13 +15,17 @@ import Translate from "../components/common/Translate";
 
 export default function Home(props) {
     const dispatch = useDispatch();
-    const socket = io(BASE_WS_URL, { transports : ['websocket'] });
     useEffect(() => {
+        const socket = io(BASE_WS_URL, { transports : ['websocket'] });
         socket.on('order_update', (payload) => {
             dispatch(getCurrentOrders({}));
         });
 
         socket.emit('shop-user-connect', { shopId: 1 }); // TODO: add user_id and intercept from ws server
+
+        return () => {
+            socket.disconnect();
+        }
     }, [dispatch]);
 
     const [ orderDisplayDate, setOrderDisplayDate ] = React.useState(new Date());
