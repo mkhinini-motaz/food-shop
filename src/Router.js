@@ -12,6 +12,7 @@ import Settings from "./pages/Settings";
 import Order from "./pages/order/Order";
 import Overview from "./pages/order/Overview";
 import EditOrder from "./pages/order/EditOrder";
+import History from "./pages/order/History";
 
 function Router(props) {
     let authShopUser = useSelector(state => state.AuthReducer.authShopUser);
@@ -49,6 +50,13 @@ function shopUserRoutes(authShopUser) {
         <Route key="shop-route-order-overview" exact path="/order/overview" >
             {shopUserIsAuthenticated ?
                 <Layout><Overview /></Layout> :
+                <Redirect to="/login" />
+            }
+        </Route>,
+
+        <Route key="shop-route-order-overview" exact path="/order/history" >
+            {shopUserIsAuthenticated ?
+                <Layout><History /></Layout> :
                 <Redirect to="/login" />
             }
         </Route>,

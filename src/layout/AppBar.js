@@ -6,6 +6,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import HistoryIcon from '@material-ui/icons/History';
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import { Home } from "@material-ui/icons";
 
@@ -82,6 +83,17 @@ export default function AppBar(props) {
 						component={Link}
 					>
 						<AccountBalanceWalletIcon />
+					</IconButton>
+				</Tooltip>
+			</MenuItem>
+
+            <MenuItem className="menu-item">
+				<Tooltip title={<Translate value={"order:history"} />} >
+					<IconButton
+						to={"/order/history"}
+						component={Link}
+					>
+						<HistoryIcon />
 					</IconButton>
 				</Tooltip>
 			</MenuItem>

@@ -27,6 +27,11 @@ export default function OrderTransporterCount(props) {
                                     <span className={"mx-2"}>:</span>
                                     <span><MoneyFormatter value={transporter.orders_sum_total_price}/></span>
                                 </div>
+                                <div>
+                                    <Translate value={'cart:delivery_fee:label'}/>
+                                    <span className={"mx-2"}>:</span>
+                                    <span><MoneyFormatter value={transporter.orders_sum_delivery_fee}/></span>
+                                </div>
                             </div>
                         </div>
                     )}

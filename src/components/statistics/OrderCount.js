@@ -17,8 +17,10 @@ export default function OrderCount(props) {
             return '';
         }
 
+        const first = firstValue != null ? parseInt(firstValue) : 0;
+        const second = secondValue != null ? parseInt(secondValue) : 0;
         return <span className={'m' + (selectedLangWriteFrom === 'left' ? 'l' : 'r') + '-2'}>
-            {parseInt(firstValue) > parseInt(secondValue) ?
+            {first > second ?
                 <TrendingUpIcon style={{ color: "#28a745", transform: selectedLangWriteFrom === 'left' ? '' : 'scaleX(-1)' }} /> :
                 <TrendingDownIcon style={{ color: "#dc3545", transform: selectedLangWriteFrom === 'left' ? '' : 'scaleX(-1)' }} />
             }
