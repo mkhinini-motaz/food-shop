@@ -43,6 +43,7 @@
     "cart:promo_code:label": "Code promo",
     "cart:promo_code:free_delivery": "Livraison gratuite avec le code promo",
     "cart:delivery:label": "Livraison",
+    "cart:delivery_fee:label": "Frais livraison",
     "cart:additional_note:label": "Note supplémentaire",
     "cart:order:submit": "Valider commande",
 

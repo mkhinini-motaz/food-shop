@@ -3,7 +3,7 @@ import axios from "axios";
 import { batch, useDispatch } from "react-redux";
 import Cart from "../../components/cart/Cart";
 import { BASE_SHOP_API_URL } from "../../constants";
-import { emptyCart, setAdditionalNote, setAssociatedPhone, setCartProductTypeWithOptions, setIsLoading, setIsPayed, setSource, setType } from "../../store/actions";
+import { emptyCart, setAdditionalNote, setAssociatedPhone, setCartProductTypeWithOptions, setDeliveryFee, setIsLoading, setIsPayed, setSource, setType, } from "../../store/actions";
 
 export default function EditOrder(props) {
     const dispatch = useDispatch();
@@ -22,6 +22,7 @@ export default function EditOrder(props) {
                     dispatch(setSource(order.source));
                     dispatch(setType(order.type));
                     dispatch(setAssociatedPhone(order.associated_phone));
+                    dispatch(setDeliveryFee(order.delivery_fee));
                     dispatch(setAdditionalNote(order.additional_note));
                     dispatch(setIsPayed(order.is_payed));
                 }

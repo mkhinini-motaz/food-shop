@@ -22,7 +22,7 @@ export default function TextField(props) {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange ? props.onChange : () => {}}
-                type={props.isHidden ? 'password' : ''}
+                type={props.isHidden ? 'password' : props.type}
                 required={isRequired}
                 multiline={!! props.multiline}
             />

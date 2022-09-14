@@ -13,7 +13,7 @@ import {
     UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS,
     SET_IS_PAYED,
     SET_ORDER_TIMESTAMP,
-    SET_TYPE, SET_SOURCE, SET_ASSOCIATED_PHONE
+    SET_TYPE, SET_SOURCE, SET_ASSOCIATED_PHONE, SET_DELIVERY_FEE
 } from '../actions';
 import { SOURCE_ON_SITE, TYPE_TAKE_AWAY } from "../../constants";
 
@@ -24,6 +24,7 @@ export const initialCartReducerState = {
     promoCodeIsLoading: false,
     orderSubmitIsLoading: false,
     orderInProgress: false,
+    deliveryFee: null,
     additionalNote: '',
     associatedPhone: '',
     isPayed: false,
@@ -90,6 +91,10 @@ export default (state = initialCartReducerState, action) => {
 
     if (action.type === SET_CART_PROMO_CODE_IS_LOADING) {
         return { ...state, promoCodeIsLoading: action.payload};
+    }
+
+    if (action.type === SET_DELIVERY_FEE) {
+        return { ...state, deliveryFee: action.payload};
     }
 
     if (action.type === SET_ADDITIONAL_NOTE) {

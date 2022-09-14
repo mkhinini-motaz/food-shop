@@ -7,6 +7,7 @@ import Type from "./Type";
 import Source from "./Source";
 import AssociatedPhone from "./AssociatedPhone";
 import AdditionalNote from "./AdditionalNote";
+import DeliveryFee from "./DeliveryFee";
 
 export default function ClientInfo(props) {
 
@@ -20,6 +21,7 @@ export default function ClientInfo(props) {
             <Source showDelay={COMPONENT_SHOW_DELAY * showDelayMultiplier++}/>
             <Type showDelay={COMPONENT_SHOW_DELAY * showDelayMultiplier++}/>
             <AssociatedPhone showDelay={COMPONENT_SHOW_DELAY * showDelayMultiplier++}/>
+            <DeliveryFee showDelay={COMPONENT_SHOW_DELAY * showDelayMultiplier++} />
             <AdditionalNote showDelay={COMPONENT_SHOW_DELAY * showDelayMultiplier++} />
             <IsPayed showDelay={COMPONENT_SHOW_DELAY * showDelayMultiplier++} />
         </div>

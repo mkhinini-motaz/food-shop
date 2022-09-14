@@ -44,6 +44,7 @@
     "cart:additional_note:label": "تزيدش توصي حاجة",
     "cart:promo_code:free_delivery": "توصيل بلاش بالكود برومو",
     "cart:delivery:label": "توصيل",
+    "cart:delivery_fee:label": "حق التوصيل",
     "cart:order:submit": "تأكيد الطلب",
 
     "shop_user:active_orders": "${count} كماندا تمشي",

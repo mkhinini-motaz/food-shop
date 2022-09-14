@@ -14,7 +14,7 @@ import {
     SET_ORDER_IN_PROGRESS,
     EMPTY_CART,
     UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS,
-    SET_IS_PAYED, SET_ORDER_TIMESTAMP, SET_TYPE, SET_SOURCE, SET_ASSOCIATED_PHONE
+    SET_IS_PAYED, SET_ORDER_TIMESTAMP, SET_TYPE, SET_SOURCE, SET_ASSOCIATED_PHONE, SET_DELIVERY_FEE
 } from './types';
 import { showSnackbar } from "./snackbar";
 import { cartReducerDataToOrderSubmitData } from "../../utils";
@@ -55,6 +55,10 @@ export function setCartPromoCodeIsLoading(status) {
 
 export function setOrderSubmitIsLoading(status) {
     return { type: SET_ORDER_SUBMIT_IS_LOADING, payload: status };
+}
+
+export function setDeliveryFee(deliveryFee) {
+    return { type: SET_DELIVERY_FEE, payload: deliveryFee };
 }
 
 export function setAdditionalNote(additionalNote) {

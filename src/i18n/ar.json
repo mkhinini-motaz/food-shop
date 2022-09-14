@@ -44,6 +44,7 @@
     "cart:promo_code:free_delivery": "توصيل مجاني مع البرومو كود",
     "cart:additional_note:label": "مذكرة إضافية",
     "cart:delivery:label": "توصيل",
+    "cart:delivery_fee:label": "معلوم التوصيل",
     "cart:order:submit": "تأكيد الطلب",
 
     "shop_user:active_orders": "${count} طلبات نشطة",

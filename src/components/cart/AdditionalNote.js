@@ -15,12 +15,6 @@ export default function AdditionalNote(props) {
     const additionalNote = useSelector(state => state.CartReducer.additionalNote);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
     const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
-    const formDescription = [ {
-        name: 'additional_note',
-        label: <Translate value="cart:additional_note:label" />,
-        required: false,
-        multiline: true,
-    } ];
 
     useEffect(() => {
         setTimeout(() => { setIsShown(() => true); }, 500 + props.showDelay);

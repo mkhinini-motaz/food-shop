@@ -39,7 +39,7 @@ export default function ProductList(props) {
             <List className="bg-white" >
                 {productCartItemComponents}
             </List>
-            {props.showTotal === false ? '' : <Total value={totalPrice} withDelivery={props.orderType === ORDER.TYPE_DELIVERY} />}
+            {props.showTotal === false ? '' : <Total value={totalPrice} deliveryFee={props.deliveryFee} />}
         </div>
     );
 }

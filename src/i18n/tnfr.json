@@ -44,6 +44,7 @@
     "cart:additional_note:label": "Tzidech twassi 7aja",
     "cart:promo_code:free_delivery": "Livraison gratuit bil code promo",
     "cart:delivery:label": "Livraison",
+    "cart:delivery_fee:label": "7a9 livraison",
     "cart:order:submit": "3addi commande",
 
     "shop_user:active_orders": "${count} cmanda temchi",

@@ -11,7 +11,8 @@ export default function Total(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
     const promoCode = useSelector(state => state.CartReducer.promoCode);
     const [ isShown, setIsShown ] = React.useState(false);
-    const deliveryFee = useSelector(state => state.CartReducer.type === TYPE_DELIVERY ? 2000 : 0);
+    const deliveryFee = useSelector(state => state.CartReducer.deliveryFee);
+    const orderIsDelivery = useSelector(state => state.CartReducer.type === TYPE_DELIVERY);
 
     let product;
     let totalProducts = 0;
@@ -24,7 +25,7 @@ export default function Total(props) {
         totalProducts += productPriceForDialog({ ...product, product_count: productCartInfo.product_count, options: productCartInfo.options });
     }
 
-    let total = totalProducts - (promoCode ? promoCode.reduction_amount : 0); // TODO: +delivery fee
+    let total = totalProducts + parseInt(deliveryFee || 0) - (promoCode ? promoCode.reduction_amount : 0);
     if (total < 0) {
         total = 0;
     }
@@ -47,18 +48,18 @@ export default function Total(props) {
                     <MoneyFormatter value={totalProducts} />
                 </Typography>
 
-                { deliveryFee === 0 ? '' :
+                { (!!deliveryFee || orderIsDelivery) ?
                     <Typography
                         component="span"
                         variant="body1"
                         color="textPrimary"
                         className={'d-flex align-items-center ' + flexRowClassName}
                     >
-                        <span>****</span>
+                        <MoneyFormatter value={deliveryFee} />
                         <span className="mx-2"></span>
                         <Translate value="cart:delivery:label" />
                     </Typography>
-                }
+                : ''}
 
                 {! promoCode ? '' :
                     <Typography

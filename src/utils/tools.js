@@ -271,13 +271,14 @@ export const printableOrder = (order, lang, langWriteFrom) => { // TODO: use lan
  * @param promoCode       {object}
  * @param associatedPhone {string}
  * @param additionalNote  {string}
+ * @param deliveryFee     {int}
  * @param isPayed
  * @param type
  * @param source
  *
  * @returns {object}
  */
-export const cartReducerDataToOrderSubmitData = ({ products, address, promoCode, associatedPhone, additionalNote, isPayed, type, source }) => {
+export const cartReducerDataToOrderSubmitData = ({ products, address, promoCode, associatedPhone, deliveryFee, additionalNote, isPayed, type, source }) => {
     const data = {
         delivery_latitude: address.lat,
         delivery_longitude: address.lng,
@@ -285,6 +286,9 @@ export const cartReducerDataToOrderSubmitData = ({ products, address, promoCode,
 
     if (associatedPhone) {
         data.associated_phone = associatedPhone;
+    }
+    if (deliveryFee) {
+        data.delivery_fee = deliveryFee;
     }
     if (additionalNote) {
         data.additional_note = additionalNote;

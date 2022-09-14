@@ -161,6 +161,7 @@ export default function Order(props) {
                          showTotal={showTotal}
                          showProductPhotos={showProductPhotos}
                          orderType={order.type}
+                         deliveryFee={order.delivery_fee}
                          detailedView />
 
             {showPromoCode === false ? '' : <PromoCode promoCode={order.promo_code} />}
