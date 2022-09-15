@@ -43,7 +43,7 @@ export default function OrderHoursChart(props) {
         scales: {
             yAxis: {
                 beginAtZero: true,
-                suggestedMax: 20,
+                suggestedMax: 16,
             }
         }
     };
