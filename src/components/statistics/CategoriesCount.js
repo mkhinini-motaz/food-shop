@@ -5,7 +5,7 @@ import { Pie } from 'react-chartjs-2';
 import { BOX_SHADOW_CSS_RULE } from "../../constants";
 import TranslateField from "../common/TranslateField";
 import MoneyFormatter from "../common/MoneyFormatter";
-import { translateFromObject } from "../../i18n";
+import { translate, translateFromObject } from "../../i18n";
 import { useSelector } from "react-redux";
 import Translate from "../common/Translate";
 import { Typography } from "@material-ui/core";
@@ -20,19 +20,28 @@ export default function CategoriesCount(props) {
         return <div></div>;
     }
 
-    const categoriesPriceData = [];
+    const countLabels         = [];
+    const sumPriceLabels      = [];
     const categoriesCountData = [];
-    const labels = [];
+    const categoriesPriceData = [];
     for (let category of report.categories) {
+        const categoryName = translateFromObject(category.name, selectedLang, true);
         categoriesCountData.push(category.count);
-        categoriesPriceData.push(category.sum_price);
-        labels.push(translateFromObject(category.name, selectedLang, true));
+        categoriesPriceData.push(category.sum_price / 1000);
+        if (selectedLangWriteFrom === 'right') {
+            countLabels.push('(' + category.count + ') ' + categoryName);
+            sumPriceLabels.push('(' + (category.sum_price / 1000) + ') ' + categoryName);
+        } else {
+            countLabels.push(categoryName + ' (' + category.count + ')');
+            sumPriceLabels.push(categoryName + ' (' + (category.sum_price / 1000) + ')');
+        }
     }
+
     const dataCount = {
-        labels,
+        labels: countLabels,
         datasets: [
             {
-                label: 'Categories count', // TODO: translate
+                label: translate('order:report:category_count:title', selectedLang, true),
                 data: categoriesCountData,
                 borderColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -56,10 +65,10 @@ export default function CategoriesCount(props) {
     };
 
     const dataPrice = {
-        labels,
+        labels: sumPriceLabels,
         datasets: [
             {
-                label: 'Categories count', // TODO: translate
+                label: translate('order:report:category_count:title', selectedLang, true),
                 data: categoriesPriceData,
                 borderColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -88,7 +97,7 @@ export default function CategoriesCount(props) {
             >
                 <div className={"col-12 col-sm-6"}>
                     <Typography variant="h6" component="h6" color="primary" align={selectedLangWriteFrom}>
-                        <Translate value="order:category_count" textOnly={true} />
+                        <Translate value="order:report:category_count:title" textOnly={true} />
                     </Typography>
                     <div>
                         <Pie data={dataCount} height={250} redraw />
@@ -96,7 +105,7 @@ export default function CategoriesCount(props) {
                 </div>
                 <div className={"col-12 col-sm-6"}>
                     <Typography variant="h6" component="h6" color="primary" align={selectedLangWriteFrom}>
-                        <Translate value="order:category_price" textOnly={true} />
+                        <Translate value="order:report:category_price:title" textOnly={true} />
                     </Typography>
                     <div>
                         <Pie data={dataPrice} height={250} redraw />

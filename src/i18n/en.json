@@ -79,6 +79,16 @@
     "order:source:on_site": "Counter",
     "order:source:by_phone": "By Phone",
 
+    "order:report:last_3_months:title": "Last 3 months",
+    "order:report:hour:title": "Orders per hour",
+    "order:report:category_count:title": "Count by category",
+    "order:report:category_price:title": "Revenue by category",
+    "order:report:status:title": "Orders status",
+    "order:report:type:title": "Orders types",
+    "order:report:transporters:title": "Transporters",
+    "order:report:options_count:title": "Options count",
+    "order:report:product_count:title": "Products count",
+
     "lang:fr": "French",
     "lang:en": "English",
     "lang:tnar": "Tunisian in arabic",

@@ -1,10 +1,13 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY } from "../../constants";
 
 import { Line } from 'react-chartjs-2';
+import { translate } from "../../i18n";
+import { useSelector } from "react-redux";
 
 export default function OrderTimeChart(props) {
     const report = props.report;
+    const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
 
     const ordersData = [];
     const labels = [];
@@ -34,8 +37,7 @@ export default function OrderTimeChart(props) {
             },
             title: {
                 display: true,
-                text: 'Last 3 months', // TODO: translate
-
+                text: translate('order:report:last_3_months:title', selectedLang, true)
             },
         },
         scales: {

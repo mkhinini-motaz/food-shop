@@ -79,6 +79,16 @@
     "order:source:on_site": "المطعم",
     "order:source:by_phone": "هاتف",
 
+    "order:report:last_3_months:title": "آخر 3 أشهر",
+    "order:report:hour:title": "الطلبات في الساعة",
+    "order:report:category_count:title": "عدد كل صنف",
+    "order:report:category_price:title": "مدخول كل صنف",
+    "order:report:status:title": "حالة الطلبات",
+    "order:report:type:title": "أنواع الطلبات",
+    "order:report:transporters:title": "رجال التوصيل",
+    "order:report:options_count:title": "عدد الإضافات",
+    "order:report:product_count:title": "عدد من المنتجات",
+
     "lang:fr": "فرنسية",
     "lang:en": "إنجليزية",
     "lang:tnar": "تونسي بالعربي",

@@ -39,12 +39,12 @@ export default function OrderCount(props) {
                     <div className={flexRowClassName}>
                         <Translate value={'order:count'}/>
                         <span className={"mx-2"}>:</span>
-                        <span>{count.count}</span>
+                        <span className={"font-weight-bold"}>{count.count}</span>
                     </div>
                     <div className={flexRowClassName}>
                         <Translate value={'order:total_price'}/>
                         <span className={"mx-2"}>:</span>
-                        <span><MoneyFormatter value={count.total_price}/></span>
+                        <span className={"font-weight-bold"}><MoneyFormatter value={count.total_price}/></span>
                     </div>
                 </div>
 
@@ -55,13 +55,13 @@ export default function OrderCount(props) {
                     <div className={flexRowClassName}>
                         <Translate value={'order:count'}/>
                         <span className={"mx-2"}>:</span>
-                        <span>{countYesterday.count}</span>
+                        <span className={"font-weight-bold"}>{countYesterday.count}</span>
                         {getTrendingIcon(count.count, countYesterday.count)}
                     </div>
                     <div className={flexRowClassName}>
                         <Translate value={'order:total_price'}/>
                         <span className={"mx-2"}>:</span>
-                        <MoneyFormatter value={countYesterday.total_price} />
+                        <span className={"font-weight-bold"}><MoneyFormatter value={countYesterday.total_price} /></span>
                         {getTrendingIcon(count.total_price, countYesterday.total_price)}
                     </div>
                 </div>
@@ -73,13 +73,13 @@ export default function OrderCount(props) {
                     <div className={flexRowClassName}>
                         <Translate value={'order:count'}/>
                         <span className={"mx-2"}>:</span>
-                        <span>{countLastWeekSameDay.count}</span>
+                        <span className={"font-weight-bold"}>{countLastWeekSameDay.count}</span>
                         {getTrendingIcon(count.count, countLastWeekSameDay.count)}
                     </div>
                     <div className={flexRowClassName}>
                         <Translate value={'order:total_price'}/>
                         <span className={"mx-2"}>:</span>
-                        <span><MoneyFormatter value={countLastWeekSameDay.total_price}/></span>
+                        <span className={"font-weight-bold"}><MoneyFormatter value={countLastWeekSameDay.total_price}/></span>
                         {getTrendingIcon(count.total_price, countLastWeekSameDay.total_price)}
                     </div>
                 </div>

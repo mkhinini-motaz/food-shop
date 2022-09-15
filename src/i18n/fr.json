@@ -79,6 +79,16 @@
     "order:source:on_site": "Caisse",
     "order:source:by_phone": "Téléphone",
 
+    "order:report:last_3_months:title": "Dernier 3 mois",
+    "order:report:hour:title": "Commandes par heure",
+    "order:report:category_count:title": "Nombre par catégorie",
+    "order:report:category_price:title": "Revenue par catégorie",
+    "order:report:status:title": "Status des commandes",
+    "order:report:type:title": "Types des commandes",
+    "order:report:transporters:title": "Livreurs",
+    "order:report:options_count:title": "Nombre d'options",
+    "order:report:product_count:title": "Nombre de produits",
+
     "lang:fr": "Français",
     "lang:en": "Anglais",
     "lang:tnar": "Tunisien en arabe",
