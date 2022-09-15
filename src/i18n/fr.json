@@ -85,6 +85,7 @@
     "order:report:category_price:title": "Revenue par catégorie",
     "order:report:status:title": "Status des commandes",
     "order:report:type:title": "Types des commandes",
+    "order:report:source:title": "Sources des commandes",
     "order:report:transporters:title": "Livreurs",
     "order:report:options_count:title": "Nombre d'options",
     "order:report:product_count:title": "Nombre de produits",

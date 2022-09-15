@@ -84,6 +84,7 @@
     "order:report:category_count:title": "عدد كل صنف",
     "order:report:category_price:title": "مدخول كل صنف",
     "order:report:status:title": "أنواع الكماندات",
+    "order:report:source:title": "مصادر الكماندات",
     "order:report:transporters:title": "ليفرارات",
     "order:report:options_count:title": "عدد الإضافات",
     "order:report:product_count:title": "عدد من المنتجات",

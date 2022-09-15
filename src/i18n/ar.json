@@ -85,6 +85,7 @@
     "order:report:category_price:title": "مدخول كل صنف",
     "order:report:status:title": "حالة الطلبات",
     "order:report:type:title": "أنواع الطلبات",
+    "order:report:source:title": "مصادر الطلبات",
     "order:report:transporters:title": "رجال التوصيل",
     "order:report:options_count:title": "عدد الإضافات",
     "order:report:product_count:title": "عدد من المنتجات",

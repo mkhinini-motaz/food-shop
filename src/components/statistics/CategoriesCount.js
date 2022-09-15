@@ -91,28 +91,32 @@ export default function CategoriesCount(props) {
         ],
     };
     return (
-        <div className={"p-2 col-12 col-sm-8"}>
-            <div className={"bg-white p-2 border_radius_15 row mx-0 "}
-                 style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
-            >
-                <div className={"col-12 col-sm-6"}>
+        <>
+            <div className={"p-2 col-12 col-sm-4"}>
+                <div className={"bg-white p-2 border_radius_15 mx-0 "}
+                     style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
+                >
                     <Typography variant="h6" component="h6" color="primary" align={selectedLangWriteFrom}>
                         <Translate value="order:report:category_count:title" textOnly={true} />
                     </Typography>
                     <div>
-                        <Pie data={dataCount} height={250} redraw />
+                        <Pie data={dataCount} redraw />
                     </div>
                 </div>
-                <div className={"col-12 col-sm-6"}>
+            </div>
+            <div className={"p-2 col-12 col-sm-4"}>
+                <div className={"bg-white p-2 border_radius_15 mx-0 "}
+                     style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
+                >
                     <Typography variant="h6" component="h6" color="primary" align={selectedLangWriteFrom}>
                         <Translate value="order:report:category_price:title" textOnly={true} />
                     </Typography>
                     <div>
-                        <Pie data={dataPrice} height={250} redraw />
+                        <Pie data={dataPrice} redraw />
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
