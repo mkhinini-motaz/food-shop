@@ -54,7 +54,7 @@ function shopUserRoutes(authShopUser) {
             }
         </Route>,
 
-        <Route key="shop-route-order-overview" exact path="/order/history" >
+        <Route key="shop-route-order-history" exact path="/order/history" >
             {shopUserIsAuthenticated ?
                 <Layout><History /></Layout> :
                 <Redirect to="/login" />

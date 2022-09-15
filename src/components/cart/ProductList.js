@@ -36,7 +36,7 @@ export default function ProductList(props) {
 
     return (
         <div>
-            <List className="bg-white" >
+            <List className="bg-white border_radius_15" >
                 {productCartItemComponents}
             </List>
             {props.showTotal === false ? '' : <Total value={totalPrice} deliveryFee={props.deliveryFee} />}

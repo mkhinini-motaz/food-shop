@@ -75,6 +75,7 @@
     "order:type:take_away":"هزان",
     "order:type:delivery": "ليفرزون",
 
+    "order:source:online": "بالانترنت",
     "order:source:on_site": "كاسة",
     "order:source:by_phone": "تليفون",
 

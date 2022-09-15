@@ -75,6 +75,7 @@
     "order:type:take_away":"Hazzen",
     "order:type:delivery": "Livraison",
 
+    "order:source:online": "Online",
     "order:source:on_site": "Caissa",
     "order:source:by_phone": "Telifoun",
 

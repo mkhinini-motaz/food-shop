@@ -75,6 +75,7 @@
     "order:type:take_away":"Take away",
     "order:type:delivery": "Delivery",
 
+    "order:source:online": "Online",
     "order:source:on_site": "Counter",
     "order:source:by_phone": "By Phone",
 

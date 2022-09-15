@@ -11,6 +11,7 @@ export const STATUS_DELIVERED               = 20;
 export const STATUS_CANCELED                = 21;
 export const STATUS_CLIENT_NOT_FOUND        = 22;
 
+export const SOURCE_ONLINE   = 1;
 export const SOURCE_ON_SITE  = 2;
 export const SOURCE_BY_PHONE = 3;
 
@@ -65,6 +66,7 @@ export const TYPES = {
 };
 
 export const SOURCES = {
+    [SOURCE_ONLINE]: 'order:source:online',
     [SOURCE_ON_SITE]: 'order:source:on_site',
     [SOURCE_BY_PHONE]: 'order:source:by_phone',
 };

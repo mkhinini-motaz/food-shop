@@ -75,6 +75,7 @@
     "order:type:take_away":"Emporté",
     "order:type:delivery": "Livraison",
 
+    "order:source:online": "Online",
     "order:source:on_site": "Caisse",
     "order:source:by_phone": "Téléphone",
 

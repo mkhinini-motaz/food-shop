@@ -11,7 +11,7 @@ import OrderStatus from "./OrderStatus";
 import ProductList from "../cart/ProductList";
 import PromoCode from "../cart/PromoCode";
 import { getShopTransporters, showOrderStatusEditDialog, showSnackbar, showTransporterDialog, updateOrderIsPayed, } from "../../store/actions";
-import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, SOURCES, TYPES, } from "../../constants";
+import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, SOURCE_ONLINE, SOURCES, TYPES, } from "../../constants";
 import { formatTime, formatPhoneNumber } from "../../utils";
 import Translate from "../common/Translate";
 
@@ -30,6 +30,7 @@ export default function Order(props) {
             margin: 10,
             display: 'inline-block',
             position: 'relative',
+            backgroundColor: order.source === SOURCE_ONLINE ? '#ffe6a7' : 'white',
         },
         orderNumber: {
             backgroundColor: COLOR_PRIMARY,
@@ -61,7 +62,7 @@ export default function Order(props) {
     const flexRowClassName = ' flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse ' : ' ');
 
     return (
-        <div className={classes.orderCardRoot + ' bg-white my-2 pb-2 px-2 pt-3 border_radius_15 '}
+        <div className={classes.orderCardRoot + ' my-2 pb-2 px-2 pt-3 border_radius_15 '}
              style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
              key={'order_details_' + order.id}
         >
@@ -126,6 +127,14 @@ export default function Order(props) {
 
             <Divider className={"my-2"} />
 
+            {! order.client ? '' :
+                <div className={"px-2"}>
+                    <Typography variant="h5" component="h4" color="primary" align={selectedLangWriteFrom}>
+                        {order.client.first_name + ' ' + order.client.last_name}
+                    </Typography>
+                </div>
+            }
+
             {! order.associated_phone ? '' :
                 <div className={'px-2 text-' + selectedLangWriteFrom}>
                     <div className="d-block mb-2">
@@ -143,7 +152,7 @@ export default function Order(props) {
             }
 
 
-            <div className={'px-2 mt-1 d-flex justify-content-between text-' + selectedLangWriteFrom + flexRowClassName}>
+            <div className={'px-2 my-1 d-flex justify-content-between text-' + selectedLangWriteFrom + flexRowClassName}>
                 <Chip className="pl-2 h-auto"
                     icon={<DirectionsBikeIcon />}
                     onClick={transporterIconOnClick} key={'delivery_icon_' + order.id}

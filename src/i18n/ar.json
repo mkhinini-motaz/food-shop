@@ -75,6 +75,7 @@
     "order:type:take_away": "هزان",
     "order:type:delivery": "توصيل",
 
+    "order:source:online": "عبر الانترنت",
     "order:source:on_site": "المطعم",
     "order:source:by_phone": "هاتف",
 
