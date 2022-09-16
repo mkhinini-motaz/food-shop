@@ -21,7 +21,7 @@ export default function Home(props) {
             dispatch(getCurrentOrders({}));
         });
 
-        socket.emit('shop-user-connect', { shopId: 1 }); // TODO: add user_id and intercept from ws server
+        socket.emit('shop-user-login', { authToken: localStorage.getItem('shop_user_access_token') });
 
         return () => {
             socket.disconnect();
