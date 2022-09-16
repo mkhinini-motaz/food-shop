@@ -89,6 +89,10 @@
     "order:report:transporters:title": "Livreurs",
     "order:report:options_count:title": "Nombre d'options",
     "order:report:product_count:title": "Nombre de produits",
+    "order:report:avg_this_week": "Moyenne jom3a hadhi",
+    "order:report:avg_last_week": "Moyenne jom3a li fatet",
+    "order:report:avg_this_month": "Moyenne chhar hadha",
+    "order:report:avg_last_month": "Moyenne chhar li fet",
 
     "lang:fr": "Français",
     "lang:en": "Anglais",

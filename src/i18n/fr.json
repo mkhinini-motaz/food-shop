@@ -89,6 +89,10 @@
     "order:report:transporters:title": "Livreurs",
     "order:report:options_count:title": "Nombre d'options",
     "order:report:product_count:title": "Nombre de produits",
+    "order:report:avg_this_week": "Moyenne cette semaine",
+    "order:report:avg_last_week": "Moyenne semaine dernière",
+    "order:report:avg_this_month": "Moyenne ce mois",
+    "order:report:avg_last_month": "Moyenne mois dernier",
 
     "lang:fr": "Français",
     "lang:en": "Anglais",

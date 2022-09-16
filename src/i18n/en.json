@@ -89,6 +89,10 @@
     "order:report:transporters:title": "Transporters",
     "order:report:options_count:title": "Options count",
     "order:report:product_count:title": "Products count",
+    "order:report:avg_this_week": "Average this week",
+    "order:report:avg_last_week": "Average previous week",
+    "order:report:avg_this_month": "Average this month",
+    "order:report:avg_last_month": "Average previous month",
 
     "lang:fr": "French",
     "lang:en": "English",

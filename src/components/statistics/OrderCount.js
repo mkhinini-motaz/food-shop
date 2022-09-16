@@ -14,10 +14,11 @@ export default function OrderCount(props) {
                 <OrderCountDisplay title={"common:yesterday"} displayedCount={countYesterday.count} displayedPrice={countYesterday.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
                 <OrderCountDisplay title={"common:last_week"} displayedCount={countLastWeekSameDay.count} displayedPrice={countLastWeekSameDay.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
 
-                <OrderCountDisplay title={"common:avg_this_week"} displayedCount={countAvgThisWeek.count} displayedPrice={countAvgThisWeek.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
-                <OrderCountDisplay title={"common:avg_last_week"} displayedCount={countAvgLastWeek.count} displayedPrice={countAvgLastWeek.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
-                <OrderCountDisplay title={"common:avg_this_week"} displayedCount={countAvgThisMonth.count} displayedPrice={countAvgThisMonth.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
-                <OrderCountDisplay title={"common:avg_last_week"} displayedCount={countAvgLastMonth.count} displayedPrice={countAvgLastMonth.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
+                <OrderCountDisplay title={"order:report:avg_this_week"} displayedCount={countAvgThisWeek.count} displayedPrice={countAvgThisWeek.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
+                <OrderCountDisplay title={"order:report:avg_last_week"} displayedCount={countAvgLastWeek.count} displayedPrice={countAvgLastWeek.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
+
+                <OrderCountDisplay title={"order:report:avg_this_month"} displayedCount={countAvgThisMonth.count} displayedPrice={countAvgThisMonth.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
+                <OrderCountDisplay title={"order:report:avg_last_month"} displayedCount={countAvgLastMonth.count} displayedPrice={countAvgLastMonth.total_price} comparedCount={count.count} comparedPrice={count.total_price} />
             </div>
         </div>
     );

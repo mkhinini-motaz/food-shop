@@ -89,6 +89,10 @@
     "order:report:transporters:title": "رجال التوصيل",
     "order:report:options_count:title": "عدد الإضافات",
     "order:report:product_count:title": "عدد من المنتجات",
+    "order:report:avg_this_week": "متوسط هذا الأسبوع",
+    "order:report:avg_last_week": "متوسط الأسبوع الماضي",
+    "order:report:avg_this_month": "متوسط هذا الشهر",
+    "order:report:avg_last_month": "متوسط الشهر الماضي",
 
     "lang:fr": "فرنسية",
     "lang:en": "إنجليزية",
