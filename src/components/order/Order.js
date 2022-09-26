@@ -12,7 +12,7 @@ import ProductList from "../cart/ProductList";
 import PromoCode from "../cart/PromoCode";
 import { getShopTransporters, showOrderStatusEditDialog, showSnackbar, showTransporterDialog, updateOrderIsPayed, } from "../../store/actions";
 import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, SOURCE_ONLINE, SOURCES, TYPES, } from "../../constants";
-import { formatTime, formatPhoneNumber } from "../../utils";
+import { formatTime, formatLocalPhoneNumber } from "../../utils";
 import Translate from "../common/Translate";
 
 export default function Order(props) {
@@ -138,12 +138,12 @@ export default function Order(props) {
             {! order.associated_phone ? '' :
                 <div className={'px-2 text-' + selectedLangWriteFrom}>
                     <div className="d-block mb-2">
-                        <a href={'tel:' + order.associated_phone} style={{ textDecoration: 'none' }}>
+                        <a href={'tel:' + formatLocalPhoneNumber(order.associated_phone).replaceAll(' ', '')} style={{ textDecoration: 'none' }}>
                             <Chip className="pl-2 h-auto"
                                   icon={<PhoneInTalkIcon />}
                                   style={{ backgroundColor: '#78c6a3', cursor: 'pointer' }}
                                   label={<Typography variant="h6" color="primary" component="span" className="font-weight-bold m-1 white_space_pre_wrap" >
-                                      {formatPhoneNumber(order.associated_phone)}
+                                      {formatLocalPhoneNumber(order.associated_phone)}
                                   </Typography>}
                             />
                         </a>
