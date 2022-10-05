@@ -4,6 +4,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from '@material-ui/icons/Settings';
+import HistoryIcon from '@material-ui/icons/History';
 import { Home } from "@material-ui/icons";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
@@ -40,7 +41,7 @@ export default function SideDrawer(props) {
 		);
 
 		categoriesLink = (
-            <div className={'mt-3 ' + paddingRule} style={currentPath === '/category' ? activeLinkStyle : {}}>
+            <div className={paddingRule} style={currentPath === '/category' ? activeLinkStyle : {}}>
                 <Link to="/category" className={flexRowRule}>
                     <IconButton><FastfoodIcon /></IconButton>
                     <Typography variant="body1" color="textPrimary" component="span">
@@ -74,7 +75,7 @@ export default function SideDrawer(props) {
 				</Link>
 			</div>
 
-			<div className={'mt-3 ' + paddingRule} style={currentPath === '/order' ? activeLinkStyle : {}}>
+			<div className={paddingRule} style={currentPath === '/order' ? activeLinkStyle : {}}>
 				<Link to="/order" className={flexRowRule}>
 					<IconButton><ShoppingCart /></IconButton>
 					<Typography variant="body1" color="textPrimary" component="span">
@@ -88,6 +89,15 @@ export default function SideDrawer(props) {
 					<IconButton><PersonIcon /></IconButton>
 					<Typography variant="body1" color="textPrimary" component="span">
 						<Translate value={'common:' + (clientIsAuthenticated ? "profile" : "login")} />
+					</Typography>
+				</Link>
+			</div>
+
+			<div className={paddingRule} style={currentPath === "/order/history" ? activeLinkStyle : {}}>
+				<Link to={clientIsAuthenticated ? "/order/history" : "/login"} className={flexRowRule}>
+					<IconButton><HistoryIcon /></IconButton>
+					<Typography variant="body1" color="textPrimary" component="span">
+						<Translate value={'common:history'} />
 					</Typography>
 				</Link>
 			</div>

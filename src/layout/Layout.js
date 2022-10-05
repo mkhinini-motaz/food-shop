@@ -20,7 +20,7 @@ export default function Layout(props) {
     const selectedLang               = useSelector((state) => state.I18nReducer.selectedLang);
     const orderDialogProps           = useSelector((state) => state.OrderDialogReducer);
     const confirmDialogProps         = useSelector((state) => state.ConfirmDialogReducer);
-    const ordersMapDialogProps        = useSelector((state) => state.OrdersMapDialogReducer);
+    const ordersMapDialogProps       = useSelector((state) => state.OrdersMapDialogReducer);
     const transporterDialogProps     = useSelector((state) => state.TransporterDialogReducer);
     const productCreateDialogProps   = useSelector(state => state.ProductDialogReducer.create);
     const productDeleteDialogProps   = useSelector(state => state.ProductDialogReducer.delete);

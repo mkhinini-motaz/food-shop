@@ -27,7 +27,7 @@ import { showOrdersMapDialog } from "../../store/actions/ordersMapDialog";
 export default function Order(props) {
     const dispatch = useDispatch();
     const history  = useHistory();
-    const { order, index, showTotal = false, showPromoCode = false, showProductPhotos = false } = props;
+    const { order, hideLocationbutton, showTotal = false, showPromoCode = false, showProductPhotos = false } = props;
     const selectedLang = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
@@ -144,7 +144,7 @@ export default function Order(props) {
                 </div>
             }
 
-            {! order.delivery_latitude ? '' :
+            {! order.delivery_latitude || hideLocationbutton ? '' :
                 <div className={"px-2"}>
                     <Divider className={"my-2"} />
                     <Chip icon={<MapIcon style={{ color: 'white' }} />}

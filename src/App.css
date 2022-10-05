@@ -216,9 +216,11 @@
     color: #666;
 }
 
-.border_radius_15 {
+.border_radius_15,
+.orders_map_output > div {
     border-radius: 15px;
 }
+
 .border_radius_30 {
     border-radius: 30px;
 }

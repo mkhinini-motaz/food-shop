@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import HistoryIcon from '@material-ui/icons/History';
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
+import MapIcon from '@material-ui/icons/Map';
 import { Home } from "@material-ui/icons";
 
 import { attemptShopUserLogout, openSideDrawer } from "../store/actions";
@@ -65,6 +66,17 @@ export default function AppBar(props) {
 				</Tooltip>
 			</MenuItem>
 
+			<MenuItem className="menu-item">
+				<Tooltip title={<Translate value={"order:map"} />} >
+					<IconButton
+						to={"/order/map"}
+						component={Link}
+					>
+						<MapIcon />
+					</IconButton>
+				</Tooltip>
+			</MenuItem>
+
             <MenuItem className="menu-item">
 				<Tooltip title={<Translate value={shopUserIsAuthenticated ? "order:order" : "common:login"} />} >
 					<IconButton
@@ -83,28 +95,6 @@ export default function AppBar(props) {
 						component={Link}
 					>
 						<AccountBalanceWalletIcon />
-					</IconButton>
-				</Tooltip>
-			</MenuItem>
-
-            <MenuItem className="menu-item">
-				<Tooltip title={<Translate value={"order:history"} />} >
-					<IconButton
-						to={"/order/history"}
-						component={Link}
-					>
-						<HistoryIcon />
-					</IconButton>
-				</Tooltip>
-			</MenuItem>
-
-            <MenuItem className="menu-item">
-				<Tooltip title={<Translate value={shopUserIsAuthenticated ? "common:profile" : "common:login"} />} >
-					<IconButton
-						to={shopUserIsAuthenticated ? "/profile" : "/login"}
-						component={Link}
-					>
-						<PersonIcon />
 					</IconButton>
 				</Tooltip>
 			</MenuItem>
