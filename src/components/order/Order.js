@@ -6,14 +6,23 @@ import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import EditIcon from '@material-ui/icons/Edit';
+import MapIcon from '@material-ui/icons/Map';
 
 import OrderStatus from "./OrderStatus";
 import ProductList from "../cart/ProductList";
 import PromoCode from "../cart/PromoCode";
-import { getShopTransporters, showOrderStatusEditDialog, showSnackbar, showTransporterDialog, updateOrderIsPayed, } from "../../store/actions";
+import {
+    getShopTransporters,
+    showOrderDialog,
+    showOrderStatusEditDialog,
+    showSnackbar,
+    showTransporterDialog,
+    updateOrderIsPayed,
+} from "../../store/actions";
 import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, SOURCE_ONLINE, SOURCES, TYPES, } from "../../constants";
 import { formatTime, formatLocalPhoneNumber } from "../../utils";
 import Translate from "../common/Translate";
+import { showOrdersMapDialog } from "../../store/actions/ordersMapDialog";
 
 export default function Order(props) {
     const dispatch = useDispatch();
@@ -132,6 +141,19 @@ export default function Order(props) {
                     <Typography variant="h5" component="h4" color="primary" align={selectedLangWriteFrom}>
                         {order.client.first_name + ' ' + order.client.last_name}
                     </Typography>
+                </div>
+            }
+
+            {! order.delivery_latitude ? '' :
+                <div className={"px-2"}>
+                    <Divider className={"my-2"} />
+                    <Chip icon={<MapIcon style={{ color: 'white' }} />}
+                          label={<span style={{ color: 'white', fontWeight: 'bold' }}><Translate value="common:map" /></span>}
+                          clickable
+                          color="primary"
+                          onClick={() => dispatch(showOrdersMapDialog(order))}
+                    />
+                    <Divider className={"my-2"} />
                 </div>
             }
 

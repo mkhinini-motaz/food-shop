@@ -4,6 +4,7 @@ export * from './product';
 export * from './order';
 export * from './confirmDialog';
 export * from './orderDialog';
+export * from './ordersMapDialog';
 export * from './orderStatusEditDialog';
 export * from './shopUser';
 export * from './transporterDialog';

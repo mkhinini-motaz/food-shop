@@ -77,8 +77,6 @@ export const formatLocalPhoneNumber = (phone) => {
     return match[2] + ' ' + match[3] + ' ' + match[4];
 };
 
-
-
 /**
  * Formats a unixTimestamp to be shown in the following format ('d/m/y') in client timezone
  *

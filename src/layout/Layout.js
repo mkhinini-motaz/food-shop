@@ -13,12 +13,14 @@ import OrderStatusUpdateDialog from "../components/order/OrderStatusUpdateDialog
 import ProductCreateDialog from "../components/product/ProductCreateDialog";
 import ProductDeleteDialog from "../components/product/ProductDeleteDialog";
 import Loader from "../components/common/Loader";
+import OrdersMapDialog from "../components/order/OrdersMapDialog";
 
 export default function Layout(props) {
     const isLoading                  = useSelector(state => state.LoaderReducer.isLoading);
     const selectedLang               = useSelector((state) => state.I18nReducer.selectedLang);
     const orderDialogProps           = useSelector((state) => state.OrderDialogReducer);
     const confirmDialogProps         = useSelector((state) => state.ConfirmDialogReducer);
+    const ordersMapDialogProps        = useSelector((state) => state.OrdersMapDialogReducer);
     const transporterDialogProps     = useSelector((state) => state.TransporterDialogReducer);
     const productCreateDialogProps   = useSelector(state => state.ProductDialogReducer.create);
     const productDeleteDialogProps   = useSelector(state => state.ProductDialogReducer.delete);
@@ -62,6 +64,8 @@ export default function Layout(props) {
                 onConfirm={orderDialogProps.onConfirm}
                 onCancel={orderDialogProps.onCancel}
             />
+
+            <OrdersMapDialog {...ordersMapDialogProps} />
 
             <OrderStatusUpdateDialog
                 order={orderStatusEditDialogProps.order}

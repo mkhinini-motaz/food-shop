@@ -10,7 +10,7 @@ export default function OrderMarker(props) {
         lat: parseFloat(props.order.delivery_latitude),
         lng: parseFloat(props.order.delivery_longitude),
     };
-    const index = props.index || 1;
+    const index = String(props.order.id).slice(-2).padStart(2, '0');
 
     return (
         <Marker position={position}

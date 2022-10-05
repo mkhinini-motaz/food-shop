@@ -7,10 +7,10 @@ import OrderMarker from "./OrderMarker";
 export default function GoogleMap(props) {
     const containerStyle = {
         height: props.height || '300px',
-        width: props.width || '100%'
+        width: props.width || '90vw'
     };
 
-    const center = { lat: 35.729, lng: 10.579, }; // TODO: get from authUser.shop
+    const center = props.center || { lat: 35.729, lng: 10.579, }; // TODO: get from authUser.shop
     const zoom = props.zoom || 13.5;
 
     return (
@@ -25,7 +25,7 @@ export default function GoogleMap(props) {
                     fullscreenControl: false
                 }}
             >
-                {props.orders.map((order, index) => <OrderMarker key={'order_' + order.id} order={order} index={index + 1} />)}
+                {props.orders.map((order, index) => <OrderMarker key={'order_' + order.id} order={order} />)}
             </BaseGoogleMap>
         </LoadScript>
     );
