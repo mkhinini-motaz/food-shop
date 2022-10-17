@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import io from "socket.io-client";
 import { Collapse } from '@material-ui/core';
 
 import { getReport } from "../../store/actions";

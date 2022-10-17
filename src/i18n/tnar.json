@@ -52,7 +52,7 @@
     "order:is_payed": "خالص",
     "order:is_not_payed": "موش خالص",
     "order:source": "المصدر",
-    "order:type": "نوع",
+    "order:type": "النوع",
     "order:count": "عدد الكماندات",
     "order:total_price": "المدخول",
     "order:transporter:attach:success": "تم تعيين الكماندا إلى الليفرور بنجاح",

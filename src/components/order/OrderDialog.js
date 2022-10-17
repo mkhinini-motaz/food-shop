@@ -21,7 +21,7 @@ export default function OrderDialog(props) {
             onClose={onCancel}
         >
             <DialogContent className={textAlign + 'p-0'}>
-                <Order order={order} showTotal hideLocationbutton />
+                <Order order={order} showTotal hideLocationButton />
             </DialogContent>
 
 

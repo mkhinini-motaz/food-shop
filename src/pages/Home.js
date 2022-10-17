@@ -43,8 +43,8 @@ export default function Home(props) {
     if (! currentOrdersAreLoading && (! currentOrders || 0 === currentOrders.length)) {
         ordersOutput = <Translate value={"order:no_orders"}/>;
     } else {
-        ordersOutput = currentOrders.map((order, index) =>
-            <Order key={'order_card_' + order.id} order={order} index={index} showTotal />
+        ordersOutput = currentOrders.map((order) =>
+            <Order key={'order_card_' + order.id} order={order} showTotal />
         );
     }
 
