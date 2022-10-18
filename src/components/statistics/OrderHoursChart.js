@@ -18,10 +18,13 @@ export default function OrderHoursChart(props) {
     }
 
     const ordersYesterdayData = [];
-    const yesterdayLabels = [];
     for (let order of report.ordersYesterdayHours) {
         ordersYesterdayData.push(order.count);
-        yesterdayLabels.push(order.hour);
+    }
+
+    const ordersLastWeekSameDayData = [];
+    for (let order of report.ordersLastWeekSameDayHours) {
+        ordersLastWeekSameDayData.push(order.count);
     }
 
     const data = {
@@ -36,8 +39,14 @@ export default function OrderHoursChart(props) {
             {
                 label: translate('common:yesterday', selectedLang, true),
                 data: ordersYesterdayData,
-                borderColor: COLOR_SECONDARY,
-                backgroundColor: COLOR_SECONDARY + '66',
+                borderColor: COLOR_SECONDARY + '55',
+                backgroundColor: COLOR_SECONDARY + '77',
+            },
+            {
+                label: translate('common:last_week', selectedLang, true),
+                data: ordersLastWeekSameDayData,
+                borderColor: '#36454f55',
+                backgroundColor: '#36454f77',
             },
         ],
     };
