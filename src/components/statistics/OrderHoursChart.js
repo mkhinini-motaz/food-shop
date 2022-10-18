@@ -1,9 +1,10 @@
 import React from 'react';
-import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY } from "../../constants";
+import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, COLOR_SECONDARY } from "../../constants";
 
 import { Line } from 'react-chartjs-2';
 import { translate } from "../../i18n";
 import { useSelector } from "react-redux";
+import Translate from "../common/Translate";
 
 export default function OrderHoursChart(props) {
     const report = props.report;
@@ -16,14 +17,27 @@ export default function OrderHoursChart(props) {
         labels.push(order.hour);
     }
 
+    const ordersYesterdayData = [];
+    const yesterdayLabels = [];
+    for (let order of report.ordersYesterdayHours) {
+        ordersYesterdayData.push(order.count);
+        yesterdayLabels.push(order.hour);
+    }
+
     const data = {
         labels,
         datasets: [
             {
-                label: 'Orders', // TODO: translate
+                label: translate('common:today', selectedLang, true),
                 data: ordersData,
                 borderColor: COLOR_PRIMARY,
                 backgroundColor: COLOR_PRIMARY + '66',
+            },
+            {
+                label: translate('common:yesterday', selectedLang, true),
+                data: ordersYesterdayData,
+                borderColor: COLOR_SECONDARY,
+                backgroundColor: COLOR_SECONDARY + '66',
             },
         ],
     };

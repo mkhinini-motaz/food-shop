@@ -80,7 +80,7 @@
     "order:source:by_phone": "Téléphone",
 
     "order:report:last_3_months:title": "Dernier 3 mois",
-    "order:report:hour:title": "Commandes par heure",
+    "order:report:hour:title": "Produit par heure",
     "order:report:category_count:title": "Nombre par catégorie",
     "order:report:category_price:title": "Revenue par catégorie",
     "order:report:status:title": "Status des commandes",
