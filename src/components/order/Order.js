@@ -131,7 +131,8 @@ export default function Order(props) {
                 {! order.client ? '' :
                     <div className={"px-2"}>
                         <Typography variant="h5" component="h4" color="primary" align={selectedLangWriteFrom}>
-                            {order.client.first_name + ' ' + order.client.last_name}
+                            {! order.client.first_name && ! order.client.last_name ? 'client' : /* TODO: translate */
+                                order.client.first_name + ' ' + order.client.last_name}
                         </Typography>
                     </div>
                 }
