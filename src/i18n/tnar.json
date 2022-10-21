@@ -39,6 +39,7 @@
     "form:password:label": "كلمة السر",
     "form:password_confirmation:label": "تأكيد كلمة السر",
     "form:total:label": "المجموع",
+    "form:total_to_pay:label": "المجموع الكامل",
 
     "cart:promo_code:label": "كود برومو",
     "cart:additional_note:label": "تزيدش توصي حاجة",

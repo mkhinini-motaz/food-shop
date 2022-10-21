@@ -4,7 +4,6 @@ import { List } from '@material-ui/core';
 
 import Product from './Product';
 import MoneyFormatter from '../common/MoneyFormatter';
-import Total from "../order/Total";
 import TranslateField from "../common/TranslateField";
 import { BASE_BACKEND_URL, COMPONENT_SHOW_DELAY, ORDER, PRODUCT } from '../../constants';
 import { productPrice, productPriceForDialog } from "../../utils";
@@ -39,7 +38,6 @@ export default function ProductList(props) {
             <List className="bg-white border_radius_15" >
                 {productCartItemComponents}
             </List>
-            {props.showTotal === false ? '' : <Total value={totalPrice} deliveryFee={props.deliveryFee} />}
         </div>
     );
 }

@@ -10,7 +10,7 @@ import MapIcon from '@material-ui/icons/Map';
 
 import OrderStatus from "./OrderStatus";
 import ProductList from "../cart/ProductList";
-import PromoCode from "../cart/PromoCode";
+import Total from "./Total";
 import Translate from "../common/Translate";
 import { getShopTransporters, showOrderStatusEditDialog, showSnackbar, showTransporterDialog, updateOrderIsPayed, } from "../../store/actions";
 import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, SOURCE_ONLINE, SOURCES, TYPES, } from "../../constants";
@@ -188,7 +188,7 @@ export default function Order(props) {
                              deliveryFee={order.delivery_fee}
                              detailedView />
 
-                {showPromoCode === false ? '' : <PromoCode promoCode={order.promo_code} />}
+                <Total order={order} />
             </div>
         </div>
     );

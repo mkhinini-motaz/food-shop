@@ -39,6 +39,7 @@
     "form:password:label": "Password",
     "form:password_confirmation:label": "Password confirmation",
     "form:total:label": "Total",
+    "form:total_to_pay:label": "Total to pay",
 
     "cart:promo_code:label": "Promo Code",
     "cart:promo_code:free_delivery": "Free delivery with the promo code",

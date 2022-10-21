@@ -39,6 +39,7 @@
     "form:password:label": "Mot de passe",
     "form:password_confirmation:label": "Confirmation mot de passe",
     "form:total:label": "Total",
+    "form:total_to_pay:label": "Total à payer",
 
     "cart:promo_code:label": "Code promo",
     "cart:additional_note:label": "Tzidech twassi 7aja",
