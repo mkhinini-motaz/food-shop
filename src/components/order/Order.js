@@ -62,7 +62,7 @@ export default function Order(props) {
     const flexRowClassName = ' flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse ' : ' ');
 
     return (
-        <div className={"col-12 col-sm-6 col-md-4 col-lg-3 p-2"}>
+        <div className={"col-12 col-sm-6 col-md-4 p-2"}>
             <div className={classes.orderCardRoot + ' my-2 pb-2 px-2 pt-3 border_radius_15 '}
                  style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
                  key={'order_details_' + order.id}

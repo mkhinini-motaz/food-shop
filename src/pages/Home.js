@@ -67,10 +67,8 @@ export default function Home(props) {
                         </MuiPickersUtilsProvider>
                     </div>
                 </div>
-                <div className="row justify-content-center">
-                    <div className={"m-2 text-center d-flex flex-wrap " + flexRowClassName} >
-                        {ordersOutput}
-                    </div>
+                <div className={"m-2 text-center row justify-content-center flex-wrap " + flexRowClassName} >
+                    {ordersOutput}
                 </div>
             </div>
         </Collapse>
