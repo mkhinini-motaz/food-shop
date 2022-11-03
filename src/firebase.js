@@ -11,7 +11,9 @@ const firebaseConfig = {
     measurementId: "G-WF9WFNXJFX"
 };
 
-firebase.initializeApp(firebaseConfig);
+export const initFirebase = () => {
+    firebase.initializeApp(firebaseConfig);
+};
 
 const messaging = firebase.messaging();
 
