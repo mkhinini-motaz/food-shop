@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { getToken, onMessageListener } from './firebase';
 
 import Store from './store';
 import { COLOR_PRIMARY, COLOR_SECONDARY, GOOGLE_ANALYTICS_TRACKING_ID } from './constants';
