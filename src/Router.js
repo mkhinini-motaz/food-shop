@@ -14,21 +14,9 @@ import Overview from "./pages/order/Overview";
 import EditOrder from "./pages/order/EditOrder";
 import History from "./pages/order/History";
 import Map from "./pages/order/Map";
-import { getToken, onMessageListener } from "./firebase";
-import { saveDeviceId } from "./store/actions";
 
 function Router(props) {
-    const dispatch = useDispatch();
     let authShopUser = useSelector(state => state.AuthReducer.authShopUser);
-    const shopUserIsAuthenticated = !!localStorage.getItem('shop_user_access_token') && !!authShopUser.id;
-
-    useEffect(async () => {
-        const token = await getToken();
-        dispatch(saveDeviceId(token));
-        onMessageListener().then(message => {
-            console.log('message', message)
-        }).catch(err => console.log('failed: ', err));
-    }, [shopUserIsAuthenticated]);
 
     return (
         <BrowserRouter>
