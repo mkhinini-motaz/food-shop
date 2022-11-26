@@ -79,9 +79,6 @@ export default function Option(props) {
         },
     })();
 
-    const [ isShown, setIsShown ] = React.useState(false);
-    setTimeout(() => { setIsShown((previousIsShown) => true); }, 500 + props.showDelay);
-
     const writeFromCssRule = selectedLangWriteFrom === 'right' ? 'flex-row-reverse' : '';
 
     const formDescription = [
@@ -101,7 +98,7 @@ export default function Option(props) {
     ];
 
     return (
-        <Grow in={isShown}>
+        <Grow in={true}>
             <div className={classes.root + ' ' + writeFromCssRule + ' my-2 mx-2 row'}>
                 <div className={classes.media} />
                 {! props.option.price ? '' :

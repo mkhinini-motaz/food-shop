@@ -72,6 +72,7 @@ export default function ProductCreateDialog(props) {
                                           minimumCount={1}
                                           onClick={productCountOnChange}
                                           style={{ flexGrow: 1 }}
+                                          bigSize
                     />
                 </div>
             </DialogTitle>
