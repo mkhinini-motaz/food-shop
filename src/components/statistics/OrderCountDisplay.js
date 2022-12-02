@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 export default function OrderCountDisplay(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
-    const flexRowClassName = 'd-flex ' + (selectedLangWriteFrom === 'right' ? 'flex-row-reverse ' : ' ');
+    const flexRowClassName = 'd-flex flex-wrap' + (selectedLangWriteFrom === 'right' ? 'flex-row-reverse ' : ' ');
     const { title, displayedCount, displayedPrice, comparedCount, comparedPrice } = props;
 
     const getTrendingIcon = (firstValue, secondValue) => {
@@ -28,7 +28,7 @@ export default function OrderCountDisplay(props) {
     };
 
     return (
-        <div>
+        <div className={"col-6"}>
             <Typography variant="h6" component="h6" color="primary" align={selectedLangWriteFrom}>
                 <Translate value={title} textOnly={true} />
             </Typography>

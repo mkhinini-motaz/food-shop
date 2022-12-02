@@ -42,6 +42,7 @@ export default function OrderOverview(props) {
             {! report.count ? '' : <>
                 <OrderHoursChart report={report} />
                 <OrderCount report={report} />
+                <OrderTransporterCount report={report} />
 
                 {! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
                     <CategoriesCount report={report} />
@@ -49,7 +50,6 @@ export default function OrderOverview(props) {
                 <OrderSourceCount report={report} />
                 <OrderTypeCount report={report} />
                 <OrderStatusCount report={report} />
-                <OrderTransporterCount report={report} />
 
                 {! SHOP_USER.CAN_SEE_ORDERS_STATISTICS.includes(authShopUser.role) ? '' : <>
                     <ProductsCount report={report}/>
