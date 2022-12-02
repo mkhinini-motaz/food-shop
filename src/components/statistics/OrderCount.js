@@ -1,13 +1,17 @@
 import React from 'react';
 import { BOX_SHADOW_CSS_RULE } from "../../constants";
 import OrderCountDisplay from "./OrderCountDisplay";
+import { useSelector } from "react-redux";
 
 export default function OrderCount(props) {
     const { count, countYesterday, countLastWeekSameDay, countLastMonthSameDay, countAvgThisWeek, countAvgLastWeek, countAvgThisMonth, countAvgLastMonth } = props.report;
 
+    const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
+    const flexRowClassName = (selectedLangWriteFrom === 'right' ? ' flex-row-reverse ' : ' ');
+
     return (
         <div className={"p-2 col-12 col-sm-4"}>
-            <div className={"bg-white p-2 border_radius_15 row mx-0"}
+            <div className={"bg-white p-2 border_radius_15 row mx-0 " + flexRowClassName}
                  style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
             >
                 <OrderCountDisplay title={"common:today"} displayedCount={count.count} displayedPrice={count.total_price} />
