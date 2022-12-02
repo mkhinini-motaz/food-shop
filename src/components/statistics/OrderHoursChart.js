@@ -54,6 +54,10 @@ export default function OrderHoursChart(props) {
     const options = {
         maintainAspectRatio: false,
         responsive: true,
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
         plugins: {
             legend: {
                 position: 'top',
