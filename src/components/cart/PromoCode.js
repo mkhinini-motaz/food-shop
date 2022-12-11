@@ -9,10 +9,12 @@ import Loader from "../common/Loader";
 import Form from "../common/form/Form";
 import { BOX_SHADOW_CSS_RULE, CART_PROMO_CODE_CHANGE_TIMEOUT_DELAY } from "../../constants";
 import { getPromoCode } from "../../store/actions";
+import TextField from "../common/form/TextField";
 
 export default function PromoCode(props) {
     const dispatch = useDispatch();
     const [ timeoutId, setTimeoutId ] = React.useState(0);
+    const [ code, setCode ] = React.useState('');
     const [ isShown, setIsShown ] = React.useState(false);
 
     const promoCodeIsLoading = useSelector(state => state.CartReducer.promoCodeIsLoading);
@@ -26,21 +28,23 @@ export default function PromoCode(props) {
     const iconsClassName       = 'col-2 align-self-center ' + (selectedLangWriteFrom === 'right' ? 'pr-0' : 'pl-0');
     const loyaltyIconClassName = 'col-2 align-self-center ' + (selectedLangWriteFrom === 'right' ? 'pl-0' : '');
 
-    const formDescription = [ {
-        name: 'code',
-        label: <Translate value="cart:promo_code:label" />,
-        required: false,
-    } ];
-
     useEffect(() => {
-        setTimeout(() => { setIsShown(() => true); }, 500 + props.showDelay);
+        const timeoutId = setTimeout(() => { setIsShown(() => true); }, 500 + props.showDelay);
+        return () => clearTimeout(timeoutId);
     }, []);
 
-    const onChange = (newValue) => {
+    useEffect(() => {
+        if (promoCode) {
+            setCode(promoCode.code);
+        }
+    }, [promoCode]);
+
+    const onChange = (event) => {
+        setCode(event.target.value);
         setTimeoutId(previousTimeoutId => {
             clearTimeout(previousTimeoutId);
             return setTimeout(
-                () => dispatch(getPromoCode(newValue.code)),
+                () => dispatch(getPromoCode(event.target.value || '')),
                 CART_PROMO_CODE_CHANGE_TIMEOUT_DELAY
             );
         });
@@ -55,11 +59,7 @@ export default function PromoCode(props) {
                     <LoyaltyIcon color={! promoCode || promoCodeIsLoading ? 'secondary' : 'primary'} fontSize="large" style={{ transition: 'color 3s' }}/>
                 </div>
                 <div className="col-8" >
-                    <Form
-                        initialValue={promoCode}
-                        fieldDescriptions={formDescription}
-                        onChange={onChange}
-                    />
+                    <TextField value={code} onChange={onChange} label={<Translate value="cart:promo_code:label" />} required={false}/>
                 </div>
                 {! promoCodeIsLoading ? '' :
                     <div className={iconsClassName}>

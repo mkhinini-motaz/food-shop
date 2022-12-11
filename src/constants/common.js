@@ -8,6 +8,7 @@ export const FETCH_TYPE_APPEND = "FETCH_TYPE_APPEND";
 export const COMPONENT_SHOW_DELAY = 130;
 export const SNACKBAR_AUTO_HIDE_DURATION = 6000;
 export const CART_ADDITIONAL_NOTE_CHANGE_TIMEOUT_DELAY = 1000;
+export const CART_PROMO_CODE_CHANGE_TIMEOUT_DELAY = 2000;
 export const SNACKBAR_POSITION = { vertical: 'bottom', horizontal: 'right' };
 
 //export const BOX_SHADOW_CSS_RULE = 'rgba(209, 17, 17, 0.75)';
