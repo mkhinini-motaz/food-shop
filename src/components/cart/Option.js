@@ -35,11 +35,14 @@ export default function Option(props) {
             left: 0,
         },
         sliderFormContainer: {
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
             position: 'absolute',
-            width: '78%',
-            textAlign: 'center',
             bottom: '5%',
-            left: '5%',
+        },
+        sliderBackground: {
+            width: '60%',
             color: COLOR_PRIMARY,
             backgroundColor: COLOR_SECONDARY + '33',
             borderRadius: '15px',
@@ -122,12 +125,14 @@ export default function Option(props) {
                 </div>
 
                 <Zoom in={props.isQuantifiable && props.isSelected}>
-                    <div className={classes.sliderFormContainer + ' px-3'}>
-                        <Form
-                            initialValue={{ quantity: OPTION.DEFAULT_QUANTITY}}
-                            fieldDescriptions={formDescription}
-                            onChange={({ quantity }) => props.onQuantityChange(quantity)}
-                        />
+                    <div className={classes.sliderFormContainer}>
+                        <div className={classes.sliderBackground + ' px-3'}>
+                            <Form
+                                initialValue={{ quantity: OPTION.DEFAULT_QUANTITY}}
+                                fieldDescriptions={formDescription}
+                                onChange={({ quantity }) => props.onQuantityChange(quantity)}
+                            />
+                        </div>
                     </div>
                 </Zoom>
             </div>
