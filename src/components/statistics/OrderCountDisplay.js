@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 export default function OrderCountDisplay(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
     const flexRowClassName = 'd-flex flex-wrap ' + (selectedLangWriteFrom === 'right' ? 'flex-row-reverse ' : ' ');
-    const { title, displayedCount, displayedPrice, comparedCount, comparedPrice } = props;
+    const { title, displayedCount, displayedPrice, comparedCount, comparedPrice, displayedAvg, comparedAvg } = props;
 
     const getTrendingIcon = (firstValue, secondValue) => {
         if (firstValue === secondValue) {
@@ -28,7 +28,7 @@ export default function OrderCountDisplay(props) {
     };
 
     return (
-        <div className={"col-6"}>
+        <div className={"col-6 px-2"}>
             <Typography variant="h6" component="h6" color="primary" align={selectedLangWriteFrom}>
                 <Translate value={title} textOnly={true} />
             </Typography>
@@ -44,6 +44,12 @@ export default function OrderCountDisplay(props) {
                 <span className={"mx-2"}>:</span>
                 <span className={"font-weight-bold"}><MoneyFormatter value={displayedPrice} /></span>
                 {! comparedPrice ? '' : getTrendingIcon(comparedPrice, displayedPrice)}
+            </div>
+            <div className={flexRowClassName}>
+                <Translate value={'order:avg_total_price'}/>
+                <span className={"mx-2"}>:</span>
+                <span className={"font-weight-bold"}><MoneyFormatter value={Math.round(displayedAvg / 1000) * 1000} /></span>
+                {! comparedAvg ? '' : getTrendingIcon(comparedAvg, displayedAvg)}
             </div>
         </div>
     );
