@@ -19,6 +19,8 @@ export default function Option(props) {
             height: 60,
         },
         checkbox: {
+            transform: "scale(2.5)",
+            zIndex: 5,
             '&:hover': { backgroundColor: 'transparent', },
         },
         checkboxContainer: {
@@ -118,7 +120,6 @@ export default function Option(props) {
                     <Checkbox
                         onChange={(event) => props.onChange(event.target.checked)}
                         color="primary"
-                        style={{ transform: "scale(2.5)" }}
                         className={classes.checkbox}
                         checked={props.isSelected}
                     />
