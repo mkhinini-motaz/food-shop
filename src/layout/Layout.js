@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import AppBar from "./AppBar";
 import Footer from "./Footer";
@@ -14,8 +14,23 @@ import ProductCreateDialog from "../components/product/ProductCreateDialog";
 import ProductDeleteDialog from "../components/product/ProductDeleteDialog";
 import Loader from "../components/common/Loader";
 import OrdersMapDialog from "../components/order/OrdersMapDialog";
+import { getToken, onMessageListener } from "../firebase";
+import { saveDeviceId } from "../store/actions";
 
 export default function Layout(props) {
+    const dispatch = useDispatch();
+    useEffect(async () => {
+        const token = await getToken();
+        if (! token) {
+            return;
+        }
+
+        dispatch(saveDeviceId(token));
+        onMessageListener().then(message => {
+            console.log('message', message)
+        }).catch(err => console.log('failed: ', err));
+    }, [dispatch]);
+
     const isLoading                  = useSelector(state => state.LoaderReducer.isLoading);
     const selectedLang               = useSelector((state) => state.I18nReducer.selectedLang);
     const orderDialogProps           = useSelector((state) => state.OrderDialogReducer);

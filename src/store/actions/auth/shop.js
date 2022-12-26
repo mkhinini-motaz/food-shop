@@ -111,7 +111,7 @@ export function saveDeviceId(device_id)  {
     return function(dispatch) {
         axios.post(BASE_SHOP_API_URL + '/device-id', { device_id })
         .then(response => {
-            dispatch(showSnackbar({ message: 'common:success' }));
+//            dispatch(showSnackbar({ message: 'common:success' }));
         })
         .catch(error => {
             dispatch(showSnackbar({ message: 'common:error', severity: 'error' }));
