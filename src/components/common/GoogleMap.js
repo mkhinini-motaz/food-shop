@@ -3,6 +3,7 @@ import { GoogleMap as BaseGoogleMap, LoadScript } from '@react-google-maps/api';
 
 import { GOOGLE_MAP_API_KEY } from "../../constants";
 import OrderMarker from "./OrderMarker";
+import CurrentPositionMarker from "./CurrentPositionMarker";
 
 export default function GoogleMap(props) {
     const containerStyle = {
@@ -25,6 +26,7 @@ export default function GoogleMap(props) {
                     fullscreenControl: false
                 }}
             >
+                <CurrentPositionMarker />
                 {props.orders.map((order, index) => <OrderMarker key={'order_' + order.id} order={order} />)}
             </BaseGoogleMap>
         </LoadScript>
