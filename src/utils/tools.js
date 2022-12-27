@@ -394,3 +394,21 @@ export const optionOutput = (option, selectedLang, selectedLangWriteFrom) => {
     }
     return optionOutput;
 };
+
+/**
+ * @param polygon {array}
+ *
+ * @returns {array}
+ */
+export function arrayPolygonToObjects(polygon) {
+    return polygon.map(coordinates => ({ lat: coordinates[0], lng: coordinates[1] }));
+}
+
+/**
+ * @param objects {array}
+ *
+ * @returns {array}
+ */
+export function objectsPolygonToArray(objects) {
+    return objects.map(coordinates => [ coordinates.lat, coordinates.lng]);
+}

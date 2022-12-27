@@ -8,6 +8,9 @@ import Translate from '../common/Translate';
 import GoogleMap from '../common/GoogleMap';
 import { hideOrdersMapDialog } from "../../store/actions/ordersMapDialog";
 import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, IMAGE_WITH_TEXT_TINT } from "../../constants";
+import CurrentPositionMarker from "../common/CurrentPositionMarker";
+import OrderMarker from "../common/OrderMarker";
+import { GoogleMap as BaseGoogleMap } from "@react-google-maps/api";
 
 export default function OrdersMapDialog(props) {
     const { isVisible, order } = props;
@@ -42,7 +45,10 @@ export default function OrdersMapDialog(props) {
                     <CloseIcon />
                 </IconButton>
                 <div>
-                    <GoogleMap orders={[order]} center={mapCenter} height={"90vh"} width={"100%"} zoom={15} />
+                    <GoogleMap center={mapCenter} height={"90vh"} width={"100%"} zoom={15}>
+                        <CurrentPositionMarker />
+                        <OrderMarker key={'order_' + order.id} order={order} />
+                    </GoogleMap>
                 </div>
             </DialogContent>
         </Dialog>

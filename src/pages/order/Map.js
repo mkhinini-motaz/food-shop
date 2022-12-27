@@ -11,6 +11,7 @@ import { BASE_WS_URL, BOX_SHADOW_CSS_RULE, COMPONENT_SHOW_DELAY } from "../../co
 
 import { formatDateTime } from "../../utils";
 import Translate from "../../components/common/Translate";
+import OrderMarker from "../../components/common/OrderMarker";
 
 export default function Map(props) {
     const dispatch = useDispatch();
@@ -42,7 +43,9 @@ export default function Map(props) {
     if (! currentOrdersAreLoading && (! currentOrders || 0 === currentOrders.length)) {
         ordersOutput = <Translate value={"order:no_orders"}/>;
     } else {
-        ordersOutput = <GoogleMap orders={currentOrders} height={"80vh"} width={"100%"} />
+        ordersOutput = <GoogleMap height={"80vh"} width={"100%"} >
+            {currentOrders.map((order, index) => <OrderMarker key={'order_' + order.id} order={order} />)}
+        </GoogleMap>
     }
 
     return (

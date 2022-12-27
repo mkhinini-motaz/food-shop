@@ -75,3 +75,6 @@ export const CLOSE_SIDE_DRAWER = 'CLOSE_SIDE_DRAWER';
 
 export const SHOW_SNACKBAR = 'SHOW_SNACKBAR';
 export const HIDE_SNACKBAR = 'HIDE_SNACKBAR';
+
+export const SET_SHOP = 'SET_SHOP';
+export const SET_SHOP_IS_LOADING = 'SET_SHOP_IS_LOADING';

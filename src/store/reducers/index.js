@@ -8,6 +8,7 @@ import OrderReducer from './OrderReducer';
 import OrdersMapDialogReducer from './OrdersMapDialogReducer';
 import OrderStatusEditDialogReducer from './OrderStatusEditDialogReducer';
 import ShopUserReducer from './ShopUserReducer';
+import ShopReducer from './ShopReducer';
 import ConfirmDialogReducer from './ConfirmDialogReducer';
 import AuthReducer from './AuthReducer';
 import I18nReducer from './I18nReducer';
@@ -26,6 +27,7 @@ export default combineReducers({
     TransporterDialogReducer,
     OrderReducer,
     ShopUserReducer,
+    ShopReducer,
     ConfirmDialogReducer,
     AuthReducer,
     I18nReducer,

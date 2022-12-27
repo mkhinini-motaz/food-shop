@@ -10,6 +10,7 @@ import {
     SET_SHOP_USER_PROFILE_UPDATE_IS_LOADING
 } from '../types';
 import { showSnackbar } from "../snackbar";
+import { setShop } from "../shop";
 
 export function shopUserLoginSuccess(client) {
     return { type: SHOP_USER_LOGIN_SUCCESS, payload: client };
@@ -63,6 +64,7 @@ export function fetchShopUserProfile()  {
         axios.get(BASE_SHOP_API_URL + '/profile', { headers: { Authorization: shopUserAccessToken() } })
             .then(response => {
                 dispatch(shopUserLoginSuccess({ ...response.data.data, access_token: localStorage.getItem('shop_user_access_token') }));
+                dispatch(setShop(response.data.data.shop))
             })
             .catch(error => {
 // TODO: snackbar message
