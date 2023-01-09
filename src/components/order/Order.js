@@ -63,7 +63,7 @@ export default function Order(props) {
     const flexRowClassName = ' flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse ' : ' ');
 
     return (
-        <div className={"col-12 col-sm-6 col-md-4 p-2"}>
+        <div className={props.className + " p-2"}>
             <div className={classes.orderCardRoot + ' my-2 pb-2 px-2 pt-3 border_radius_15 '}
                  style={{ boxShadow: BOX_SHADOW_CSS_RULE }}
                  key={'order_details_' + order.id}
@@ -152,7 +152,7 @@ export default function Order(props) {
                               label={<span style={{ color: 'white', fontWeight: 'bold' }}><Translate value="common:go" /></span>}
                               clickable
                               color="primary"
-                              onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=' + order.delivery_latitude + ',' + order.delivery_longitude, '_blank').focus()}
+                              onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=' + order.delivery_latitude + ',' + order.delivery_longitude).focus()}
                         />
                         <Divider className={"my-2"} />
                     </div>
