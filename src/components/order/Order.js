@@ -6,6 +6,7 @@ import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import EditIcon from '@material-ui/icons/Edit';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import MapIcon from '@material-ui/icons/Map';
 
 import OrderStatus from "./OrderStatus";
@@ -140,11 +141,18 @@ export default function Order(props) {
                 {! order.delivery_latitude || hideLocationButton ? '' :
                     <div className={"px-2"}>
                         <Divider className={"my-2"} />
-                        <Chip icon={<MapIcon style={{ color: 'white' }} />}
+                        <Chip icon={<VisibilityIcon style={{ color: 'white' }} />}
                               label={<span style={{ color: 'white', fontWeight: 'bold' }}><Translate value="common:map" /></span>}
                               clickable
                               color="primary"
                               onClick={() => dispatch(showOrdersMapDialog(order))}
+                        />
+                        <span className={"px-2"} />
+                        <Chip icon={<MapIcon style={{ color: 'white' }} />}
+                              label={<span style={{ color: 'white', fontWeight: 'bold' }}><Translate value="common:go" /></span>}
+                              clickable
+                              color="primary"
+                              onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=' + order.delivery_latitude + ',' + order.delivery_longitude, '_blank').focus()}
                         />
                         <Divider className={"my-2"} />
                     </div>

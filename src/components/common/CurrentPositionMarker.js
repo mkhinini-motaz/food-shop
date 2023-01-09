@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { showOrderDialog } from "../../store/actions";
 
 export default function CurrentPositionMarker(props) {
-    const [ currentPosition, setCurrentPosition ] = React.useState(false);
+    const [ currentPosition, setCurrentPosition ] = React.useState({ lat: 0, lng: 0 });
     navigator.geolocation.getCurrentPosition((googlePosition) => {
         const position = { lat: googlePosition.coords.latitude, lng: googlePosition.coords.longitude };
         setCurrentPosition(position);

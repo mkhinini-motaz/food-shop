@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Dialog, IconButton, DialogContent, makeStyles, } from '@material-ui/core';
 
@@ -11,6 +11,7 @@ import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, IMAGE_WITH_TEXT_TINT } from "../../
 import CurrentPositionMarker from "../common/CurrentPositionMarker";
 import OrderMarker from "../common/OrderMarker";
 import { GoogleMap as BaseGoogleMap } from "@react-google-maps/api";
+import Directions from "../common/Directions";
 
 export default function OrdersMapDialog(props) {
     const { isVisible, order } = props;
@@ -34,6 +35,16 @@ export default function OrdersMapDialog(props) {
         },
     })();
 
+    const [ currentPosition, setCurrentPosition ] = React.useState({ lat: 0, lng: 0 });
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((googlePosition) => {
+            const position = { lat: googlePosition.coords.latitude, lng: googlePosition.coords.longitude };
+            if (currentPosition.lat === 0) {
+                setCurrentPosition(position);
+            }
+        });
+    }, []);
+
     return (
         <Dialog
             fullWidth
@@ -48,6 +59,7 @@ export default function OrdersMapDialog(props) {
                     <GoogleMap center={mapCenter} height={"90vh"} width={"100%"} zoom={15}>
                         <CurrentPositionMarker />
                         <OrderMarker key={'order_' + order.id} order={order} />
+                        <Directions origin={currentPosition} destination={{ lat: order.delivery_latitude, lng: order.delivery_longitude }} />
                     </GoogleMap>
                 </div>
             </DialogContent>
