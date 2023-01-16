@@ -96,6 +96,13 @@
     "order:report:avg_this_month": "موايان الشهر هاذا",
     "order:report:avg_last_month": "موايان الشهر لي فات",
 
+    "ingredient:piece": "قطعة",
+    "ingredient:pieces": "قطعة",
+    "ingredient:gr": "غرام",
+    "ingredient:grs": "غرام",
+    "ingredient:ml": "ملل",
+    "ingredient:mls": "ملل",
+
     "lang:fr": "فرنسية",
     "lang:en": "إنجليزية",
     "lang:tnar": "تونسي بالعربي",

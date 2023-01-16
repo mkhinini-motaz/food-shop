@@ -97,6 +97,13 @@
     "order:report:avg_this_month": "متوسط هذا الشهر",
     "order:report:avg_last_month": "متوسط الشهر الماضي",
 
+    "ingredient:piece": "قطعة",
+    "ingredient:pieces": "قطعة",
+    "ingredient:gr": "غرام",
+    "ingredient:grs": "غرام",
+    "ingredient:ml": "ملل",
+    "ingredient:mls": "ملل",
+
     "lang:fr": "فرنسية",
     "lang:en": "إنجليزية",
     "lang:tnar": "تونسي بالعربي",

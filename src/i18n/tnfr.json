@@ -97,6 +97,13 @@
     "order:report:avg_this_month": "Moyenne chhar hadha",
     "order:report:avg_last_month": "Moyenne chhar li fet",
 
+    "ingredient:piece": "Piéce",
+    "ingredient:pieces": "Piéces",
+    "ingredient:gr": "Gram",
+    "ingredient:grs": "Grams",
+    "ingredient:ml": "Mill",
+    "ingredient:mls": "Mills",
+
     "lang:fr": "Français",
     "lang:en": "Anglais",
     "lang:tnar": "Tounsi bil 3arbi",

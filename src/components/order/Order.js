@@ -152,7 +152,7 @@ export default function Order(props) {
                               label={<span style={{ color: 'white', fontWeight: 'bold' }}><Translate value="common:go" /></span>}
                               clickable
                               color="primary"
-                              onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=' + order.delivery_latitude + ',' + order.delivery_longitude).focus()}
+                              onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=' + order.delivery_latitude + ',' + order.delivery_longitude)}
                         />
                         <Divider className={"my-2"} />
                     </div>
