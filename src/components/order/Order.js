@@ -177,7 +177,7 @@ export default function Order(props) {
 
                 <div className={'px-2 my-1 d-flex justify-content-between text-' + selectedLangWriteFrom + flexRowClassName}>
                     <Chip className="pl-2 h-auto"
-                        icon={<DirectionsBikeIcon />}
+                        icon={<DirectionsBikeIcon className={"wheelie_animation"} />}
                         onClick={transporterIconOnClick} key={'delivery_icon_' + order.id}
                         style={{ backgroundColor: '#fcbf49', cursor: 'pointer' }}
                         label={! order.shop_transporter ? '' :

@@ -263,3 +263,16 @@
         max-height: 84vh;
     }
 }
+
+@keyframes wheelie {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-45deg);
+    }
+}
+
+.wheelie_animation {
+    animation: wheelie 2s infinite alternate;
+}
