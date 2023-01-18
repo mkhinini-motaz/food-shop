@@ -30,9 +30,9 @@ export default function TransporterDialog(props) {
                     shopUsers.map(shopUser => {
                         return  <ShopTransporter key={'shop_transporter_' + shopUser.id}
                                                  shopTransporter={shopUser}
-                                                 onClick={() => {
-                                                     dispatch(attachTransporterToOrder(order.id, shopUser.id));
-                                                 }}
+                                                 isSelected={!! order.shop_transporter && order.shop_transporter.id === shopUser.id}
+                                                 onClick={() => dispatch(attachTransporterToOrder(order.id, shopUser.id))}
+                                                 onClear={() => dispatch(attachTransporterToOrder(order.id, null))}
                         />
                         }
                     )

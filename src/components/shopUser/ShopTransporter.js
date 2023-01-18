@@ -7,9 +7,10 @@ export default function ShopTransporter(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
     const shopTransporter = props.shopTransporter;
     const flexRowClassName = selectedLangWriteFrom === 'right' ? ' flex-row-reverse ' : '';
+    const { isSelected } = props;
 
     return (
-        <div className={flexRowClassName + ' d-flex row my-2 py-2'} style={{ backgroundColor: '#999', borderRadius: '15px', }}>
+        <div className={flexRowClassName + ' d-flex row my-2 py-2'} style={{ backgroundColor: isSelected ? '#fcbf49' : '#999', borderRadius: '15px', }}>
             <div className="col-5">
                 {shopTransporter.first_name}
             </div>
@@ -18,8 +19,8 @@ export default function ShopTransporter(props) {
                     <Translate value="shop_user:active_orders" params={{ count: shopTransporter.active_orders_count }} />
                 </div>
                 <div>
-                    <Button variant="contained" onClick={() => props.onClick()} color="primary">
-                        <Translate value="order:affect" />
+                    <Button variant="contained" onClick={() => isSelected ? props.onClear() : props.onClick()} color={isSelected ? 'secondary' : 'primary'}>
+                        <Translate value={isSelected ? "common:clear" : "order:affect"} />
                     </Button>
                 </div>
             </div>
