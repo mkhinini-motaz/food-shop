@@ -14,6 +14,8 @@ import Overview from "./pages/order/Overview";
 import EditOrder from "./pages/order/EditOrder";
 import History from "./pages/order/History";
 import Map from "./pages/order/Map";
+import CategoryEdit from "./pages/category/CategoryEdit";
+import ProductEdit from "./pages/product/ProductEdit";
 
 function Router(props) {
     let authShopUser = useSelector(state => state.AuthReducer.authShopUser);
@@ -92,7 +94,21 @@ function shopUserRoutes(authShopUser) {
                }
         />,
 
-       // TODO: Categories listing
+        <Route key="shop-route-category-edit" exact
+               path="/category/:categoryId/edit"
+               component={(props) => shopUserIsAuthenticated ?
+                   <Layout><CategoryEdit categoryId={props.match.params.categoryId} /></Layout> :
+                   <Redirect to="/login" />
+               }
+        />,
+
+        <Route key="shop-route-product-edit" exact
+               path="/product/:productId/edit"
+               component={(props) => shopUserIsAuthenticated ?
+                   <Layout><ProductEdit productId={props.match.params.productId} /></Layout> :
+                   <Redirect to="/login" />
+               }
+        />,
 
         <Route key="shop-route-settings" exact path="/settings" >
             {shopUserIsAuthenticated ?
