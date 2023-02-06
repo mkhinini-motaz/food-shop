@@ -5,6 +5,7 @@ import { APPEND_PRODUCTS, SET_PRODUCT_IS_VISIBLE_IS_LOADING, SET_PRODUCTS, SET_P
 import { BASE_SHOP_API_URL, FETCH_TYPE_APPEND, FETCH_TYPE_OVERRIDE } from '../../constants'
 import { showSnackbar } from "./snackbar";
 import { setIsLoading } from "./loader";
+import { fetchCategories } from "./category";
 
 export function appendProducts(products) {
     return { type: APPEND_PRODUCTS, payload: products };
@@ -69,7 +70,7 @@ export function trySettingProductIsVisible({ productId, isVisible })  {
         axios.post(BASE_SHOP_API_URL + '/product/' + productId + (isVisible ? '/show' : '/hide'), { params })
             .then(response => {
                 dispatch(showSnackbar({ title: 'product:edit:title', message: 'product:is_visible:success:message:' + !! isVisible }));
-                dispatch(setProductIsVisible(response.data.data));
+                dispatch(fetchCategories({}));
             })
             .catch(error => {
                 dispatch(setProductIsVisibleIsLoading(productId, false));

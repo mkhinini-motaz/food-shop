@@ -30,7 +30,7 @@ export default (state = initialCategoryReducerState, action) => {
         const categories = [];
         for (let category of state.categories.data) {
             if (category.id === action.payload.id) {
-                categories.push(action.payload);
+                categories.push({ ...category, ...action.payload });
                 continue;
             }
             categories.push(category)

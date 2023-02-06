@@ -45,7 +45,7 @@ export function fetchCategories({ page = 1, perPage = 20, orderBy = 'created_at'
     return function(dispatch) {
         dispatch(setIsLoading(true));
         if (fetchType === FETCH_TYPE_OVERRIDE) {
-            dispatch(setCategories(initialCategoryReducerState.categories));
+//            dispatch(setCategories(initialCategoryReducerState.categories));
         }
 
         const params = { page, perPage, orderBy, orderDirection };
@@ -69,7 +69,7 @@ export function trySettingCategoryIsVisible({ categoryId, isVisible })  {
         axios.post(BASE_SHOP_API_URL + '/category/' + categoryId + (isVisible ? '/show' : '/hide'), { params })
             .then(response => {
                 dispatch(showSnackbar({ title: 'category:edit:title', message: 'category:is_visible:success:message:' + !! isVisible }));
-                dispatch(setCategoryIsVisible(response.data.data));
+                dispatch(fetchCategories({}));
             })
             .catch(error => {
                 dispatch(setCategoryIsVisibleIsLoading(categoryId, false));

@@ -15,7 +15,7 @@ export default function ProductCardList(props) {
         showDelay += COMPONENT_SHOW_DELAY;
     }
 
-    const flexRowClassName = 'd-flex flex-wrap justify-content-center flex-row' +
+    const flexRowClassName = 'd-flex flex-wrap align-content-center flex-row' +
         (selectedLangWriteFrom === 'right' ? '-reverse' : '');
     return (
         <div className={flexRowClassName}>

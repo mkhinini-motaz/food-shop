@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { fetchCategories } from "../../store/actions";
 import Loader from "../../components/common/Loader";
-import CategoryCardList from "../../components/category/CategoryCardList";
+import CategoryAccordionList from "../../components/category/CategoryAccordionList";
 
 class CategoryIndex extends React.Component {
 	componentDidMount() {
@@ -21,7 +21,7 @@ class CategoryIndex extends React.Component {
 		) {
 			render = "no data"; // TODO: implement
 		} else {
-			render = <CategoryCardList categories={this.props.categories} />;
+			render = <CategoryAccordionList categories={this.props.categories} />;
 		}
 		return <div className="text-center">{render}</div>;
 	}
