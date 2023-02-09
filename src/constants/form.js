@@ -1,4 +1,7 @@
 export const FORM_FIELD_TYPE_TEXT = 'text';
+export const FORM_FIELD_TYPE_TRANSLATABLE_TEXT = 'translatable_text';
+export const FORM_FIELD_TYPE_IMAGE = 'image';
+export const FORM_FIELD_TYPE_SWITCH = 'switch';
 export const FORM_FIELD_TYPE_PASSWORD = 'password';
 export const FORM_FIELD_TYPE_PHONE = 'phone';
 export const FORM_FIELD_TYPE_SUBMIT = 'submit';

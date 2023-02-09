@@ -7,7 +7,10 @@ import {
     FORM_FIELD_TYPE_EMAIL,
     FORM_FIELD_TYPE_SUBMIT,
     FORM_FIELD_TYPE_SLIDER,
-    FORM_FIELD_TYPE_I18N_SELECT
+    FORM_FIELD_TYPE_I18N_SELECT,
+    FORM_FIELD_TYPE_TRANSLATABLE_TEXT,
+    FORM_FIELD_TYPE_IMAGE,
+    FORM_FIELD_TYPE_SWITCH
 } from '../../../constants';
 
 import PhoneField from './PhoneField';
@@ -17,6 +20,9 @@ import EmailField from './EmailField';
 import SubmitButton from './SubmitButton';
 import Slider from './Slider';
 import I18nSelectField from "./I18nSelectField";
+import TranslatableTextField from "./TranslatableTextField";
+import ImageField from "./ImageField";
+import SwitchField from "./SwitchField";
 
 export default function FormField(props) {
     const commonClassName = 'w-100 pb-2';
@@ -35,6 +41,15 @@ export default function FormField(props) {
 
         case FORM_FIELD_TYPE_I18N_SELECT:
             return <I18nSelectField className={commonClassName}  {...props} />;
+
+        case FORM_FIELD_TYPE_TRANSLATABLE_TEXT:
+            return <TranslatableTextField className={commonClassName}  {...props} />;
+
+        case FORM_FIELD_TYPE_IMAGE:
+            return <ImageField className={commonClassName}  {...props} />;
+
+        case FORM_FIELD_TYPE_SWITCH:
+            return <SwitchField className={commonClassName}  {...props} />;
 
         case FORM_FIELD_TYPE_SUBMIT:
             return <SubmitButton {...props} />;

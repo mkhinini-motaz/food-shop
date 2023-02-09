@@ -7,7 +7,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import ProductList from "../product/ProductList";
 import { useDispatch, useSelector } from "react-redux";
 import { trySettingCategoryIsVisible } from "../../store/actions";
-import { BOX_SHADOW_CSS_RULE, COLOR_SECONDARY } from "../../constants";
+import { BOX_SHADOW_CSS_RULE, COLOR_PRIMARY, COLOR_SECONDARY } from "../../constants";
 import Translate from "../common/Translate";
 
 export default function CategoryAccordion(props) {
@@ -25,13 +25,13 @@ export default function CategoryAccordion(props) {
     return (
         <div className={'my-2 bg-white p-2 border_radius_15'} style={{ maxWidth: '700px', width: '100%', boxShadow: BOX_SHADOW_CSS_RULE }}>
             <div className={flexRowClassName}>
-                <Typography gutterBottom variant="h3" component="h2" color={'primary'}>
+                <Typography gutterBottom variant="h4" component="h2" color={'primary'}>
                     <TranslateField value={category.name} />
                 </Typography>
                 <div>
                     <Switch checked={!! category.is_visible} onChange={handleCategoryIsVisible} key={'category_is_visible_' + categoryId} />
 
-                    <Button onClick={goToCategoryEdit} style={{ backgroundColor: COLOR_SECONDARY }} >
+                    <Button onClick={goToCategoryEdit} style={{ backgroundColor: COLOR_PRIMARY }} >
                         <EditIcon style={{ color: 'white' }} />
                     </Button>
                     <Button onClick={onExpand || (() => {})} >
