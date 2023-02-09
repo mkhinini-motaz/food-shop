@@ -31,10 +31,10 @@ export default function CategoryAccordion(props) {
                 <div>
                     <Switch checked={!! category.is_visible} onChange={handleCategoryIsVisible} key={'category_is_visible_' + categoryId} />
 
-                    <Button onClick={goToCategoryEdit} style={{ backgroundColor: COLOR_PRIMARY }} >
+                    <Button onClick={goToCategoryEdit} style={{ backgroundColor: COLOR_PRIMARY, minWidth: '40px' }} >
                         <EditIcon style={{ color: 'white' }} />
                     </Button>
-                    <Button onClick={onExpand || (() => {})} >
+                    <Button onClick={onExpand || (() => {})} style={{ minWidth: '40px' }} >
                         <VisibilityIcon style={{ color: isExpanded ? '#fcbf49' : '' }} />
                     </Button>
                 </div>

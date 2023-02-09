@@ -5,7 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import TranslateField from "../common/TranslateField";
 import { useDispatch, useSelector } from "react-redux";
 import { trySettingProductIsVisible } from "../../store/actions";
-import { COLOR_SECONDARY } from "../../constants";
+import { COLOR_PRIMARY } from "../../constants";
 
 export default function Product(props) {
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export default function Product(props) {
                     <TranslateField value={product.name} />
                 </Typography>
                 <div>
-                    <Button onClick={goToProductEdit} style={{ backgroundColor: COLOR_SECONDARY }} >
+                    <Button onClick={goToProductEdit} style={{ backgroundColor: COLOR_PRIMARY, minWidth: '40px' }} >
                         <EditIcon style={{ color: 'white' }} />
                     </Button>
                     <Switch checked={!! product.is_visible} onChange={handleProductIsVisible} key={'product_is_visible_' + productId} />
