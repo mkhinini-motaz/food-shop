@@ -139,11 +139,13 @@
 }
 */
 
-.main_layout_container_ar legend {
+.main_layout_container_ar legend,
+.main_layout_container_tnar legend {
     text-align: right;
 }
 
-.main_layout_container_ar input {
+.main_layout_container_ar input,
+.main_layout_container_tnar input {
     direction: rtl;
 }
 
