@@ -19,14 +19,14 @@ export default function EditOrder(props) {
                         product_count: choice.product_count,
                         options: choice.options,
                     }));
-                    dispatch(setSource(order.source));
-                    dispatch(setType(order.type));
-                    dispatch(setAssociatedPhone(order.associated_phone));
-                    dispatch(setDeliveryFee(order.delivery_fee));
-                    dispatch(setCartPromoCode(order.promo_code));
-                    dispatch(setAdditionalNote(order.additional_note));
-                    dispatch(setIsPayed(order.is_payed));
                 }
+                dispatch(setSource(order.source));
+                dispatch(setType(order.type));
+                dispatch(setAssociatedPhone(order.associated_phone));
+                dispatch(setDeliveryFee(order.delivery_fee));
+                dispatch(setCartPromoCode(order.promo_code));
+                dispatch(setAdditionalNote(order.additional_note));
+                dispatch(setIsPayed(order.is_payed));
             });
             dispatch(setIsLoading(false));
         });
