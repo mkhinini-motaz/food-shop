@@ -34,7 +34,7 @@ export default function ImageField(props) {
                 {props.label}
             </InputLabel>
             <input
-                accept="image/*"
+                accept="image/*,.heic"
                 id={'form_input_' + props.name}
                 type="file"
                 onChange={handleUploadClick}
