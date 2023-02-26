@@ -9,6 +9,7 @@ import TranslateField from "../common/TranslateField";
 import { updateCountCartProductTypeWithOptions, deleteCartProductTypeWithOptions, setCartProductTypeFixed, showConfirmDialog, showSnackbar, } from '../../store/actions';
 import { BASE_BACKEND_URL, COLOR_PRIMARY, PRODUCT, } from "../../constants";
 import { optionOutput, productPrice, productPriceForDialog } from "../../utils";
+import { translate } from "../../i18n";
 
 export default function Product(props) {
     const dispatch = useDispatch();
@@ -63,6 +64,8 @@ export default function Product(props) {
         hideCount
         textAlign={selectedLangWriteFrom === 'left' ? 'right' : 'left'}
         onClick={quantityActionButtonOnClick}
+        lang={selectedLang}
+        forWeight={product.type === PRODUCT.TYPE_WEIGHTABLE}
     />;
 
     return (
@@ -80,6 +83,10 @@ export default function Product(props) {
                             <TranslateField value={product.name} />
                             <span className="mx-1"></span>
                             <MoneyFormatter value={product.price} />
+                            {product.type !== PRODUCT.TYPE_WEIGHTABLE ? '' : [
+                                <span> / </span>,
+                                translate('common:kg', selectedLang)
+                            ]}
                         </span>
                     }
                     secondary={
@@ -89,7 +96,10 @@ export default function Product(props) {
                             </Typography>
                             <Typography component="span" variant="body1" color="textPrimary" >
                                 <span className={'mt-1 pt-1 px-2 d-inline-flex ' + flexRowClassName} style={{ backgroundColor: COLOR_PRIMARY, borderRadius: 50, }} >
-                                    {! product.product_count ? '' : <span>{product.product_count}</span>}
+                                    {! product.product_count ? '' : <span className={"lang_aware"}>{
+                                        product.type !== PRODUCT.TYPE_WEIGHTABLE ? product.product_count :
+                                            (product.product_count > 999 ? [<span>{(product.product_count / 1000).toString().replace('.', ',')}</span>, translate('common:kg', selectedLang)] : [<span>{product.product_count}</span>, translate('common:g', selectedLang)])
+                                    }</span>}
                                     {! product.product_count ? '' : <span className="mx-1">-</span>}
                                     <span>{product.total}</span>
                                 </span>

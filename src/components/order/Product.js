@@ -24,7 +24,7 @@ export default function Product(props) {
     const productInfo = productsInCart.filter(productInCart => productInCart.product_id === props.product.id).shift();
     const product     = props.product;
     const productCountInCart = useSelector(state => {
-        if (product.type === PRODUCT.TYPE_FIXED) {
+        if (product.type === PRODUCT.TYPE_FIXED || product.type === PRODUCT.TYPE_WEIGHTABLE) {
             const fixedProduct = state.CartReducer.products
                 .find(productInfo => productInfo.product_id === product.id) ||
                 { product_count: 0 };
@@ -53,11 +53,7 @@ export default function Product(props) {
 
 
     const quantityButtonOnClick = (newValue, addedValue) => {
-        if (orderInProgress) {
-            dispatch(showSnackbar({ message: 'cart:order:in_progress', severity: 'error' }));
-            return;
-        }
-        if (product.type === PRODUCT.TYPE_FIXED) {
+        if (product.type === PRODUCT.TYPE_FIXED || product.type === PRODUCT.TYPE_WEIGHTABLE) {
             return dispatch(setCartProductTypeFixed({ product_id: product.id, product_count: newValue }));
         }
 
@@ -87,6 +83,8 @@ export default function Product(props) {
                     count={productCountInCart}
                     textAlign={'center'}
                     onClick={quantityButtonOnClick}
+                    lang={selectedLang}
+                    forWeight={product.type === PRODUCT.TYPE_WEIGHTABLE}
                     bigSize
                 />
             </div>

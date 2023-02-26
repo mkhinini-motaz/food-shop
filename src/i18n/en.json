@@ -18,6 +18,8 @@
     "common:yesterday": "Yesterday",
     "common:last_week": "Last week",
     "common:last_month": "Last month",
+    "common:kg": "Kg",
+    "common:g": "g",
 
     "common:categories": "Categories",
     "category:edit:title": "Category edit",

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {BASE_SHOP_API_URL, SHOP_ID} from "../../constants";
+import { BASE_SHOP_API_URL } from "../../constants";
 import {
     SET_CART_PRODUCT_TYPE_FIXED,
     CREATE_CART_PRODUCT_WITH_OPTIONS,
@@ -124,7 +124,6 @@ export function submitOrder(cartReducerData) {
 
         axios.post(url, data)
             .then(response => {
-                dispatch(setOrderInProgress(true)); // TODO: why order in progress true
                 dispatch(emptyCart());
                 dispatch(setIsLoading(false));
                 dispatch(showSnackbar({ message: 'cart:order:submit:success' }));

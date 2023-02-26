@@ -5,6 +5,8 @@ import { Avatar, Chip, Collapse, Divider, ListItem, ListItemText, ListItemAvatar
 import TranslateField from "../common/TranslateField";
 import { optionsOutput } from "../../utils";
 import MoneyFormatter from "../common/MoneyFormatter";
+import { PRODUCT } from "../../constants";
+import { translate } from '../../i18n';
 
 export default function Product(props) {
     const { product, hideDivider } = props;
@@ -16,8 +18,12 @@ export default function Product(props) {
         <span className={'d-flex justify-content-between ' + flexRowClassName}>
             <span className={'d-flex align-items-center ' + flexRowClassName}>
                 {! product.product_count ? '' :
-                    <span className={'d-flex'}>
-                        <span>{product.product_count}</span>
+                    <span className={'lang_aware mw_60'}>
+                        <span className={'lang_aware'}>{product.type !== PRODUCT.TYPE_WEIGHTABLE ? product.product_count :
+                            (product.product_count > 999 ?
+                                [<span>{(product.product_count / 1000).toString().replace('.', ',')}</span>, translate('common:kg', selectedLang)] :
+                                [<span>{product.product_count}</span>, translate('common:g', selectedLang)])
+                        }</span>
                         <span className="mx-1"> X </span>
                     </span>
                 }

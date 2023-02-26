@@ -83,16 +83,6 @@
     }
 }
 
-.main_layout_container_ar * {
-    font-family: 'NotoSabsArabic';
-}
-
-.translated_ar, .translated_tnar {
-    text-align: right;
-    font-size: 18px;
-    line-height: 1.5;
-}
-
 .main_layout_container {
     min-height: 100vh;
 }
@@ -138,6 +128,12 @@
     transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
 }
 */
+
+.main_layout_container_ar .lang_aware,
+.main_layout_container_tnar .lang_aware {
+    display: flex;
+    flex-direction: row-reverse;
+}
 
 .main_layout_container_ar legend,
 .main_layout_container_tnar legend {
@@ -277,4 +273,8 @@
 
 .wheelie_animation {
     animation: wheelie 2s infinite alternate;
+}
+
+.mw_60 {
+    min-width: 60px;
 }

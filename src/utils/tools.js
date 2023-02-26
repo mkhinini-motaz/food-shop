@@ -151,6 +151,10 @@ export const productPrice = (product) => {
         }
     }
 
+    if (product.type === PRODUCT.TYPE_WEIGHTABLE) {
+        return (price / 1000) * product.product_count;
+    }
+
     return price * product.product_count;
 };
 
@@ -170,6 +174,10 @@ export const productPriceForDialog = (product) => {
                 price += option.price;
             }
         }
+    }
+
+    if (product.type === PRODUCT.TYPE_WEIGHTABLE) {
+        return (price / 1000) * product.product_count;
     }
 
     return price * product.product_count;

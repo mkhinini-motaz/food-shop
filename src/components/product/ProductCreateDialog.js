@@ -73,6 +73,7 @@ export default function ProductCreateDialog(props) {
                                           onClick={productCountOnChange}
                                           style={{ flexGrow: 1 }}
                                           bigSize
+                                          lang={selectedLangWriteFrom === 'right' ? 'ar' : 'fr'}
                     />
                 </div>
             </DialogTitle>

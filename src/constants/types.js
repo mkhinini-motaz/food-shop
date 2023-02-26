@@ -1,6 +1,7 @@
 export const PRODUCT = {
     TYPE_FIXED: 1,
     TYPE_WITH_OPTIONS: 2,
+    TYPE_WEIGHTABLE: 3,
 };
 
 export const ORDER = {
