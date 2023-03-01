@@ -23,24 +23,26 @@ export default function CategoryAccordion(props) {
     const goToCategoryEdit = () => history.push('/category/' + categoryId + '/edit');
 
     return (
-        <div className={'my-2 bg-white p-2 border_radius_15'} style={{ maxWidth: '700px', width: '100%', boxShadow: BOX_SHADOW_CSS_RULE }}>
-            <div className={flexRowClassName}>
-                <Typography gutterBottom variant="h4" component="h2" color={'primary'}>
-                    <TranslateField value={category.name} />
-                </Typography>
-                <div>
-                    <Switch checked={!! category.is_visible} onChange={handleCategoryIsVisible} key={'category_is_visible_' + categoryId} />
+        <div className={'col-12 col-sm-6 col-lg-4 p-2'}>
+            <div className={'bg-white border_radius_15 p-2'} style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
+                <div className={flexRowClassName}>
+                    <Typography gutterBottom variant="h4" component="h2" color={'primary'}>
+                        <TranslateField value={category.name} />
+                    </Typography>
+                    <div>
+                        <Switch checked={!! category.is_visible} onChange={handleCategoryIsVisible} key={'category_is_visible_' + categoryId} />
 
-                    <Button onClick={goToCategoryEdit} style={{ backgroundColor: COLOR_PRIMARY, minWidth: '40px' }} >
-                        <EditIcon style={{ color: 'white' }} />
-                    </Button>
-                    <Button onClick={onExpand || (() => {})} style={{ minWidth: '40px' }} >
-                        <VisibilityIcon style={{ color: isExpanded ? '#fcbf49' : '' }} />
-                    </Button>
+                        <Button onClick={goToCategoryEdit} style={{ backgroundColor: COLOR_PRIMARY, minWidth: '40px' }} >
+                            <EditIcon style={{ color: 'white' }} />
+                        </Button>
+                        <Button onClick={onExpand || (() => {})} style={{ minWidth: '40px' }} >
+                            <VisibilityIcon style={{ color: isExpanded ? '#fcbf49' : '' }} />
+                        </Button>
+                    </div>
                 </div>
-            </div>
-            <div className={"p-2"} style={{ display: isExpanded ? '' : 'none' }}>
-                <ProductList products={category.products}/>
+                <div className={"p-2"} style={{ display: isExpanded ? '' : 'none' }}>
+                    <ProductList products={category.products}/>
+                </div>
             </div>
         </div>
     );

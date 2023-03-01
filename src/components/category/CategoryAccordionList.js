@@ -34,8 +34,7 @@ export default function CategoryAccordionList(props) {
         showDelay += category.products.length * COMPONENT_SHOW_DELAY;
     }
 
-    const flexRowClassName = 'my-2 d-flex flex-wrap align-content-center flex-column' +
-        (selectedLangWriteFrom === 'right' ? '-reverse' : '');
+    const flexRowClassName = 'my-2 px-2 row flex-row' + (selectedLangWriteFrom === 'right' ? '-reverse' : '');
 
     return (
         <div className={flexRowClassName}>
