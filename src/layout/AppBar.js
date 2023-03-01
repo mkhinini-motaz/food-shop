@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import MapIcon from '@material-ui/icons/Map';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
 import { Home } from "@material-ui/icons";
 
 import { attemptShopUserLogout, openSideDrawer } from "../store/actions";
@@ -64,17 +65,6 @@ export default function AppBar(props) {
 				</Tooltip>
 			</MenuItem>
 
-			<MenuItem className="menu-item">
-				<Tooltip title={<Translate value={"order:map"} />} >
-					<IconButton
-						to={"/order/map"}
-						component={Link}
-					>
-						<MapIcon />
-					</IconButton>
-				</Tooltip>
-			</MenuItem>
-
             <MenuItem className="menu-item">
 				<Tooltip title={<Translate value={shopUserIsAuthenticated ? "order:order" : "common:login"} />} >
 					<IconButton
@@ -82,6 +72,17 @@ export default function AppBar(props) {
 						component={Link}
 					>
 						<ShoppingCart />
+					</IconButton>
+				</Tooltip>
+			</MenuItem>
+
+			<MenuItem className="menu-item">
+				<Tooltip title={<Translate value={"common:categories"} />} >
+					<IconButton
+						to={"/category"}
+						component={Link}
+					>
+						<FastfoodIcon />
 					</IconButton>
 				</Tooltip>
 			</MenuItem>

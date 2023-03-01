@@ -2,6 +2,7 @@ import React from 'react';
 import { Divider, Drawer, IconButton, Typography, } from '@material-ui/core';
 import PersonIcon from "@material-ui/icons/Person";
 import FastfoodIcon from '@material-ui/icons/Fastfood';
+import MapIcon from '@material-ui/icons/Map';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from '@material-ui/icons/Settings';
 import HistoryIcon from '@material-ui/icons/History';
@@ -71,6 +72,15 @@ export default function SideDrawer(props) {
 					<IconButton><Home /></IconButton>
 					<Typography variant="body1" color="textPrimary" component="span">
 						<Translate value="common:home" />
+					</Typography>
+				</Link>
+			</div>
+
+			<div className={'mt-3 ' + paddingRule} style={currentPath === '/order/map' ? activeLinkStyle : {}}>
+				<Link to="/order/map" className={flexRowRule}>
+					<IconButton><FastfoodIcon /></IconButton>
+					<Typography variant="body1" color="textPrimary" component="span">
+						<Translate value="order:map" />
 					</Typography>
 				</Link>
 			</div>
