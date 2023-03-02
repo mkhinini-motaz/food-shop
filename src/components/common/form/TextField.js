@@ -25,6 +25,7 @@ export default function TextField(props) {
                 type={props.isHidden ? 'password' : props.type}
                 required={isRequired}
                 multiline={!! props.multiline}
+                inputProps={{ step: props.step, inputMode: props.inputMode }}
             />
         </FormControl>
     );

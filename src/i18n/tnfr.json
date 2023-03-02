@@ -34,6 +34,10 @@
     "product:delete:confirm:title": "Confirmation ten7it produit",
     "product:delete:confirm:content": "Produit hadha bech yetna7a mel panier",
 
+    "product:old_price": "Som le9dim",
+    "product:new_price": "Som ejdid",
+    "product:price:validation.regex": "Som invalide",
+
     "form:address:label": "Adress",
     "form:email:label": "Email",
     "form:first_name:label": "Esm",

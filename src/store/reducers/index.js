@@ -16,6 +16,7 @@ import SnackbarReducer from './SnackbarReducer';
 import SideDrawerReducer from './SideDrawerReducer';
 import CartReducer from './CartReducer';
 import ProductDialogReducer from './ProductDialogReducer';
+import ProductPriceUpdateDialogReducer from './ProductPriceUpdateDialogReducer';
 import LoaderReducer from './LoaderReducer';
 
 export default combineReducers({
@@ -29,6 +30,7 @@ export default combineReducers({
     ShopUserReducer,
     ShopReducer,
     ConfirmDialogReducer,
+    ProductPriceUpdateDialogReducer,
     AuthReducer,
     I18nReducer,
     SnackbarReducer,

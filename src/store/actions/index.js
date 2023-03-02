@@ -15,3 +15,4 @@ export * from './sideDrawer';
 export * from './cart';
 export * from './productDialog';
 export * from './loader';
+export * from './ProductPriceUpdateDialog';

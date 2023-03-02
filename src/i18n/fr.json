@@ -34,6 +34,10 @@
     "product:delete:confirm:title": "Confirmation suppression produit",
     "product:delete:confirm:content": "Ce produit sera supprimé de votre panier, continuer ?",
 
+    "product:old_price": "Ancien prix",
+    "product:new_price": "Nouveau prix",
+    "product:price:validation.regex": "Prix invalide",
+
     "form:address:label": "Adresse",
     "form:email:label": "Email",
     "form:first_name:label": "Prénom",

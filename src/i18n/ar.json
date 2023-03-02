@@ -34,6 +34,10 @@
     "product:delete:confirm:title": "تأكيد حذف المنتج",
     "product:delete:confirm:content": "ستتم إزالة هذا المنتج من سلة التسوق الخاصة بك ، هل تريد المتابعة ؟",
 
+    "product:old_price": "السعر القديم",
+    "product:new_price": "السعر الجديد",
+    "product:price:validation.regex": "السعر غير صحيح",
+
     "form:address:label": "العنوان",
     "form:email:label": "البريد الإلكتروني",
     "form:first_name:label": "الاسم",

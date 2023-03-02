@@ -9,6 +9,7 @@ import { trySettingProductIsVisible } from "../../store/actions";
 import { COLOR_PRIMARY } from "../../constants";
 import MoneyFormatter from "../common/MoneyFormatter";
 import Translate from "../common/Translate";
+import { showProductPriceUpdateDialog } from "../../store/actions/ProductPriceUpdateDialog";
 
 export default function Product(props) {
     const dispatch = useDispatch();
@@ -34,7 +35,7 @@ export default function Product(props) {
                     </Typography>
                 </div>
                 <div>
-                    <Button onClick={() => {/* TODO:implement */}} style={{ backgroundColor: '#fcbf49', minWidth: '40px' }} >
+                    <Button onClick={() => dispatch(showProductPriceUpdateDialog(product))} style={{ backgroundColor: '#fcbf49', minWidth: '40px' }} >
                         <EuroIcon style={{ color: 'white' }} />
                     </Button>
                     <Button onClick={goToProductEdit} style={{ backgroundColor: COLOR_PRIMARY, minWidth: '40px' }} >

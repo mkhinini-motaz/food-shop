@@ -12,19 +12,22 @@ import TransporterDialog from "../components/transporter/TransporterDialog";
 import OrderStatusUpdateDialog from "../components/order/OrderStatusUpdateDialog";
 import ProductCreateDialog from "../components/product/ProductCreateDialog";
 import ProductDeleteDialog from "../components/product/ProductDeleteDialog";
+import ProductPriceUpdateDialog from "../components/product/ProductPriceUpdateDialog";
 import Loader from "../components/common/Loader";
 import OrdersMapDialog from "../components/order/OrdersMapDialog";
+import ProductPriceUpdateDialogReducer from "../store/reducers/ProductPriceUpdateDialogReducer";
 
 export default function Layout(props) {
-    const isLoading                  = useSelector(state => state.LoaderReducer.isLoading);
-    const selectedLang               = useSelector((state) => state.I18nReducer.selectedLang);
-    const orderDialogProps           = useSelector((state) => state.OrderDialogReducer);
-    const confirmDialogProps         = useSelector((state) => state.ConfirmDialogReducer);
-    const ordersMapDialogProps       = useSelector((state) => state.OrdersMapDialogReducer);
-    const transporterDialogProps     = useSelector((state) => state.TransporterDialogReducer);
-    const productCreateDialogProps   = useSelector(state => state.ProductDialogReducer.create);
-    const productDeleteDialogProps   = useSelector(state => state.ProductDialogReducer.delete);
-    const orderStatusEditDialogProps = useSelector((state) => state.OrderStatusEditDialogReducer);
+    const isLoading                     = useSelector(state => state.LoaderReducer.isLoading);
+    const selectedLang                  = useSelector((state) => state.I18nReducer.selectedLang);
+    const orderDialogProps              = useSelector((state) => state.OrderDialogReducer);
+    const confirmDialogProps            = useSelector((state) => state.ConfirmDialogReducer);
+    const ordersMapDialogProps          = useSelector((state) => state.OrdersMapDialogReducer);
+    const transporterDialogProps        = useSelector((state) => state.TransporterDialogReducer);
+    const productCreateDialogProps      = useSelector(state => state.ProductDialogReducer.create);
+    const productDeleteDialogProps      = useSelector(state => state.ProductDialogReducer.delete);
+    const orderStatusEditDialogProps    = useSelector((state) => state.OrderStatusEditDialogReducer);
+    const productPriceUpdateDialogProps = useSelector((state) => state.ProductPriceUpdateDialogReducer);
 
     let loaderComponent = ! isLoading ? '' :
         <div className={"position-fixed py-5 d-flex justify-content-center"}
@@ -80,6 +83,7 @@ export default function Layout(props) {
 
             <ProductCreateDialog {...productCreateDialogProps} />
             <ProductDeleteDialog {...productDeleteDialogProps} />
+            <ProductPriceUpdateDialog {...productPriceUpdateDialogProps} />
             <Snackbar />
         </div>
     );

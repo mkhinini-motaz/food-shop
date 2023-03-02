@@ -34,6 +34,10 @@
     "product:delete:confirm:title": "تأكيد حذف المنتج",
     "product:delete:confirm:content": "المنتج هاذا بش يتنحى من سلة التسوق ، تكمل ؟",
 
+    "product:old_price": "السوم القديم",
+    "product:new_price": "السوم الجديد",
+    "product:price:validation.regex": "السوم موش صحيح",
+
     "form:address:label": "العنوان",
     "form:email:label": "البريد الإلكتروني",
     "form:first_name:label": "الاسم",
