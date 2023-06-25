@@ -16,7 +16,6 @@ import { productPrice } from "../../utils";
 
 export default function Product(props) {
     const dispatch = useDispatch();
-    const orderInProgress       = useSelector(state => state.CartReducer.orderInProgress);
     const productsInCart        = useSelector(state => state.CartReducer.products);
     const selectedLang          = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);

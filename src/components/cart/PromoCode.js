@@ -19,6 +19,7 @@ export default function PromoCode(props) {
 
     const promoCodeIsLoading = useSelector(state => state.CartReducer.promoCodeIsLoading);
     const promoCode = useSelector(state => state.CartReducer.promoCode);
+    const orderId = useSelector(state => state.CartReducer.orderId);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
     const iconStyle          = selectedLangWriteFrom === 'right' ? { marginRight: '-40px' } : { marginLeft: '-40px' };
@@ -44,7 +45,7 @@ export default function PromoCode(props) {
         setTimeoutId(previousTimeoutId => {
             clearTimeout(previousTimeoutId);
             return setTimeout(
-                () => dispatch(getPromoCode(event.target.value || '')),
+                () => dispatch(getPromoCode(event.target.value || '', orderId)),
                 CART_PROMO_CODE_CHANGE_TIMEOUT_DELAY
             );
         });

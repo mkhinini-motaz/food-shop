@@ -11,7 +11,7 @@ import {
     DELETE_CART_PRODUCT_WITH_OPTIONS,
     SET_ADDITIONAL_NOTE,
     SET_ORDER_SUBMIT_IS_LOADING,
-    SET_ORDER_IN_PROGRESS,
+    SET_ORDER_ID,
     EMPTY_CART,
     UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS,
     SET_IS_PAYED, SET_ORDER_TIMESTAMP, SET_TYPE, SET_SOURCE, SET_ASSOCIATED_PHONE, SET_DELIVERY_FEE
@@ -69,8 +69,8 @@ export function setAssociatedPhone(associatedPhone) {
     return { type: SET_ASSOCIATED_PHONE, payload: associatedPhone };
 }
 
-export function setOrderInProgress(orderIsInProgress) {
-    return { type: SET_ORDER_IN_PROGRESS, payload: orderIsInProgress, };
+export function setOrderId(orderId) {
+    return { type: SET_ORDER_ID, payload: orderId, };
 }
 
 export function setIsPayed(isPayed) {
@@ -93,7 +93,7 @@ export function emptyCart() {
     return { type: EMPTY_CART };
 }
 
-export function getPromoCode(code) {
+export function getPromoCode(code, orderId) {
     return function(dispatch) {
         dispatch(setCartPromoCode(null));
         if (code.trim() === '') {
@@ -101,7 +101,8 @@ export function getPromoCode(code) {
         }
         dispatch(setCartPromoCodeIsLoading(true));
 
-        const url = BASE_SHOP_API_URL + '/promo-code/' + code;
+        const url = BASE_SHOP_API_URL + '/promo-code/' + code +
+            (! orderId ? '' : '?excluded_order_id=' + orderId);
         axios.get(url)
             .then(response => {
                 dispatch(setCartPromoCode(response.data.data));

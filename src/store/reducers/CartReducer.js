@@ -8,7 +8,7 @@ import {
     SET_CART_PROMO_CODE,
     SET_CART_PROMO_CODE_IS_LOADING,
     SET_ADDITIONAL_NOTE,
-    SET_ORDER_IN_PROGRESS,
+    SET_ORDER_ID,
     EMPTY_CART,
     UPDATE_COUNT_CART_PRODUCT_WITH_OPTIONS,
     SET_IS_PAYED,
@@ -18,12 +18,12 @@ import {
 import { SOURCE_ON_SITE, TYPE_TAKE_AWAY } from "../../constants";
 
 export const initialCartReducerState = {
+    orderId: null,
     products: [ ],
     address: {},
     promoCode: null,
     promoCodeIsLoading: false,
     orderSubmitIsLoading: false,
-    orderInProgress: false,
     deliveryFee: null,
     additionalNote: '',
     associatedPhone: '',
@@ -105,8 +105,8 @@ export default (state = initialCartReducerState, action) => {
         return { ...state, associatedPhone: action.payload};
     }
 
-    if (action.type === SET_ORDER_IN_PROGRESS) {
-        return { ...state, orderInProgress: action.payload};
+    if (action.type === SET_ORDER_ID) {
+        return { ...state, orderId: action.payload};
     }
 
     if (action.type === SET_IS_PAYED) {

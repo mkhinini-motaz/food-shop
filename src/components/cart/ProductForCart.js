@@ -16,7 +16,6 @@ export default function Product(props) {
     const product  = productInfoForCartItem(props.product, props.productCartInfo);
     const [ isShown, setIsShown ] = React.useState(false);
 
-    const orderInProgress       = useSelector(state => state.CartReducer.orderInProgress);
     const selectedLang          = useSelector(state => state.I18nReducer.selectedLang);
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
 
@@ -33,11 +32,6 @@ export default function Product(props) {
         .join(', ');
 
     const quantityActionButtonOnClick = newValue => {
-        if (orderInProgress) {
-            dispatch(showSnackbar({ message: 'cart:order:in_progress', severity: 'error' }));
-            return;
-        }
-
         if (newValue === 0) {
             return dispatch(showConfirmDialog({
                 title: <Translate value="product:delete:confirm:title"/>,
