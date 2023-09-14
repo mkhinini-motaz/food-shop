@@ -54,6 +54,7 @@
     "cart:delivery:label": "Livraison",
     "cart:delivery_fee:label": "7a9 livraison",
     "cart:order:submit": "3addi commande",
+    "cart:service_fee:label": "Frais de service",
 
     "shop_user:active_orders": "${count} cmanda temchi",
     "order:affect": "Affecter",
@@ -102,6 +103,7 @@
     "order:report:avg_last_week": "Moyenne jom3a li fatet",
     "order:report:avg_this_month": "Moyenne chhar hadha",
     "order:report:avg_last_month": "Moyenne chhar li fet",
+    "order:shop_share": "Baey el boutique",
 
     "ingredient:piece": "Piéce",
     "ingredient:pieces": "Piéces",

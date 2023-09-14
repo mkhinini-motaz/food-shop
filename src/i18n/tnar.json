@@ -54,6 +54,7 @@
     "cart:delivery:label": "توصيل",
     "cart:delivery_fee:label": "حق التوصيل",
     "cart:order:submit": "تأكيد الطلب",
+    "cart:service_fee:label": "تكلفة الخدمة",
 
     "shop_user:active_orders": "${count} كماندا تمشي",
     "order:affect": "تعيين",
@@ -101,6 +102,7 @@
     "order:report:avg_last_week": "موايان جمعة لي فاتت",
     "order:report:avg_this_month": "موايان الشهر هاذا",
     "order:report:avg_last_month": "موايان الشهر لي فات",
+    "order:shop_share": "باي البوتيك",
 
     "ingredient:piece": "قطعة",
     "ingredient:pieces": "قطعة",

@@ -54,6 +54,7 @@
     "cart:delivery_fee:label": "Frais livraison",
     "cart:additional_note:label": "Note supplémentaire",
     "cart:order:submit": "Valider commande",
+    "cart:service_fee:label": "Frais de service",
 
     "shop_user:active_orders": "${count} ordres actifs",
     "order:affect": "Affecter",
@@ -102,6 +103,7 @@
     "order:report:avg_last_week": "Moyenne semaine dernière",
     "order:report:avg_this_month": "Moyenne ce mois",
     "order:report:avg_last_month": "Moyenne mois dernier",
+    "order:shop_share": "Part du boutique",
 
     "ingredient:piece": "Piéce",
     "ingredient:pieces": "Piéces",

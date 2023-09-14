@@ -54,6 +54,7 @@
     "cart:delivery:label": "توصيل",
     "cart:delivery_fee:label": "معلوم التوصيل",
     "cart:order:submit": "تأكيد الطلب",
+    "cart:service_fee:label": "تكلفة الخدمة",
 
     "shop_user:active_orders": "${count} طلبات نشطة",
     "order:affect": "تعيين",
@@ -102,6 +103,7 @@
     "order:report:avg_last_week": "متوسط الأسبوع الماضي",
     "order:report:avg_this_month": "متوسط هذا الشهر",
     "order:report:avg_last_month": "متوسط الشهر الماضي",
+    "order:shop_share": "حصة المتجر",
 
     "ingredient:piece": "قطعة",
     "ingredient:pieces": "قطعة",

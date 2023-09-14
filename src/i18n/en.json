@@ -47,6 +47,7 @@
     "form:password_confirmation:label": "Password confirmation",
     "form:total:label": "Total",
     "form:total_to_pay:label": "Total to pay",
+    "cart:service_fee:label": "Service fee",
 
     "cart:promo_code:label": "Promo Code",
     "cart:promo_code:free_delivery": "Free delivery with the promo code",
@@ -102,6 +103,7 @@
     "order:report:avg_last_week": "Average previous week",
     "order:report:avg_this_month": "Average this month",
     "order:report:avg_last_month": "Average previous month",
+    "order:shop_share": "Shop share",
 
     "ingredient:piece": "Piece",
     "ingredient:pieces": "Pieces",
