@@ -13,7 +13,7 @@ export default function Total(props) {
     const { order } = props;
 
     const total = order.total_price + (! order.promo_code ? 0 : order.promo_code.reduction_amount);
-    const totalToPay = order.total_price + (order.delivery_fee ?? 0)
+    const totalToPay = order.total_price + (order.delivery_fee ?? 0) + order.service_fee;
 
     const flexRowClassName = 'flex-row' + (selectedLangWriteFrom === 'left' ? '-reverse' : '');
 
@@ -24,12 +24,34 @@ export default function Total(props) {
     return (
         <Collapse in={isShown}>
             <div className={props.className + ' bg-white my-2 p-3 border_radius_15'} style={{ boxShadow: BOX_SHADOW_CSS_RULE }}>
+                {! order.shop_share || order.shop_share === order.total_price ? '' :
+                    <Typography component="span" variant="body1" color="textPrimary"
+                                className={'d-flex align-items-center justify-content-between ' + flexRowClassName}
+                    >
+                    <span className={"font-weight-bold"}>
+                        <MoneyFormatter value={order.shop_share} />
+                    </span>
+                    <span className="mx-2"></span>
+                    <span className={"font-weight-bold"}>
+                        <Translate value="order:shop_share" />
+                    </span>
+                    </Typography>
+                }
+
                 {! order.delivery_fee && ! order.promo_code ? '' : <>
                     <Typography component="span" variant="body1" color="textPrimary" className={'d-flex align-items-center justify-content-between ' + flexRowClassName} >
                         <MoneyFormatter value={total} />
                         <span className="mx-2"></span>
                         <Translate value="form:total:label" />
                     </Typography>
+
+                    {! order.service_fee ? '' :
+                        <Typography component="span" variant="body1" color="textPrimary" className={'d-flex align-items-center justify-content-between ' + flexRowClassName} >
+                            <MoneyFormatter value={order.service_fee} />
+                            <span className="mx-2"></span>
+                            <Translate value="cart:service_fee:label" />
+                        </Typography>
+                    }
 
                     {! order.delivery_fee ? '' :
                         <Typography component="span" variant="body1" color="textPrimary" className={'d-flex align-items-center justify-content-between ' + flexRowClassName} >

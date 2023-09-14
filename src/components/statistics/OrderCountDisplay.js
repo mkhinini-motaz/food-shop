@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 export default function OrderCountDisplay(props) {
     const selectedLangWriteFrom = useSelector(state => state.I18nReducer.selectedLangWriteFrom);
     const flexRowClassName = 'd-flex flex-wrap ' + (selectedLangWriteFrom === 'right' ? 'flex-row-reverse ' : ' ');
-    const { title, displayedCount, displayedPrice, comparedCount, comparedPrice, displayedAvg, comparedAvg } = props;
+    const { title, displayedCount, displayedPrice, comparedCount, comparedPrice, displayedAvg, comparedAvg, shopShare } = props;
 
     const getTrendingIcon = (firstValue, secondValue) => {
         if (firstValue === secondValue) {
@@ -54,6 +54,14 @@ export default function OrderCountDisplay(props) {
                 <span className={"font-weight-bold"}><MoneyFormatter value={Math.round(displayedAvg / 1000) * 1000} /></span>
                 {! comparedAvg ? '' : getTrendingIcon(comparedAvg, displayedAvg)}
             </div>
+
+            {! shopShare || shopShare === displayedPrice ? '' :
+                <div className={flexRowClassName}>
+                    <Translate value={'order:shop_share'}/>
+                    <span className={"mx-2"}>:</span>
+                    <span className={"font-weight-bold"}><MoneyFormatter value={shopShare} /></span>
+                </div>
+            }
         </div>
     );
 };
