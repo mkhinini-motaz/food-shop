@@ -36,6 +36,7 @@ export default function QuantityActionButton(props) {
     let rootClasses = 'w-100 text-' + (props.textAlign || 'center') +
         ' ' + (props.classes && props.classes.root ? props.classes.root : '') +
         ' ' + (props.bigSize ? 'h1' : '');
+
     return (
         <div className={rootClasses}>
             {icons}

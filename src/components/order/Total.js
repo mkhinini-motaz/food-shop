@@ -51,7 +51,6 @@ export default function Total(props) {
                     }
                 </>}
 
-
                 <Typography component="span" variant="body1" color="textPrimary"
                             className={'d-flex align-items-center justify-content-between ' + flexRowClassName}
                 >

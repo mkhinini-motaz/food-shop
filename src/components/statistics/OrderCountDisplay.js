@@ -32,6 +32,7 @@ export default function OrderCountDisplay(props) {
             <Typography variant="h6" component="h6" color="primary" align={selectedLangWriteFrom}>
                 <Translate value={title} textOnly={true} />
             </Typography>
+
             <div className={flexRowClassName}>
                 <Translate value={'order:count'}/>
                 <span className={"mx-2"}>:</span>
@@ -39,12 +40,14 @@ export default function OrderCountDisplay(props) {
 
                 {! comparedCount ? '' : getTrendingIcon(comparedCount, displayedCount)}
             </div>
+
             <div className={flexRowClassName}>
                 <Translate value={'order:total_price'}/>
                 <span className={"mx-2"}>:</span>
                 <span className={"font-weight-bold"}><MoneyFormatter value={displayedPrice} /></span>
                 {! comparedPrice ? '' : getTrendingIcon(comparedPrice, displayedPrice)}
             </div>
+
             <div className={flexRowClassName}>
                 <Translate value={'order:avg_total_price'}/>
                 <span className={"mx-2"}>:</span>
