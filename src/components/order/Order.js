@@ -129,16 +129,7 @@ export default function Order(props) {
 
                 <Divider className={"my-2"} />
 
-                {! order.client ? '' :
-                    <div className={"px-2"}>
-                        <Typography variant="h5" component="h4" color="primary" align={selectedLangWriteFrom}>
-                            {! order.client.first_name && ! order.client.last_name ? 'client' : /* TODO: translate */
-                                order.client.first_name + ' ' + order.client.last_name}
-                        </Typography>
-                    </div>
-                }
-
-                {! order.delivery_latitude || hideLocationButton ? '' :
+                {! order.delivery_latitude || hideLocationButton || order.source === SOURCE_ONLINE   ? '' :
                     <div className={"px-2"}>
                         <Divider className={"my-2"} />
                         <Chip icon={<VisibilityIcon style={{ color: 'white' }} />}
@@ -158,7 +149,7 @@ export default function Order(props) {
                     </div>
                 }
 
-                {! order.associated_phone ? '' :
+                {! order.associated_phone || order.source === SOURCE_ONLINE  ? '' :
                     <div className={'px-2 text-' + selectedLangWriteFrom}>
                         <div className="d-block mb-2">
                             <a href={'tel:' + formatLocalPhoneNumber(order.associated_phone).replaceAll(' ', '')} style={{ textDecoration: 'none' }}>
