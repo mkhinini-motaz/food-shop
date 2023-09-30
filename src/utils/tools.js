@@ -420,3 +420,15 @@ export function arrayPolygonToObjects(polygon) {
 export function objectsPolygonToArray(objects) {
     return objects.map(coordinates => [ coordinates.lat, coordinates.lng]);
 }
+
+export function debounce(key, func, delay) {
+    return (...args) => {
+        const context = this;
+        if (window[key]) {
+            clearTimeout(window[key]);
+        }
+        window[key] = setTimeout(() => {
+            func.apply(context, args);
+        }, delay);
+    };
+}
