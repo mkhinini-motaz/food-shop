@@ -41,14 +41,14 @@ function fetchCategoriesAction(payload, fetchType) {
     }
 }
 
-export function fetchCategories({ page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc', fetchType = FETCH_TYPE_OVERRIDE })  {
+export function fetchCategories({ page = 1, perPage = 20, orderBy = 'created_at', orderDirection = 'desc', fetchType = FETCH_TYPE_OVERRIDE, search = '' })  {
     return function(dispatch) {
         dispatch(setIsLoading(true));
         if (fetchType === FETCH_TYPE_OVERRIDE) {
 //            dispatch(setCategories(initialCategoryReducerState.categories));
         }
 
-        const params = { page, perPage, orderBy, orderDirection };
+        const params = { page, perPage, orderBy, orderDirection, search };
 
         axios.get(BASE_SHOP_API_URL + '/category', { params })
             .then(response => {
