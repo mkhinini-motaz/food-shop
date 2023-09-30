@@ -65,6 +65,10 @@ export default function ProductEdit(props) {
             name: 'price',
             label: <Translate value="form:price:label" />,
         },
+        {
+            name: 'foreign_id',
+            label: <Translate value="form:foreign_id:label" />,
+        },
         // TODO: category
         {
             name: 'is_visible',
