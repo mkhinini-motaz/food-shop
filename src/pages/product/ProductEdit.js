@@ -29,7 +29,6 @@ export default function ProductEdit(props) {
         let data = new FormData()
         for (let lang of ['en', 'fr', 'tnfr', 'tnar', 'ar']) {
             data.append('name[' + lang + ']', formData.name[lang]);
-            data.append('description[' + lang + ']', formData.description[lang]);
         }
 
         data.append('is_visible', formData.is_visible ? 1 : 0);
@@ -43,6 +42,7 @@ export default function ProductEdit(props) {
             history.push('/category');
         })
         .catch(error => {
+            // TODO: errors one by one
             dispatch(showSnackbar({ message: 'product:edit:error', severity: 'error' }));
         })
         .finally(() => {
@@ -55,11 +55,6 @@ export default function ProductEdit(props) {
             name: 'name',
             type: FORM_FIELD_TYPE_TRANSLATABLE_TEXT,
             label: <Translate value="form:name:label" />,
-        },
-        {
-            name: 'description',
-            type: FORM_FIELD_TYPE_TRANSLATABLE_TEXT,
-            label: <Translate value="form:description:label" />,
         },
         {
             name: 'price',

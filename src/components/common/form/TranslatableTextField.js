@@ -44,7 +44,7 @@ export default function TranslatableTextField(props) {
             <Typography variant="h6" component="h6" align={selectedLangWriteFrom} style={{ color: 'rgba(0, 0, 0, 0.54)' }}>
                 <Translate value={props.name} textOnly={true}/>
             </Typography>
-            <div className={'p-2'}>
+            <div className={'p-2'} style={{ borderRadius: 20, borderWidth: 1, borderColor: '#dddddd', borderStyle: 'solid' }}>
                 {[ 'en', 'fr', 'tnfr', 'tnar', 'ar' ].map(langKey => <Field key={'translatable_field_' + langKey} langKey={langKey} {...props} />)}
             </div>
         </div>
