@@ -66,7 +66,7 @@ export default function Product(props) {
 
     return (
         <div className={'col-6 col-sm-4 col-md-2 p-1 text-center'}>
-            <div className={"p-2"}
+            <div className={"p-2 h-100"}
                  style={{
                      backgroundImage: IMAGE_WITH_TEXT_TINT + ', url(' + BASE_BACKEND_URL + product.photo + ')',
                      backgroundSize: 'cover',

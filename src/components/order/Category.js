@@ -6,13 +6,13 @@ export default function Category(props) {
     const { onClick, category, isSelected } = props;
     return (
         <div onClick={onClick}
-             className={'p-1 text-center'}
+             className={'p-1 text-center h-100'}
              style={{
                  color: isSelected ? COLOR_PRIMARY : 'white',
                  boxShadow: isSelected ? '0 0 10px 5px ' + COLOR_PRIMARY : '',
              }}
         >
-            <div className={"p-2"}
+            <div className={"p-2 h-100"}
                  style={{
                      backgroundImage: IMAGE_WITH_TEXT_TINT + ', url(' + BASE_BACKEND_URL + category.photo + ')',
                      backgroundSize: 'cover',
