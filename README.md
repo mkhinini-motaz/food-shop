@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# food-shop: the GhostChef shop back office
 
-## Available Scripts
+food-shop is the web app a restaurant uses to run its orders and menu in [GhostChef](https://github.com/mkhinini-motaz/ghostchef), a food-ordering platform I started in 2019. I wrote it by hand, before I used coding agents, between 2021 and 2023 (163 commits). A restaurant I co-founded used it from December 2021 to October 2023.
 
-In the project directory, you can run:
+The other parts of the system:
 
-### `npm start`
+- [Food](https://github.com/mkhinini-motaz/Food): the Laravel API this app calls
+- [food-client](https://github.com/mkhinini-motaz/food-client): customer web app
+- [food-ws](https://github.com/mkhinini-motaz/food-ws): realtime server
+- [deliveryapp](https://github.com/mkhinini-motaz/deliveryapp): delivery (rider) app
+- [ghostclient](https://github.com/mkhinini-motaz/ghostclient): customer phone app
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## What it does
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Routes are in `src/Router.js`.
 
-### `npm test`
+- **Orders**
+  - The home page lists the current orders and refreshes when the realtime server sends an `order_update` event.
+  - Staff can create an order themselves, edit it, change its status and mark it as paid.
+  - Staff can attach a transporter (rider) to an order.
+  - Browser push notifications through Firebase Cloud Messaging.
+  - Order history by date.
+  - An order map (Google Maps) with one marker per order.
+  - An overview page with statistics for a chosen date.
+- **Statistics** (`src/components/statistics`): orders per hour and over time, order counts, and counts by transporter, source, type, status, category, product, option and ingredient.
+- **Menu**
+  - List categories and open one to see its products.
+  - Edit a category or a product, and show or hide them.
+  - Update product prices.
+- **Settings**: change the menu language and draw the shop's service area as a polygon on a map.
+- **Account**: shop user login and profile.
+- **Languages**: French, English, Arabic and two Tunisian variants (`src/i18n`).
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Stack
 
-### `npm run build`
+- React 17 (Create React App, `react-scripts` 3.4.1), JavaScript
+- Redux 4 with `react-redux` 7, `redux-thunk` and `redux-persist` 6
+- Material UI 4, Bootstrap 4
+- `react-router` 5, `axios` 0.19, `socket.io-client` 4
+- `chart.js` 3 with `react-chartjs-2` 4, `react-charts` 3 (beta)
+- `@react-google-maps/api` 2, `firebase` 8, `react-ga`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Layout
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```
+src/pages/        home, orders (history, map, overview, edit), categories, products, settings, login
+src/components/   order, statistics, product, category, cart, transporter, common
+src/store/        Redux actions and reducers
+src/layout/       app bar, side drawer and page layouts
+src/i18n/         translations
+src/constants/    order statuses and shop settings
+public/           HTML, manifest, Firebase messaging service worker, sitemap
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Running it
 
-### `npm run eject`
+```
+npm install
+npm start          # development server
+npm run build      # production build
+npm run sitemap    # rebuild the sitemap
+npm test
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The app expects the API from [Food](https://github.com/mkhinini-motaz/Food) and the realtime server from [food-ws](https://github.com/mkhinini-motaz/food-ws). The code is archived and not maintained, and it may need an older Node to build.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Status
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Archived. The restaurant closed in October 2023. Since September 2026 I am rebuilding GhostChef as a delivery platform with Claude Code; that code is private. The [case study](https://github.com/mkhinini-motaz/ghostchef) tells the full story.
